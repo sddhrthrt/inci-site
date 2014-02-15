@@ -29,7 +29,7 @@
       }
     
       #room-container {
-	       position: relative;
+       position: relative;
         -webkit-perspective: 1000px;
         -moz-perspective: 1000px;
         -o-perspective: 1000px;
@@ -55,9 +55,9 @@
          background-size: 100%;
       }
       .row{
-  width:100%;
-  height:25%;
-}
+          width:100%;
+          height:25%;
+        }
 
 .cell
 {
@@ -199,93 +199,81 @@ h2
   </head>
   <body>
     <div id="room-container">
-      <div id="topbarholder">
-      <div id="topbar">
-        <ul>
-          <li class="registration"><a href="#">Registration</a></li>
-          <li class="contactus"><a href="contactus.html">Contact Us</a></li>
-          <li class="accomodation"><a href="#">Accomodation</a></li>
-          <li class="sponsors"><a href="#">Sponsors</a></li>
-          <li class="aboutus"><a href="#">About Us</a></li>
-          <li><a href="index.html">Home</a></li>
-        </ul>
-      </div>
-      </div>
-      <div class="wall" id="bottom">
+          <div id="topbarholder">
+              <div id="topbar">
+                <ul>
+                  <li class="registration"><a href="#">Registration</a></li>
+                  <li class="contactus"><a href="contactus.html">Contact Us</a></li>
+                  <li class="accomodation"><a href="#">Accomodation</a></li>
+                  <li class="sponsors"><a href="#">Sponsors</a></li>
+                  <li class="aboutus"><a href="#">About Us</a></li>
+                  <li><a href="index.html">Home</a></li>
+                </ul>
+              </div> <!--topbar-->
+          </div> <!--topbarholder-->
+          <div class="wall" id="top"> </div>
+          <div class="wall" id="left"></div>
+          <div class="wall" id="right"></div>
+          <div class="wall" id="back">
+              <div class="reliance"></div>
+          </div>
+          <div class="wall" id="bottom">
+            <div class = "row">
+                <div class = "cell clickme" id="tog1">
+                </div>
+                <div class = "cell clickme" id="tog2" >
+                </div>
+                <div class = "cell clickme" id="tog3">
+                </div>
+                <div class = "cell clickme" id="tog4">
+                </div>
+            </div>
 
+            <div class = "row">
+                <div class = "cell clickme" id="tog4">
+                </div>
+                <div class = "cell clickme" id="tog1">
+                </div>
+                <div class = "cell clickme" id="tog2">
+                </div>
+                <div class = "cell clickme" id="tog3">
+                </div>
+            </div>
 
-<div class = "row">
-<div class = "cell clickme" id="tog1">
+            <div class = "row">
+                <div class = "cell clickme sportsfest" id="tog3">
+                  <h2 style="font-size:90px;">Sports</h2>
+                </div>
+                <div class = "cell clickme workshop" id="tog2">
+                  <h2 style="">Workshop</h2>
+                </div>
+                <div class = "cell" id="tog1">
+                  <h2 style="font-size:80px;margin-left:40px;">Inci Special</h2>
+                </div>
+                <div class = "cell" id="tog4">
+                    <h2 style="font-size:80px;">I - care</h2>
+                </div>
+            </div>
 
-</div>
-<div class = "cell clickme" id="tog2" >
-</div>
-<div class = "cell clickme" id="tog3">
-</div>
-<div class = "cell clickme" id="tog4">
-</div>
+            <div class = "row">
+                <div class = "cell clickme informalz" id="tog4">
+                  <h2>Informalz</h2>
+                </div>
+                <div class = "cell clickme pronites" id="tog3">
+                  <h2>Pronites</h2>
+                </div>
+                <div class = "cell clickme events" id="tog2">
+                  <h2>Events</h2>
+                </div>
+                <div class = "cell clickme beach" id="tog1">
+                  <h2>Beach</h2>
+                </div>
+            </div>
+          </div>
 
-</div>
-
-<div class = "row">
-<div class = "cell clickme" id="tog4">
-
-</div>
-<div class = "cell clickme" id="tog1">
-</div>
-<div class = "cell clickme" id="tog2">
-</div>
-<div class = "cell clickme" id="tog3">
-
-</div>
-
-</div>
-
-<div class = "row">
-<div class = "cell clickme sportsfest" id="tog3">
-  <h2 style="font-size:90px;">Sports</h2>
-</div>
-<div class = "cell clickme workshop" id="tog2">
-  <h2 style="">Workshop</h2>
-</div>
-<div class = "cell" id="tog1">
-  <h2 style="font-size:80px;margin-left:40px;">Inci Special</h2>
-</div>
-<div class = "cell" id="tog4">
-    <h2 style="font-size:80px;">I - care</h2>
-</div>
-
-</div>
-
-<div class = "row">
-<div class = "cell clickme informalz" id="tog4">
-  <h2>Informalz</h2>
-</div>
-<div class = "cell clickme pronites" id="tog3">
-  <h2>Pronites</h2>
-</div>
-<div class = "cell clickme events" id="tog2">
-  <h2>Events</h2>
-</div>
-<div class = "cell clickme beach" id="tog1">
-  <h2>Beach</h2>
-</div>
-
-</div>
-
-
-      </div>
-      <div class="wall" id="top">
-
-      </div>
-
-    <div class="wall" id="left"></div>
-   <div class="wall" id="right"></div>
-      <div class="wall" id="back">
-      <div class="reliance"></div>
-    </div>
       <!--<div class="wall" id="front"></div>-->
     </div>
+<!--
     <div id="popup1"><div id="modal">
 
   <iframe class="close" src="events/hautecoutre.html " style="width:100%;height:100%" scrolling="yes"></iframe>
