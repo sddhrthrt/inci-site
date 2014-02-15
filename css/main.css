@@ -4,7 +4,7 @@ html, body {
 	height: 100%;
 }
 
-html, hmtl a{
+html, html a{
 	width:100%;
 	font-size: 100%; 
 	-webkit-text-size-adjust: 100%; 
@@ -617,14 +617,14 @@ nav#menu #menu-nav li a:hover {
 
 .page {
 	background: #2F3238;
-	padding: 100px 0;
+	padding: 40px 0;
 	position: relative;
 	z-index: 99;
 }
 
 .page-alternate {
 	background: #26292E;
-	padding: 100px 0;
+	padding: 40px 0;
 	position: relative;
 	z-index: 99;
 }
