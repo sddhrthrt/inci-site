@@ -2,11 +2,9 @@
 <html>
   <head>
     <title>Incident 2014</title>
-    <script src="js/jquery.js"></script>
-    <script src="js/modernizr.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="js/inci.js"> </script>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
-
     <style>
       html {
       margin: 0;
@@ -65,7 +63,7 @@
   height:100%;
   display:inline-block;
 }
-#tog4
+.tog4
   {  -moz-box-shadow:    inset 0 0 40px #000000;
    -webkit-box-shadow: inset 0 0 40px #000000;
    box-shadow:         inset 0 0 40px #000000;
@@ -73,12 +71,12 @@
     background-size: 100%;
     background-size: 100%;
   }
-  #tog4:hover
+  .tog4:hover
   {
     background-image: url('images/blueglow.png');
     background-size: 100%;
   }
-  #tog3
+  .tog3
   { -moz-box-shadow:    inset 0 0 40px #000000;
    -webkit-box-shadow: inset 0 0 40px #000000;
    box-shadow:         inset 0 0 40px #000000;
@@ -86,24 +84,24 @@
   background-size: 100%;
 
   }
-  #tog3:hover
+  .tog3:hover
   {
     background-image: url('images/greenglow.png');
     background-size: 100%;
   }
-  #tog2
+  .tog2
   { -moz-box-shadow:    inset 0 0 40px #000000;
    -webkit-box-shadow: inset 0 0 40px #000000;
    box-shadow:         inset 0 0 40px #000000;
     background-image: url('images/yellowdim.png');
     background-size: 100%;
   }
-  #tog2:hover
+  .tog2:hover
   {
       background-image: url('images/yellowglow.png');
       background-size: 100%;
   }
-  #tog1
+  .tog1
   { -moz-box-shadow:    inset 0 0 40px #000000;
    -webkit-box-shadow: inset 0 0 40px #000000;
    box-shadow:         inset 0 0 40px #000000;
@@ -111,20 +109,18 @@
       background-size: 100%;
 
   }
-  #tog1:hover
+  .tog1:hover
   {
     background-image: url('images/redglow.png');
     background-size: 100%;
   }
-  #popup1,#popup2,#popup3,#popup4,#popup5,#popup6,#popup7,#popup8,#popup9,#popup10,#popup11,#popup12,#popup13{
+  #modalholder {
     display: none;
     width: 100%;
     height: 100%;
-
   }
   #modal
   {
-   
     width: 90%;
     height: 90%;
     margin: auto;
@@ -219,53 +215,53 @@ h2
           </div>
           <div class="wall" id="bottom">
             <div class = "row">
-                <div class = "cell clickme" id="tog1">
+                <div class = "cell clickme tog1" >
                 </div>
-                <div class = "cell clickme" id="tog2" >
+                <div class = "cell clickme tog2">
                 </div>
-                <div class = "cell clickme" id="tog3">
+                <div class = "cell clickme tog3">
                 </div>
-                <div class = "cell clickme" id="tog4">
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class = "cell clickme" id="tog4">
-                </div>
-                <div class = "cell clickme" id="tog1">
-                </div>
-                <div class = "cell clickme" id="tog2">
-                </div>
-                <div class = "cell clickme" id="tog3">
+                <div class = "cell clickme tog4">
                 </div>
             </div>
 
             <div class = "row">
-                <div class = "cell clickme sportsfest" id="tog3">
+                <div class = "cell clickme tog4">
+                </div>
+                <div class = "cell clickme tog1">
+                </div>
+                <div class = "cell clickme tog2">
+                </div>
+                <div class = "cell clickme tog3">
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class = "cell clickme tog3 " id="sportsfest">
                   <h2 style="font-size:90px;">Sports</h2>
                 </div>
-                <div class = "cell clickme workshop" id="tog2">
+                <div class = "cell clickme tog2" id="workshop">
                   <h2 style="">Workshop</h2>
                 </div>
-                <div class = "cell" id="tog1">
+                <div class = "cell tog1" >
                   <h2 style="font-size:80px;margin-left:40px;">Inci Special</h2>
                 </div>
-                <div class = "cell" id="tog4">
+                <div class = "cell tog4" >
                     <h2 style="font-size:80px;">I - care</h2>
                 </div>
             </div>
 
             <div class = "row">
-                <div class = "cell clickme informalz" id="tog4">
+                <div class = "cell clickme tog4" id="informalz">
                   <h2>Informalz</h2>
                 </div>
-                <div class = "cell clickme pronites" id="tog3">
+                <div class = "cell clickme tog3" id="pronites">
                   <h2>Pronites</h2>
                 </div>
-                <div class = "cell clickme events" id="tog2">
+                <div class = "cell clickme tog2" id="events">
                   <h2>Events</h2>
                 </div>
-                <div class = "cell clickme beach" id="tog1">
+                <div class = "cell clickme tog1" id="beach">
                   <h2>Beach</h2>
                 </div>
             </div>
@@ -273,248 +269,44 @@ h2
 
       <!--<div class="wall" id="front"></div>-->
     </div>
-<!--
-    <div id="popup1"><div id="modal">
 
-  <iframe class="close" src="events/hautecoutre.html " style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup2"><div id="modal">
-
-  <iframe  src="pronites/encore.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup3"><div id="modal">
-
-  <iframe  src="beach.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup4"><div id="modal">
-
-  <iframe  src="informalz.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup5"><div id="modal">
-
-  <iframe  src="icare.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup6"><div id="modal">
-
-  <iframe  src="incispecial.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup7"><div id="modal">
-
-  <iframe  src="workshop/cartoon.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup8"><div id="modal">
-
-  <iframe  src="sportsfest/slamdunk.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup9"><div id="modal">
-
-  <iframe  src="aboutus.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup10"><div id="modal">
-
-  <iframe  src="sponsors.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup11"><div id="modal">
-
-  <iframe  src="accomodation.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup12"><div id="modal">
-
-  <iframe  src="contactus.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-<div id="popup13"><div id="modal">
-
-  <iframe  src="registration.html" style="width:100%;height:100%" scrolling="yes"></iframe>
-</div></div>
-
+<div id="modalholder">
+    <div id="modal">
+    </div>
+</div>
 
 <script type="text/javascript">
 (function($) {
-         // DOM Ready
-        $(function() {
-            // Binding a click event
-            
-            $('.events').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup1').bPopup({
-                  easing: 'easeOutBack', //uses jQuery easing plugin
-                   speed: 450,
-                  transition: 'slideDown'
-               });
-             });
-            });
-         $(function() {
-            // Binding a click event
-            
-            $('.pronites').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup2').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
+        modals = {
+            events: "events/hautecoutre.html",
+            pronites: "pronites/encore.html",
+            beach: "beach.html",
+            informalz: "informalz.html",
+            icare: "icare.html",
+            incispecial: "incispecial.html",
+            workshop: "workshop/cartoon.html",
+            sportsfest: "sportsfest/slamdunk.html",
+            aboutus: "aboutus.html",
+            sponsors: "sponsors.html",
+            accomodation: "accomodation.html",
+            contactus: "contactus.html",
+            registration: "registration.html"
+        }
+        $('.clickme').bind('click', function(e) {
+            e.preventDefault();
+            var target = $("#modal");
+            target.find("iframe").remove();
+            var i = $("<iframe></iframe>").css("width", "100%").css("height", "100%").attr("scrolling", "yes");
+                target.append(i);
+                $('#modalholder').bPopup({
+                    easing: 'easeOutBack', //uses jQuery easing plugin
+                    speed: 450,
+                    transition: 'slideDown'
+                });
+            var url = modals[e.currentTarget.id];
+            i.attr("src", url);
         });
-            });
-        });
-          $(function() {
-            // Binding a click event
-            
-            $('.beach').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup3').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
-        });
-            });
-        });
-           $(function() {
-            // Binding a click event
-            
-            $('.informalz').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup4').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
-        });
-            });
-        });
-            $(function() {
-            // Binding a click event
-            
-            $('.icare').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup5').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
-        });
-            });
-        });
-             $(function() {
-            // Binding a click event
-            
-            $('.incispecial').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup6').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
-        });
-            });
-        });
-              $(function() {
-            // Binding a click event
-            
-            $('.workshop').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup7').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
-        });
-            });
-        });
-               $(function() {
-            // Binding a click event
-            
-            $('.sportsfest').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup8').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
-        });
-            });
-        });
-               $(function() {
-            // Binding a click event
-            
-            $('.aboutus').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup9').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
-        });
-            });
-        });
-               $(function() {
-            // Binding a click event
-            
-            $('.sponsors').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup10').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
-        });
-            });
-        });
-               $(function() {
-            // Binding a click event
-            
-            $('.accomodation').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup11').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
-        });
-            });
-        });
-               $(function() {
-            // Binding a click event
-            
-            $('.contactus').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup12').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
-        });
-            });
-        });
-               $(function() {
-            // Binding a click event
-            
-            $('.registration').bind('click', function(e) {
-                 
-                e.preventDefault();
-               
-               $('#popup13').bPopup({
-      easing: 'easeOutBack', //uses jQuery easing plugin
-            speed: 450,
-            transition: 'slideDown'
-        });
-            });
-        });
-
-    })(jQuery);
+})(jQuery);
 </script>
   </body>
 </html>
