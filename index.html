@@ -42,14 +42,14 @@
       }
 
       #left,#right {
-        background: url('images/output.gif');
+/*        background: url('images/output.gif');*/
         
       }
       #top, #bottom {
 	background: black;
 	}
       #back {
-         background-image: url('images/inci.gif');
+/*         background-image: url('images/inci.gif');*/
          background-size: 100%;
       }
       .row{
@@ -294,6 +294,7 @@ h2
         }
         $('.clickme').bind('click', function(e) {
             e.preventDefault();
+            if(! e.currenttarget.id in modals) return;
             var target = $("#modal");
             target.find("iframe").remove();
             var i = $("<iframe></iframe>").css("width", "100%").css("height", "100%").attr("scrolling", "yes");
