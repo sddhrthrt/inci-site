@@ -294,7 +294,8 @@ h2
         }
         $('.clickme').bind('click', function(e) {
             e.preventDefault();
-            if(! e.currenttarget.id in modals) return;
+            console.log("clicked: " +e.currentTarget.id);
+            if(! (e.currentTarget.id in modals)) return;
             var target = $("#modal");
             target.find("iframe").remove();
             var i = $("<iframe></iframe>").css("width", "100%").css("height", "100%").attr("scrolling", "yes");
