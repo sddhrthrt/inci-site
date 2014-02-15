@@ -59,7 +59,7 @@
   position: relative;
   top: 230px;
   left: 40px;
-  width: 480px;
+  width: 460px;
   margin: 0 auto;
   z-index: 100;
 }
@@ -90,12 +90,12 @@
   line-height: 2;
 }
 .hexaflip-cube > div{
-    background-size: 480px auto;
+    background-size: 460px auto;
     background-repeat: no-repeat;
     background-color: #333; 
 }
 .hexaflip-side  > div{
-    background-size: 480px auto;
+    background-size: 460px auto;
     background-repeat: no-repeat;
     background-color: #333;
 }
