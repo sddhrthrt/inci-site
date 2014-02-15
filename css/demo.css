@@ -89,3 +89,12 @@
 #output {
   line-height: 2;
 }
+.hexaflip-cube > div{
+    background-size: 660px auto;
+    background-repeat: no-repeat;
+    
+}
+.hexaflip-side  > div{
+    background-size: 660px auto;
+    background-repeat: no-repeat;
+}
