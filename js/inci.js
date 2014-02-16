@@ -51,7 +51,7 @@
 	    return true;
 	}
 	$(window).resize(adjust);
-	adjust();
+        adjust();
     });
 
 })(jQuery);
