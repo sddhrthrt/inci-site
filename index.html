@@ -30,11 +30,16 @@
        position: relative;
         -webkit-perspective: 1000px;
         -moz-perspective: 1000px;
+        -ms-perspective: 1000px;
         -o-perspective: 1000px;
         perspective: 1000px;
         width: 100%;
         height: 100%;
-        -webkit-perspective-origin: 50% 25%;
+        -webkit-perspective-origin: 50% 35%;
+        -moz-perspective-origin: 50% 35%;
+        -ms-perspective-origin: 50% 35%;
+        -o-perspective-origin: 50% 35%;
+        perspective-origin: 50% 35%;
       }
       .wall {
 	margin: 0;
@@ -43,7 +48,7 @@
 
       #left,#right {
         background: url('images/output.gif');
-        
+        opacity: 0.6; 
       }
       #top, #bottom {
         background: black;
