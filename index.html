@@ -34,7 +34,7 @@
         perspective: 1000px;
         width: 100%;
         height: 100%;
-        /*-webkit-perspective-origin: 50% 25%;*/
+        -webkit-perspective-origin: 50% 25%;
       }
       .wall {
 	margin: 0;
@@ -162,7 +162,6 @@
    -webkit-box-shadow: inset 0 0 40px #000000;
    box-shadow:         inset 0 0 40px #000000;
     background-image:url('images/bluedim.png');
-    background-size: 100%;
     background-size: 100%;
   }
   .tog4:hover
@@ -309,57 +308,57 @@ h2
           </div>
           <div class="wall" id="bottom">
             <div class = "row">
-                <div class = "cell clickme tog1" >
-                </div>
-                <div class = "cell clickme tog2">
-                </div>
-                <div class = "cell clickme tog3">
-                </div>
-                <div class = "cell clickme tog4">
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class = "cell clickme tog4">
-                </div>
-                <div class = "cell clickme tog1">
-                </div>
-                <div class = "cell clickme tog2">
-                </div>
-                <div class = "cell clickme tog3">
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class = "cell clickme tog3 " id="sportsfest">
+                <div class = "cell tog1" >
                 </div>
                 <div class = "cell clickme tog2" id="workshop">
                 </div>
+                <div class = "cell tog3">
+                </div>
+                <div class = "cell clickme tog4" id="icare">
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class = "cell clickme tog4" id="sports">
+                </div>
+                <div class = "cell tog1">
+                </div>
+                <div class = "cell clickme tog2" id="incispecial">
+                </div>
+                <div class = "cell tog3">
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class = "cell tog3" >
+                </div>
+                <div class = "cell clickme tog2" id="pronites">
+                </div>
                 <div class = "cell tog1" >
                 </div>
-                <div class = "cell tog4" >
+                <div class = "cell clickme tog4" id="beach">
                 </div>
             </div>
 
             <div class = "row">
                 <div class = "cell clickme tog4" id="informalz">
                 </div>
-                <div class = "cell clickme tog3" id="pronites">
+                <div class = "cell tog3">
                 </div>
                 <div class = "cell clickme tog2" id="events">
                 </div>
-                <div class = "cell clickme tog1" id="beach">
+                <div class = "cell tog1">
                 </div>
             </div>
           </div>
 
       <!--<div class="wall" id="front"></div>-->
     <div class="wall front" id="front0">
-        <div class="iconholder" id="informalz-lg">
+        <div class="iconholder clickme" id="informalz-lg">
         </div>
         <div class="iconholder">
         </div>
-        <div class="iconholder" id="events-lg">
+        <div class="iconholder clickme" id="events-lg">
         </div>
         <div class="iconholder" >
         </div>
@@ -367,20 +366,20 @@ h2
     <div class="wall front" id="front1">
         <div class="iconholder" >
         </div>
-        <div class="iconholder" id="pronites-lg">
+        <div class="iconholder clickme" id="pronites-lg">
         </div>
         <div class="iconholder" >
         </div>
-        <div class="iconholder" id="beach-lg">
+        <div class="iconholder clickme" id="beach-lg">
         </div>
    
     </div>
     <div class="wall front" id="front2">
-        <div class="iconholder" id="sports-lg">
+        <div class="iconholder clickme" id="sports-lg">
         </div>
         <div class="iconholder" >
         </div>
-        <div class="iconholder" id="incispecial-lg">
+        <div class="iconholder clickme" id="incispecial-lg">
         </div>
         <div class="iconholder" >
         </div>
@@ -388,11 +387,11 @@ h2
     <div class="wall front" id="front3"> 
         <div class="iconholder" >
         </div>
-        <div class="iconholder" id="workshop-lg">
+        <div class="iconholder clickme" id="workshop-lg">
         </div>
         <div class="iconholder" >
         </div>
-        <div class="iconholder" id="icare-lg">
+        <div class="iconholder clickme" id="icare-lg">
         </div>
     </div>
     </div>
@@ -402,6 +401,15 @@ h2
 </div>
 
 <script type="text/javascript">
+    (function($){
+        /*hovering on icons should activate tiles*/
+        $(".iconholder").mouseenter(
+        function(){var i = $(this).id; if(i){ $("#"+i.split("-")[0]).mouseenter();}}
+        );        
+        $(".iconholder").mouseleave(
+        function(){var i = $(this).id; if(i){ $("#"+i.split("-")[0]).mouseleave();}}
+        );        
+    });
 (function($) {
         modals = {
             events: "events/hautecoutre.html",
@@ -420,18 +428,20 @@ h2
         }
         $('.clickme').bind('click', function(e) {
             e.preventDefault();
-            var target = e.currentTarget.id.split('-')[0];
-            if(! target in modals) return;
+            var targetid = e.currentTarget.id.split('-')[0];
+            if(! targetid in modals) return;
+            console.log("clicked on "+targetid+", opening "+modals[targetid] );
             var target = $("#modal");
             target.find("iframe").remove();
             var i = $("<iframe></iframe>").css("width", "100%").css("height", "100%").attr("scrolling", "yes");
-                target.append(i);
-                $('#modalholder').bPopup({
-                    easing: 'easeOutBack', //uses jQuery easing plugin
-                    speed: 450,
-                    transition: 'slideDown'
-                });
-            var url = modals[target];
+            target.append(i);
+            $('#modalholder').bPopup({
+                easing: 'easeOutBack', //uses jQuery easing plugin
+                speed: 450,
+                transition: 'slideDown'
+            });
+            console.log("attaching url for "+targetid+": "+modals[targetid]);
+            var url = modals[targetid];
             i.attr("src", url);
         });
 })(jQuery);

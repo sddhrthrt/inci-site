@@ -39,7 +39,6 @@
                 el.css(prefixes[j] + 'transform', 
                        "translateZ("+dist+"px) translateY(40px)");
             }
-            console.log("("+i+") moving "+el.id+" "+((-d/4)*i-(d/8))+"px along z axis");
         }
     }
     $(document).ready(function () {
