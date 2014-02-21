@@ -12,7 +12,7 @@ logging.basicConfig(filename="/var/tmp/inci-site/log.log", level = logging.DEBUG
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] =     'sqlite:////var/tmp/inci-site/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] =     'mysql://root:root@localhost/enginee8_inci_site'
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 
