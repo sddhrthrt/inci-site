@@ -2,17 +2,25 @@ from flask import Flask
 from flask import request, url_for, redirect, jsonify
 from flask import render_template
 from wtforms import Form, BooleanField, StringField, validators, PasswordField
+from wtforms import FileField, FormField, DateField, HiddenField, IntegerField
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.login import LoginManager, current_user, login_user, logout_user
+from flask.ext.login import LoginManager, current_user, login_user, logout_user, login_required
 from flask.ext.script import Manager
 from flask.ext.migrate import Migrate, MigrateCommand
+import os
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = '/var/tmp/inci-site'
+ALLOWED_EXTENSIONS = set(['jpg', 'png'])
+
 
 import logging
 logging.basicConfig(filename="/var/tmp/inci-site/log.log", level = logging.DEBUG)
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-app.config['SQLALCHEMY_DATABASE_URI'] =     'sqlite:////var/tmp/inci-site/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] =     'mysql://root:root@localhost/enginee8_inci_site'
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 
@@ -46,12 +54,83 @@ class User(db.Model):
     def __repr__(self):
         return "<User#%r: %r>"%(self.id, self.username)
 
+class DivaEntry(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    uid = db.Column(db.Integer, db.ForeignKey('user.id'))
+    entry = db.Column(db.Text)
+
 class Registration(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
         return "<Regitsration#%r: %r>"%(self.id, self.user_id)
+
+class AddressForm(Form):
+    address_s1 = StringField("Street Address", [
+        validators.Length(max=128),
+        validators.Required()
+        ])
+    address_s2 = StringField("Street Address 2", [
+        validators.Length(max=128)
+        ])
+    city = StringField("City", [
+        validators.Length(max=128),
+        validators.Required()
+        ])
+    state = StringField("State/Province", [
+        validators.Length(max=128),
+        validators.Required()
+        ])
+    postal = StringField("Postal code", [
+        validators.Length(max=12),
+        validators.Required()
+        ])
+    country = StringField("Country", [
+        validators.Length(max=32),
+        validators.Required()
+        ])
+
+class DivaForm(Form):
+    uid = HiddenField("uid")
+    fname = StringField("First Name", [
+        validators.Length(max=64),
+        validators.Required()
+        ])
+    lname = StringField("Last name", [
+        validators.Length(max=64),
+        validators.Required()
+        ])
+    dob = DateField("DOB (dd-mm-yyyy)", [
+        validators.Required()
+        ], format="%d-%m-%Y")
+    age = IntegerField("Age", [
+        validators.Required()
+        ])
+    college = StringField("College Name", [
+        validators.Length(max=128),
+        validators.Required()
+        ])
+    address = FormField(AddressForm)
+    contact = StringField("Contact Number", [
+        validators.Length(max=32),
+        validators.Required()
+        ])
+    email = StringField("Email", [
+        validators.Length(max=32),
+        validators.Required()
+        ])
+    height = StringField("Height in inches", [
+        validators.Length(max=12),
+        validators.Required()
+        ])
+    vitalstats = StringField("Vital Stats (36-24-36)", [
+        validators.Length(max=32),
+        validators.Required()
+        ])
+    photo_full = FileField(u"Photo (Full Shot)")
+    photo_med = FileField(u"Photo (Medium Shot)")
+    photo_close = FileField(u"Photo (Close-Up Shot)")
 
 
 @login_manager.user_loader
@@ -122,6 +201,49 @@ def login():
         else: 
             logging.debug("user not found: "+form.username.data)
     return render_template('login.html', form=form, submit_url = url_for('login'))
+
+def allowed_file(filename):
+    return '.' in filename and \
+            filename.split('.', 1)[1] in ALLOWED_EXTENSIONS
+
+def save_form(form, filenames):
+    keys = form.__dict__.keys()
+    keys = filter(lambda a: not a.startswith("_"), keys)
+    row = ''
+    for i in keys:
+        if not i=='address' and not i.startswith('photo'):
+            data = getattr(form, i)
+            if isinstance(data, int) or isinstance(data, long):
+                row += i+":"+str(getattr(form, i))+","
+            else:
+                row += i+":"+str(getattr(form, i).data)+","
+    for i in form.address.data.keys():
+        row += "%s:%s,"%(i,form.address.data[i])
+    row += filenames
+    row = row.rstrip(",")+'\n'
+    d = DivaEntry(uid=current_user.id, entry = row)
+    db.session.add(d)
+    db.session.commit()
+
+@app.route('/diva', methods=["POST", "GET"])
+@login_required
+def diva():
+    form = DivaForm(request.form)
+    form.uid = current_user.id
+    logging.debug("form address: %r"%(form.__dict__.keys()))
+    if request.method == 'POST' and form.validate():
+        filenames = ""
+        for i in ('photo_full', 'photo_med', 'photo_close'):
+            file_ = request.files[i]
+            if file_ and allowed_file(file_.filename):
+                filename = str(form.uid)+"_"+secure_filename(file_.filename)
+                file_.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                filenames += "%s:%s,"%(i,filename)
+        save_form(form, filenames)
+        logging.debug("got %s, %s"%(form.uid, form.fname.data))
+        logging.debug("form: "%(form))
+        return render_template('diva_thanks.html')
+    return render_template('diva.html', form=form, submit_url = url_for('diva'))
 
 @app.route('/')
 def index():

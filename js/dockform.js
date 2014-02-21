@@ -16,6 +16,17 @@ function dock(target, args){
                     });
                     return false;
                 });
+                (function($){
+                    $("#divaform").submit(function(event){
+                        $(this).ajaxSubmit({
+                            target: target,
+                            data: $(this).serialize(),
+                            url: $(this).attr('action'),
+                            type: $(this).attr('method'),
+                        });
+                        return false;
+                    });
+                })(jQuery);
             }
         }
         $.ajax(args);

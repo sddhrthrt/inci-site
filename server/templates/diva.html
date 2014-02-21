@@ -1,0 +1,17 @@
+{% import 'macros.jinja' as macros %}
+<form name="diva" method="post" action="{{submit_url}}" id="divaform" enctype=multipart/form-data>
+    {{ macros.with_errors(form.fname) | safe }}
+    {{ macros.with_errors(form.lname) | safe }}
+    {{ macros.with_errors(form.dob) | safe }}
+    {{ macros.with_errors(form.age) | safe }}
+    {{ macros.with_errors(form.college) | safe }}
+    {{ macros.with_errors(form.address) | safe }}
+    {{ macros.with_errors(form.contact) | safe }}
+    {{ macros.with_errors(form.email) | safe }}
+    {{ macros.with_errors(form.height) | safe }}
+    {{ macros.with_errors(form.vitalstats) | safe }}
+    {{ macros.with_errors(form.photo_full) | safe }}
+    {{ macros.with_errors(form.photo_med) | safe }}
+    {{ macros.with_errors(form.photo_close) | safe }}
+    <input type="submit" value="Submit"/>
+</form>
