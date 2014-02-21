@@ -29,6 +29,7 @@ class User(db.Model):
     email = db.Column(db.String(64), unique = True)
     fb_username = db.Column(db.String(64), unique = True)
     password = db.Column(db.String(128))
+    registrations = db.relationship('Registration', backref='user', lazy='dynamic')
     
     def is_authenticated(self):
         return True
@@ -42,14 +43,16 @@ class User(db.Model):
     def get_id(self):
         return unicode(self.id)
 
-    def __init__(self, username, email, password, fb_username=None):
-        self.username = username
-        self.email = email
-        self.password = password
-        self.fb_username = fb_username
-
     def __repr__(self):
         return "<User#%r: %r>"%(self.id, self.username)
+
+class Registration(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return "<Regitsration#%r: %r>"%(self.id, self.user_id)
+
 
 @login_manager.user_loader
 def load_user(userid):

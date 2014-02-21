@@ -1,0 +1,9 @@
+{% import 'macros.jinja' as macros %}
+<form name="register" method="post" action="{{submit_url}}" id="registerform">
+    {{ macros.with_errors(form.username) | safe }} 
+    {{ macros.with_errors(form.email) | safe }}
+    {{ macros.with_errors(form.fb_username) | safe }}
+    {{ macros.with_errors(form.password) |safe }}
+    {{ macros.with_errors(form.confirm) | safe }}
+    <input type="submit" value="register"/>
+</form>
