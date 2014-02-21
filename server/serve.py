@@ -4,13 +4,21 @@ from flask import render_template
 from wtforms import Form, BooleanField, StringField, validators, PasswordField
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, current_user, login_user, logout_user
+from flask.ext.script import Manager
+from flask.ext.migrate import Migrate, MigrateCommand
 
 import logging
 logging.basicConfig(filename="/var/tmp/inci-site/log.log", level = logging.DEBUG)
 
 app = Flask(__name__)
+
 app.config['SQLALCHEMY_DATABASE_URI'] =     'sqlite:////var/tmp/inci-site/test.db'
 db = SQLAlchemy(app)
+migrate = Migrate(app,db)
+
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.secret_key = "Thisisaverysecretkey"
@@ -124,6 +132,6 @@ def logout():
 
 if __name__=='__main__':
     app.debug = True
-    app.run('0.0.0.0')
+    manager.run()
 
 
