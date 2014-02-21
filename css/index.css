@@ -1,0 +1,308 @@
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+html {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: black;
+}
+#room-container {
+  position: relative;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  -ms-perspective: 1000px;
+  -o-perspective: 1000px;
+  perspective: 1000px;
+  width: 100%;
+  height: 100%;
+  -webkit-perspective-origin: 50% 35%;
+  -moz-perspective-origin: 50% 35%;
+  -ms-perspective-origin: 50% 35%;
+  -o-perspective-origin: 50% 35%;
+  perspective-origin: 50% 35%;
+}
+.wall {
+  margin: 0;
+  position: absolute;
+}
+#left,
+#right {
+  opacity: 0.6;
+}
+#top,
+#bottom {
+  background: black;
+}
+#back {
+  background-size: 100%;
+}
+.front {
+  width: 100%;
+  height: 45%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+/*
+#front0{
+    background-color: rgba(255, 0, 0, 0.3);
+}
+#front1{
+    background-color: rgba(0, 255, 0, 0.3);
+}
+#front2{
+    background-color: rgba(0, 0, 255, 0.3);
+}
+#front3{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+ */
+.iconholder {
+  width: 24.5%;
+  height: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  float: left;
+  z-index: 20;
+  background-size: auto 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /*          -webkit-filter: drop-shadow(0px 0px 5px #d78900);
+    filter: drop-shadow(0px 0px 5px #d78900); */
+
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  -moz-transition: -moz-transform 0.5s ease-in-out;
+  -o-transition: -o-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+}
+.iconbounce {
+  -webkit-transform: translateY(-20px);
+  -moz-transform: translateY(-20px);
+  -ms-transform: translateY(-20px);
+  -o-transform: translateY(-20px);
+  transform: translateY(-20px);
+}
+.icon {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+#beach-lg {
+  background-image: url('../images/Beach.png');
+}
+#events-lg {
+  background-image: url('../images/Events.png');
+}
+#icare-lg {
+  background-image: url('../images/iCare.png');
+}
+#informalz-lg {
+  background-image: url('../images/Informalz.png');
+}
+#pronites-lg {
+  background-image: url('../images/Pronites.png');
+}
+#workshop-lg {
+  background-image: url('../images/Workshop.png');
+}
+.row {
+  width: 100%;
+  height: 25%;
+}
+.cell {
+  width: 24.5%;
+  height: 100%;
+  display: inline-block;
+}
+.cellshadows {
+  -moz-box-shadow: inset 0 0 40px #000000;
+  -webkit-box-shadow: inset 0 0 40px #000000;
+  box-shadow: inset 0 0 40px #000000;
+}
+.tog4 {
+  -moz-box-shadow: inset 0 0 40px #000000;
+  -webkit-box-shadow: inset 0 0 40px #000000;
+  box-shadow: inset 0 0 40px #000000;
+  background-image: url("../images/bluedim.png");
+  background-size: 100%;
+}
+.tog4:hover {
+  background-image: url("../images/blueglow.png");
+  background-size: 100%;
+}
+.tog3 {
+  -moz-box-shadow: inset 0 0 40px #000000;
+  -webkit-box-shadow: inset 0 0 40px #000000;
+  box-shadow: inset 0 0 40px #000000;
+  background-image: url("../images/greendim.png");
+  background-size: 100%;
+}
+.tog3:hover {
+  background-image: url("../images/greenglow.png");
+  background-size: 100%;
+}
+.tog2 {
+  -moz-box-shadow: inset 0 0 40px #000000;
+  -webkit-box-shadow: inset 0 0 40px #000000;
+  box-shadow: inset 0 0 40px #000000;
+  background-image: url("../images/yellowdim.png");
+  background-size: 100%;
+}
+.tog2:hover {
+  background-image: url("../images/yellowglow.png");
+  background-size: 100%;
+}
+.tog1 {
+  -moz-box-shadow: inset 0 0 40px #000000;
+  -webkit-box-shadow: inset 0 0 40px #000000;
+  box-shadow: inset 0 0 40px #000000;
+  background-image: url("../images/reddim.png");
+  background-size: 100%;
+}
+.tog1:hover {
+  background-image: url("../images/redglow.png");
+  background-size: 100%;
+}
+#modal {
+  width: 90%;
+  height: 90%;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  display: None;
+}
+.reliance {
+  position: relative;
+  z-index: 1000;
+  width: 24%;
+  height: 24%;
+  top: 3%;
+  left: 3%;
+  background-image: url('../images/ril.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+#topbarholder {
+  width: 100%;
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+}
+#topbar {
+  position: relative;
+  right: 7%;
+  font-family: 'Titillium Web';
+  background-color: rgba(148, 151, 153, 0.2);
+}
+#topbar ul {
+  list-style: none;
+}
+#topbar ul li {
+  color: white;
+  float: right;
+  margin-right: 2%;
+}
+#topbar ul li:hover {
+  color: #E5942B;
+}
+#topbar ul li a {
+  text-decoration: none;
+  color: white;
+}
+#topbar ul li a:hover {
+  color: #E5942B;
+}
+h2 {
+  position: absolute;
+  color: white;
+  text-align: center;
+  font-family: '../fonts/Bellerose.ttf';
+  font-size: 80px;
+  margin-left: 70px;
+  margin-top: 100px;
+}
+.profile {
+  font-family: 'Titillium Web';
+  position: relative;
+  right: 0;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+.thinborder {
+  border: 1px solid #AEAEAE;
+}
+.loginbox,
+.registerbox {
+  text-decoration: none;
+  background-color: #121212;
+  position: relative;
+  border: 1px solid #AEAEAE;
+  top: 0;
+  right: 0;
+  padding: 8px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding-bottom: 38px;
+}
+.loginbox input[type=text],
+.registerbox input[type=text],
+.loginbox input[type=password],
+.registerbox input[type=password] {
+  float: right;
+  background: #3c3c3c;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 0;
+  padding: 3px;
+  color: #c8c8c8;
+}
+.loginbox input[type=submit],
+.registerbox input[type=submit] {
+  margin-top: 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  float: right;
+  background: #3c3c3c;
+  border: 1px solid #AEAEAE;
+  color: #c8c8c8;
+}
+.loginbox a.boxclose,
+.registerbox a.boxclose {
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #AEAEAE;
+  border-radius: 30px;
+  background: #121212;
+  font-size: 16px;
+  font-weight: 100;
+  position: absolute;
+  bottom: -12px;
+  left: -12px;
+  padding: 0px 8px 0px 8px;
+}
+.loginbox .boxclose:before,
+.registerbox .boxclose:before {
+  content: "X";
+}

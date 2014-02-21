@@ -53,5 +53,64 @@
 	$(window).resize(adjust);
         adjust();
     });
-
 })(jQuery);
+
+(function($){
+    $(".cell").mouseenter(
+        function(){ 
+            var i = $(this).attr("id"); if(i){ $("#"+i+"-lg").addClass('iconbounce'); } 
+        }
+    );
+    $(".cell").mouseleave(
+        function(){ 
+            var i = $(this).attr("id"); if(i){ $("#"+i+"-lg").removeClass('iconbounce');
+            } 
+        }
+    );        
+})(jQuery);
+(function($) {
+        modals = {
+            events: "events/hautecoutre.html",
+            pronites: "pronites/encore.html",
+            beach: "beach.html",
+            informalz: "informalz.html",
+            icare: "icare.html",
+            incispecial: "incispecial.html",
+            workshop: "workshop/cartoon.html",
+            sportsfest: "sportsfest/slamdunk.html",
+            aboutus: "aboutus.html",
+            sponsors: "sponsors.html",
+            accomodation: "accomodation.html",
+            contactus: "contactus.html",
+            registration: "registration.html"
+        }
+        $('.clickme').bind('click', function(e) {
+            e.preventDefault();
+            var targetid = e.currentTarget.id.split('-')[0];
+            if(! targetid in modals) return;
+            console.log("clicked on "+targetid+", opening "+modals[targetid] );
+            var target = $("#modal");
+            target.find("iframe").remove();
+            var i = $("<iframe></iframe>").css("width", "100%").css("height", "100%").attr("scrolling", "yes");
+            target.append(i);
+            $('#modal').bPopup({
+                easing: 'easeOutBack', //uses jQuery easing plugin
+                speed: 450,
+                transition: 'slideDown'
+            });
+            var url = modals[targetid];
+            i.attr("src", url);
+        });
+})(jQuery);
+function closebox(){
+    (function($){
+        $('a.boxclose').click(function(){
+            dock('#registration', {url: 'server/profile'});
+        });
+        return false;
+    })(jQuery);
+}
+(function($){
+    dock('#registration', {url: 'server/profile'});
+    
+})(jQuery)

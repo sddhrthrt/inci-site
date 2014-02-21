@@ -1,0 +1,7 @@
+<div class="profile">
+    {% if user %}
+    Welcome, {{user.username}}! | <a href="server/logout">(Log out)</a>
+    {% else %}
+    <a href="server/login">Log in</a> | <a href="server/register">Register</a>
+    {% endif %}
+</div>
