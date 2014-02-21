@@ -75,6 +75,23 @@ class LoginForm(Form):
         validators.Required(),
         ])
 
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if current_user.is_authenticated():
+        return jsonify(url=url_for('logout'))
+    form = RegistrationForm(request.form)
+    if request.method == 'POST' and form.validate():
+        logging.debug('reg %s, %s'%(form.username.data, form.email.data))
+        user = User(username=form.username.data,
+                    email = form.email.data,
+                    password = form.password.data,
+                    fb_username = form.fb_username.data)
+        db.session.add(user)
+        db.session.commit()
+        return jsonify(url=url_for('login'))
+    return render_template('register.html', form=form, submit_url = url_for('register'))
+
+
 @app.route('/login', methods=["POST", "GET"])
 def login():
     if current_user.is_authenticated():
