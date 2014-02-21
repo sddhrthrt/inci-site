@@ -4,7 +4,6 @@
     <title>Incident 2014</title>
     <!--<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>-->
     <script src="js/jquery.js"></script>
-    <script src="js/inci.js"> </script>
     <link href="css/index.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="js/jquery.easing.js"></script>
@@ -118,62 +117,10 @@
         <div class="iconholder clickme" id="icare-lg">
         </div>
     </div>
-    </div>
+</div>
 <div id="modal">
 </div>
-
-<script type="text/javascript">
-    (function($){
-        $(".cell").mouseenter(
-            function(){ 
-                var i = $(this).attr("id"); if(i){ 
-                    $("#"+i+"-lg").addClass('iconbounce');
-                } 
-            }
-        );
-        $(".cell").mouseleave(
-            function(){ 
-                var i = $(this).attr("id"); if(i){ 
-                    $("#"+i+"-lg").removeClass('iconbounce');
-                } 
-            }
-        );        
-    })(jQuery);
-(function($) {
-        modals = {
-            events: "events/hautecoutre.html",
-            pronites: "pronites/encore.html",
-            beach: "beach.html",
-            informalz: "informalz.html",
-            icare: "icare.html",
-            incispecial: "incispecial.html",
-            workshop: "workshop/cartoon.html",
-            sportsfest: "sportsfest/slamdunk.html",
-            aboutus: "aboutus.html",
-            sponsors: "sponsors.html",
-            accomodation: "accomodation.html",
-            contactus: "contactus.html",
-            registration: "registration.html"
-        }
-        $('.clickme').bind('click', function(e) {
-            e.preventDefault();
-            var targetid = e.currentTarget.id.split('-')[0];
-            if(! targetid in modals) return;
-            console.log("clicked on "+targetid+", opening "+modals[targetid] );
-            var target = $("#modal");
-            target.find("iframe").remove();
-            var i = $("<iframe></iframe>").css("width", "100%").css("height", "100%").attr("scrolling", "yes");
-            target.append(i);
-            $('#modal').bPopup({
-                easing: 'easeOutBack', //uses jQuery easing plugin
-                speed: 450,
-                transition: 'slideDown'
-            });
-            var url = modals[targetid];
-            i.attr("src", url);
-        });
-})(jQuery);
-</script>
-  </body>
+</body>
+<script src="js/inci.js"> </script>
 </html>
     
