@@ -63,7 +63,8 @@
     );
     $(".cell").mouseleave(
         function(){ 
-            var i = $(this).attr("id"); if(i){ $("#"+i+"-lg").removeClass('iconbounce'); } 
+            var i = $(this).attr("id"); if(i){ $("#"+i+"-lg").removeClass('iconbounce');
+            } 
         }
     );        
 })(jQuery);
@@ -101,3 +102,15 @@
             i.attr("src", url);
         });
 })(jQuery);
+function closebox(){
+    (function($){
+        $('a.boxclose').click(function(){
+            dock('#registration', {url: 'server/profile'});
+        });
+        return false;
+    })(jQuery);
+}
+(function($){
+    dock('#registration', {url: 'server/profile'});
+    
+})(jQuery)

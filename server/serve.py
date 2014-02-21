@@ -181,7 +181,6 @@ def register():
         return jsonify(url=url_for('login'))
     return render_template('register.html', form=form, submit_url = url_for('register'))
 
-
 @app.route('/login', methods=["POST", "GET"])
 def login():
     if current_user.is_authenticated():
@@ -195,12 +194,19 @@ def login():
                 logging.debug("logging in "+form.username.data)
                 login_user(user)
                 logging.debug("redirecting to " + url_for('index'))
-                return jsonify(url=url_for('index'))
+                return jsonify(url=url_for('profile'))
             else: 
                 logging.debug("username and password dont match: %s - %s (expected %s)"%(form.username.data,form.password.data, user.password))
         else: 
             logging.debug("user not found: "+form.username.data)
     return render_template('login.html', form=form, submit_url = url_for('login'))
+
+@app.route('/profile')
+def profile():
+    if current_user.is_authenticated():
+        return render_template('profile.html', user=current_user)
+    else:
+        return render_template('profile.html', user=None)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -253,7 +259,7 @@ def index():
 def logout():
     if current_user.is_authenticated():
         logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('profile'))
 
 if __name__=='__main__':
     app.debug = True

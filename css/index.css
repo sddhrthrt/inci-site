@@ -1,3 +1,9 @@
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
 html {
   margin: 0;
   height: 100%;
@@ -231,4 +237,72 @@ h2 {
   font-size: 80px;
   margin-left: 70px;
   margin-top: 100px;
+}
+.profile {
+  font-family: 'Titillium Web';
+  position: relative;
+  right: 0;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+.thinborder {
+  border: 1px solid #AEAEAE;
+}
+.loginbox,
+.registerbox {
+  text-decoration: none;
+  background-color: #121212;
+  position: relative;
+  border: 1px solid #AEAEAE;
+  top: 0;
+  right: 0;
+  padding: 8px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding-bottom: 38px;
+}
+.loginbox input[type=text],
+.registerbox input[type=text],
+.loginbox input[type=password],
+.registerbox input[type=password] {
+  float: right;
+  background: #3c3c3c;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 0;
+  padding: 3px;
+  color: #c8c8c8;
+}
+.loginbox input[type=submit],
+.registerbox input[type=submit] {
+  margin-top: 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  float: right;
+  background: #3c3c3c;
+  border: 1px solid #AEAEAE;
+  color: #c8c8c8;
+}
+.loginbox a.boxclose,
+.registerbox a.boxclose {
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #AEAEAE;
+  border-radius: 30px;
+  background: #121212;
+  font-size: 16px;
+  font-weight: 100;
+  position: absolute;
+  bottom: -12px;
+  left: -12px;
+  padding: 0px 8px 0px 8px;
+}
+.loginbox .boxclose:before,
+.registerbox .boxclose:before {
+  content: "X";
 }

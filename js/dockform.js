@@ -16,6 +16,13 @@ function dock(target, args){
                     });
                     return false;
                 });
+                $("a").click(function(event){
+                    dock(target, {
+                        url: $(this).attr('href'),
+                    });
+                    return false;
+                });
+                //special case for multiform
                 (function($){
                     $("#divaform").submit(function(event){
                         $(this).ajaxSubmit({

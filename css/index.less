@@ -1,4 +1,6 @@
+@import "elements.less";
 @font-small: '../fonts/Bellerose.ttf';
+@topbar-font: 'Titillium Web';
 @images: "../images";
 html {
     margin: 0;
@@ -203,7 +205,7 @@ body {
 {
     position: relative;
     right: 7%;
-    font-family: 'Titillium Web';
+    font-family: @topbar-font;
     background-color: rgba(148,151,153,0.2);
 }
 #topbar ul
@@ -239,4 +241,59 @@ h2
     font-size: 80px;
     margin-left: 70px;
     margin-top: 100px;
+}
+.profile{
+    font-family: @topbar-font;
+    position: relative;
+    right: 0;
+    .transition(0.2s, ease-out);
+}
+@textbox-color: rgb(60, 60, 60);
+@textbox-text-color: rgb(200, 200, 200);
+.thinborder {
+    border: 1px solid #AEAEAE;
+}
+.loginbox, .registerbox {
+    text-decoration: none;
+    background-color: rgb(18, 18, 18);
+    position: relative;
+    .thinborder;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    .rounded(5px);
+    padding-bottom: 38px;
+    input[type=text], input[type=password] {
+        float: right;
+        background: @textbox-color; 
+        .rounded(3px);
+        border: 0;
+        padding: 3px;
+        color: @textbox-text-color; 
+    }
+    input[type=submit] {
+        margin-top: 8px;
+        .rounded(3px);
+        float: right;
+        background: @textbox-color;
+        .thinborder;
+        color: @textbox-text-color;
+    }
+    a.boxclose{
+        cursor:pointer;
+        color: #fff;
+        border: 1px solid #AEAEAE;
+        border-radius: 30px;
+        background: rgb(18, 18, 18);
+        font-size: 16px;
+        font-weight: 100;
+        position: absolute;
+        bottom: -12px;
+        left: -12px;
+        padding: 0px 8px 0px 8px;       
+    }
+
+    .boxclose:before {
+        content: "X";
+    }
 }
