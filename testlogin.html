@@ -4,81 +4,14 @@
 <!-- Meta Tags -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script src="js/jquery.js"></script>
+<script src="js/dockform.js"></script>
 <title>Incident 2014</title>   
 </head>
 <body>
-    <div id="login">
+    <div id="register">
     </div>
 <script type="text/javascript">
-    /*
-    function handle_submit(){
-        $('#loginform').submit(function(){
-            $.ajax({
-                data: $(this).serialize(),
-                type: $(this).attr('method'),
-                url: $(this).attr('action'),
-                success: function(response){
-                    if(response.url){
-                        $("#login").load(response.url, function(){ handle_submit();});
-                    } else {
-                        $("#login").html(response);
-                        handle_submit();
-                    }
-                }
-            });
-            return false;
-        });
-    }
-    $.ajax({
-        url: "server/login",
-        type: "get",
-        success: function(response){
-            if(response.url){
-                $("#login").load(response.url, function(){
-                    handle_submit();
-                });
-            } else {
-                $("#login").html(response);
-                handle_submit();
-            }
-        }
-    });*/
-    function dock(target, args){
-        if (args['html']) {
-            $(target).html(args['html']);
-        } else if (args['url']) {
-            args['success'] = function(response){
-                if(response.url){
-                    dock(target, { 
-                        url: response.url,
-                    });
-                } else {
-                    $(target).html(response);
-                    $("form").submit(function(event){
-                        dock(target, {
-                            data: $(this).serialize(),
-                            url: $(this).attr('action'),
-                            type: $(this).attr('method'),
-                        });
-                        return false;
-                    });
-                }
-            }
-            $.ajax(args);
-        }
-    }
-    dock('#login', { url: 'server/login'});
-    /*$.ajax({
-        url: 'server/',
-        success: function(response){
-            if(! response['url']){
-                $('#login').html(response);
-            } else {
-                $('#login').load(response.url);
-            }
-        }
-    });*/
-
+    dock('#register', { url: 'server/register'});
 </script>
 </body>
 </html>
