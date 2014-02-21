@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-<!-- Meta Tags -->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-<title>Incident 2014</title>   
-</head>
 {% import 'macros.jinja' as macros %}
-<body>
-    <form name="login" method="post" action="">
-        {{ macros.with_errors(form.username) | safe }} 
-        {{ macros.with_errors(form.email) |safe }}
-        <input type="submit" value="login"/>
-    </form>
-</body>
-</html>
+<form name="login" method="post" action="{{submit_url}}" id="loginform">
+    {{ macros.with_errors(form.username) | safe }} 
+    {{ macros.with_errors(form.password) |safe }}
+    <input type="submit" value="login"/>
+</form>
