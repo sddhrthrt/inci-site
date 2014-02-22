@@ -128,9 +128,6 @@ class DivaForm(Form):
         validators.Length(max=32),
         validators.Required()
         ])
-    photo_full = FileField(u"Photo (Full Shot)")
-    photo_med = FileField(u"Photo (Medium Shot)")
-    photo_close = FileField(u"Photo (Close-Up Shot)")
 
 
 @login_manager.user_loader
@@ -204,9 +201,9 @@ def login():
 @app.route('/profile')
 def profile():
     if current_user.is_authenticated():
-        return render_template('profile.html', user=current_user)
+        return render_template('profile.html', user=current_user, logout=url_for('logout'))
     else:
-        return render_template('profile.html', user=None)
+        return render_template('profile.html', user=None, login= url_for('login'), register = url_for('register'))
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -232,11 +229,12 @@ def save_form(form, filenames):
     db.session.commit()
 
 @app.route('/diva', methods=["POST", "GET"])
-@login_required
 def diva():
+    if not current_user.is_authenticated():
+        return render_template('diva.html', logged_in = False)
     form = DivaForm(request.form)
     form.uid = current_user.id
-    logging.debug("form address: %r"%(form.__dict__.keys()))
+    photoerrors = ""
     if request.method == 'POST' and form.validate():
         filenames = ""
         for i in ('photo_full', 'photo_med', 'photo_close'):
@@ -245,11 +243,13 @@ def diva():
                 filename = str(form.uid)+"_"+secure_filename(file_.filename)
                 file_.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 filenames += "%s:%s,"%(i,filename)
-        save_form(form, filenames)
-        logging.debug("got %s, %s"%(form.uid, form.fname.data))
-        logging.debug("form: "%(form))
-        return render_template('diva_thanks.html')
-    return render_template('diva.html', form=form, submit_url = url_for('diva'))
+            else:
+                logging.debug("no file "+i)
+                photoerrors += "All photos are compulsory"
+        if not photoerrors:
+            save_form(form, filenames)
+            return render_template('diva_thanks.html')
+    return render_template('diva.html', form=form, submit_url = url_for('diva'), logged_in = True, photoerrors = photoerrors)
 
 @app.route('/')
 def index():

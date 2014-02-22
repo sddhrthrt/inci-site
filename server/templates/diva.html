@@ -1,5 +1,7 @@
-{% import 'macros.jinja' as macros %}
-<form name="diva" method="post" action="{{submit_url}}" id="divaform" enctype=multipart/form-data>
+{% import 'macros-diva.jinja' as macros%}
+{% if logged_in %}
+<form name="diva" method="post" action="{{submit_url}}" id="divaform" enctype="multipart/form-data">
+    <table>
     {{ macros.with_errors(form.fname) | safe }}
     {{ macros.with_errors(form.lname) | safe }}
     {{ macros.with_errors(form.dob) | safe }}
@@ -10,8 +12,29 @@
     {{ macros.with_errors(form.email) | safe }}
     {{ macros.with_errors(form.height) | safe }}
     {{ macros.with_errors(form.vitalstats) | safe }}
-    {{ macros.with_errors(form.photo_full) | safe }}
-    {{ macros.with_errors(form.photo_med) | safe }}
-    {{ macros.with_errors(form.photo_close) | safe }}
-    <input type="submit" value="Submit"/>
+
+    <tr class="form_field">
+        <td><label for="photo_full">
+            Photo (Full Shot)
+    </label> : </td>
+    <td><input id="photo_full" type="file" name="photo_full"></td>
+    </tr>
+    <tr class="form_field">
+        <td><label for="photo_med">
+            Photo (Medium Shot)
+    </label> : </td>
+    <td><input id="photo_med" type="file" name="photo_med"></td>
+    </tr>
+    <tr class="form_field">
+        <td><label for="photo_close">
+            Photo (Close Shot)
+    </label> : </td>
+    <td><input id="photo_close" type="file" name="photo_close"></td>
+    </tr>
+    <tr><td colspan="2" class="form_field error"> {{photoerrors}}</td></tr>
+    <tr><td></td><td><input type="submit" value="Submit" name="diva" /></td></tr>
+    </table>
 </form>
+{% else %}
+<h4> Please log in first. </h4>
+{% endif %}
