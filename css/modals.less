@@ -1,0 +1,16 @@
+@import "elements.less";
+.clearfix() {
+  zoom: 1;
+  &:before { content: ''; display: block; }
+  &:after { content: ''; display: table; clear: both; }
+}
+.modal-overlay{
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 9999999999;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absoulte;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}

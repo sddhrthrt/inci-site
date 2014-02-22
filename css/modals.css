@@ -1,0 +1,16 @@
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+.modal-overlay {
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 9999999999;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absoulte;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+}
