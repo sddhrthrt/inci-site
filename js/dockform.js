@@ -1,6 +1,6 @@
 function dock(target, args){
     if (args['html']) {
-        $(target).html(response);
+        $(target).html(args['html']);
         //special case for multiform
         (function($){
             $("#divaform").submit(function(event){
