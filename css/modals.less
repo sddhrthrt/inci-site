@@ -1,16 +1,70 @@
 @import "elements.less";
-.clearfix() {
+
+.clearfix{
   zoom: 1;
   &:before { content: ''; display: block; }
   &:after { content: ''; display: table; clear: both; }
 }
-.modal-overlay{
+
+@background: #B7F200;
+@color1: #EF002A;
+@color2: #600CAC;
+/*@modalheight: 480px;*/
+/*@modalwidth: 960px;*/
+@modalwidth: 80%;
+@modalheight: 80%;
+@leftheight: 70%;
+@leftwidth: 35%;
+@rightwidth: 70%;
+@rightheight: 100%;
+@rightround: 40px;
+@leftround: 40px;
+@shiftmodal: (@leftwidth + @rightwidth - 100%)/2;
+#modal-overlay{
     min-width: 100%;
     min-height: 100%;
-    z-index: 9999999999;
-    background-color: rgba(0, 0, 0, 0.4);
-    position: absoulte;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
     top: 0;
     left: 0;
-    visibility: hidden;
+    padding: 0;
+}
+#modal-frame {
+    min-width: @modalwidth;
+    min-height: @modalheight;
+    width: @modalwidth;
+    height: @modalheight;
+    background-color: fade(@background, 0%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -@modalwidth/2 + (@modalwidth * @shiftmodal / 100);
+    margin-top:  -@modalheight/4;
+    .clearfix;
+    padding: 0;
+}
+#left-modal {
+    z-index: 1001;
+    width: @leftwidth;
+    min-width: @leftwidth;
+    height: @leftheight;
+    min-height: @leftheight;
+    position: absolute;
+    margin-left: 100% - @rightwidth - @leftwidth;
+    margin-top: (100%-@leftheight)/4;
+    background-color: @color1;
+    .border-radius(0, 0, @leftround, @leftround);
+}    
+#right-modal {
+    z-index: 1002;
+    width: @rightwidth;
+    min-width: @rightwidth;
+    height: @rightheight; 
+    min-height: @rightheight;
+    background-color: @color2;
+    position: absolute;
+    right: 0;
+    top: 0;
+    .rounded(@rightround);
 }
