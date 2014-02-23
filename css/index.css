@@ -196,18 +196,6 @@ body {
   left: 5%;
   display: None;
 }
-.reliance {
-  position: relative;
-  z-index: 1000;
-  width: 24%;
-  height: 24%;
-  top: 3%;
-  left: 3%;
-  /*background-image: url('../images/ril.png');*/
-
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
 #topbarholder {
   width: 100%;
   position: absolute;
@@ -216,17 +204,40 @@ body {
 }
 #topbar {
   position: relative;
-  right: 7%;
+  right: 17%;
   font-family: 'Titillium Web';
-  background-color: rgba(148, 151, 153, 0.2);
+  zoom: 1;
+}
+#topbar:before {
+  content: '';
+  display: block;
+}
+#topbar:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 #topbar ul {
   list-style: none;
 }
+#reg {
+  position: absolute;
+  right: 12%;
+  top: 2%;
+}
+#reg ul li {
+  color: white;
+  float: right;
+}
 #topbar ul li {
   color: white;
   float: right;
-  margin-right: 2%;
+  /*margin-right: 2%;*/
+
+  padding: 8px;
+  padding-top: 32px;
+  margin-top: -32px;
+  padding-bottom: 16px;
 }
 #topbar ul li:hover {
   color: #E5942B;
@@ -314,4 +325,12 @@ h2 {
 .loginbox .boxclose:before,
 .registerbox .boxclose:before {
   content: "X";
+}
+.hoarding {
+  width: 12%;
+  text-align: center;
+  background-image: url('../images/banner_on.gif');
+  background-size: 80%;
+  background-position: center -20%;
+  background-repeat: no-repeat;
 }
