@@ -2,6 +2,11 @@
 @font-small: '../fonts/Bellerose.ttf';
 @topbar-font: 'Titillium Web';
 @images: "../images";
+.clearfix() {
+  zoom: 1;
+  &:before { content: ''; display: block; }
+  &:after { content: ''; display: table; clear: both; }
+}
 html {
     margin: 0;
     height: 100%;
@@ -207,20 +212,33 @@ body {
 #topbar
 {
     position: relative;
-    right: 7%;
+    right: 17%;
     font-family: @topbar-font;
-    background-color: rgba(148,151,153,0.2);
+    /*.clearfix();*/
 }
 #topbar ul
 {
     list-style: none;
 
 }
+#reg {
+    position: absolute;
+    right: -10%;
+    top: -40%;
+}
+#reg ul li {
+    color: white;
+    float: right;
+}
 #topbar ul li
 {
     color: white;
     float: right;
-    margin-right: 2%;
+    /*margin-right: 2%;*/
+    padding: 8px;
+    padding-top: 32px;
+    margin-top: -32px;
+    padding-bottom: 16px;
 }
 #topbar ul li:hover
 {
@@ -299,4 +317,14 @@ h2
     .boxclose:before {
         content: "X";
     }
+}
+.hoarding {
+    width: 12%;
+    text-align: center;
+    background-image: url('../images/banner_on.gif');
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.hoardings {
 }
