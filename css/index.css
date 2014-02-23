@@ -206,8 +206,16 @@ body {
   position: relative;
   right: 17%;
   font-family: 'Titillium Web';
-  /*.clearfix();*/
-
+  zoom: 1;
+}
+#topbar:before {
+  content: '';
+  display: block;
+}
+#topbar:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 #topbar ul {
   list-style: none;
