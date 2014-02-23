@@ -37,9 +37,9 @@ class User(db.Model):
     email = db.Column(db.String(64), unique = True)
     fb_username = db.Column(db.String(64), unique = True)
     password = db.Column(db.String(128))
-    #phone = db.Column(db.String(25))
-    #name = db.Column(db.String(64))
-    #college = db.Column(db.String(64))
+    phone = db.Column(db.String(25))
+    name = db.Column(db.String(64))
+    college = db.Column(db.String(64))
     registrations = db.relationship('Registration', backref='user', lazy='dynamic')
     
     def is_authenticated(self):
@@ -56,6 +56,10 @@ class User(db.Model):
 
     def __repr__(self):
         return "<User#%r: %r>"%(self.id, self.username)
+
+class Events(db.Model):
+    id = db.Column(db.Integer, primary_key  =True)
+    name = db.Column(db.String(25), unique = True)
 
 class DivaEntry(db.Model):
     id = db.Column(db.Integer, primary_key = True)
