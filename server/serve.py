@@ -37,6 +37,9 @@ class User(db.Model):
     email = db.Column(db.String(64), unique = True)
     fb_username = db.Column(db.String(64), unique = True)
     password = db.Column(db.String(128))
+    #phone = db.Column(db.String(25))
+    #name = db.Column(db.String(64))
+    #college = db.Column(db.String(64))
     registrations = db.relationship('Registration', backref='user', lazy='dynamic')
     
     def is_authenticated(self):
