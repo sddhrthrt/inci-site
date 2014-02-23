@@ -4,6 +4,10 @@
     A set of useful LESS mixins
     More info at: http://lesselements.com
   ---------------------------------------------------*/
+@font-face {
+  font-family: 'Bellerose';
+  src: url('../fonts/Bellerose.ttf');
+}
 html {
   margin: 0;
   height: 100%;
@@ -233,7 +237,7 @@ h2 {
   position: absolute;
   color: white;
   text-align: center;
-  font-family: '../fonts/Bellerose.ttf';
+  font-family: 'Bellerose';
   font-size: 80px;
   margin-left: 70px;
   margin-top: 100px;
