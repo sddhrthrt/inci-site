@@ -37,6 +37,9 @@ class User(db.Model):
     email = db.Column(db.String(64), unique = True)
     fb_username = db.Column(db.String(64), unique = True)
     password = db.Column(db.String(128))
+    phone = db.Column(db.String(25))
+    name = db.Column(db.String(64))
+    college = db.Column(db.String(64))
     registrations = db.relationship('Registration', backref='user', lazy='dynamic')
     
     def is_authenticated(self):
@@ -54,6 +57,15 @@ class User(db.Model):
     def __repr__(self):
         return "<User#%r: %r>"%(self.id, self.username)
 
+class Event(db.Model):
+    id = db.Column(db.Integer, primary_key  =True)
+    name = db.Column(db.String(25), unique = True)
+    details = db.Column(db.String(128))
+    registrations = db.relationship('Registration', backref='event', lazy='dynamic')
+
+    def __repr__(self):
+        return "<Event#%r: %r>"%(self.id, self.name)
+
 class DivaEntry(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     uid = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -62,9 +74,10 @@ class DivaEntry(db.Model):
 class Registration(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('event.id'))
 
     def __repr__(self):
-        return "<Regitsration#%r: %r>"%(self.id, self.user_id)
+        return "<Regitsration#%r: %r for %r>"%(self.id, self.user_id, self.event_id)
 
 class AddressForm(Form):
     address_s1 = StringField("Street Address", [
