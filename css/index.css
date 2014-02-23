@@ -47,7 +47,7 @@ body {
   background: black;
 }
 #back {
-  background-image: url('../images/inci.gif');
+  background-image: url('../images/inci_gif_wid-logo.gif');
   background-size: 100%;
 }
 .front {
@@ -82,7 +82,7 @@ body {
   padding: 0;
   float: left;
   z-index: 20;
-  background-size: auto 100%;
+  background-size: auto 85%;
   background-position: center center;
   background-repeat: no-repeat;
   /*          -webkit-filter: drop-shadow(0px 0px 5px #d78900);
@@ -107,22 +107,28 @@ body {
   padding: 0;
 }
 #beach-lg {
-  background-image: url('../images/Beach.png');
+  background-image: url('../images/Beach2.png');
 }
 #events-lg {
-  background-image: url('../images/Events.png');
+  background-image: url('../images/Events2.png');
 }
 #icare-lg {
-  background-image: url('../images/iCare.png');
+  background-image: url('../images/iCare2.png');
 }
 #informalz-lg {
-  background-image: url('../images/Informalz.png');
+  background-image: url('../images/Informalz2.png');
 }
 #pronites-lg {
-  background-image: url('../images/Pronites.png');
+  background-image: url('../images/Pronites2.png');
 }
 #workshop-lg {
-  background-image: url('../images/Workshop.png');
+  background-image: url('../images/Workshop2.png');
+}
+#sports-lg {
+  background-image: url('../images/SportsFest2.png');
+}
+#incispecial-lg {
+  background-image: url('../images/InciSpecial2.png');
 }
 .row {
   width: 100%;
@@ -197,7 +203,8 @@ body {
   height: 24%;
   top: 3%;
   left: 3%;
-  background-image: url('../images/ril.png');
+  /*background-image: url('../images/ril.png');*/
+
   background-size: 100%;
   background-repeat: no-repeat;
 }
