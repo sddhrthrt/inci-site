@@ -222,8 +222,8 @@ body {
 }
 #reg {
   position: absolute;
-  right: 12%;
-  top: 2%;
+  right: -10%;
+  top: -40%;
 }
 #reg ul li {
   color: white;
@@ -331,6 +331,6 @@ h2 {
   text-align: center;
   background-image: url('../images/banner_on.gif');
   background-size: 80%;
-  background-position: center -20%;
+  background-position: center;
   background-repeat: no-repeat;
 }
