@@ -1,4 +1,19 @@
 (function($){
+})(jQuery);
+function slideImage(images){
+    (function($){
+        var i = parseInt($("#left-modal").attr("seq"));
+        if (isNaN(i)){
+            $("#left-modal").attr("seq", 0); 
+            i = 0;
+        } else {
+            i = (i + 1) % images.length;
+            $("#left-modal").attr("seq", i);
+        }
+        $("#left-modal").css("background-image", images[i]);
+    })(jQuery);
+}
+function showModal(){
     function adjustModal(){
         function adjustList(sel){
             var lis = $(sel).find("li");
@@ -42,42 +57,27 @@
         $("#modal-frame").addClass("slideDown");
         setTimeout(function(){$("#left-modal").addClass("leftSlideLeft");}, 1000);
     }
-    function slideModalOut(){
-        $("#left-modal").addClass("leftSlideRight");    
-        setTimeout(function(){$("#modal-frame").addClass("slideOutUp");}, 1000);
-    }
-    function showModal(){
-        $("#modal-overlay").animate({
-            opacity: 1,
-        }, 200, function(){
-            slideModalIn();
-        });
-    }
-    function hideModal(){
-        slideModalOut();
-        setTimeout(function(){
-            $("#modal-overlay").animate(
-                { opacity: 0, }
-            )}, 
-            1200);
-    }
-    setTimeout(showModal, 1000);
+    //setTimeout(showModal, 1000);
     $("#modal-darkbg").click(function(){
         hideModal();
     });
-})(jQuery);
-function slideImage(images){
-    (function($){
-        var i = parseInt($("#left-modal").attr("seq"));
-        console.log("got "+i);
-        if (isNaN(i)){
-            $("#left-modal").attr("seq", 0); 
-            i = 0;
-        } else {
-            i = (i + 1) % images.length;
-            $("#left-modal").attr("seq", i);
-        }
-        console.log("setting "+i+" ("+images[i]+")");
-        $("#left-modal").css("background-image", images[i]);
-    })(jQuery);
+    console.log("The modal open now is: ", $("#modal-overlay"));
+    $("#modal-overlay").animate({
+        opacity: 1,
+    }, 200, function(){
+        slideModalIn();
+    });
+}
+function hideModal(){
+    function slideModalOut(){
+        $("#left-modal").addClass("leftSlideRight");    
+        setTimeout(function(){$("#modal-frame").addClass("slideOutUp");}, 1000);
+        setTimeout(function(){$("#modal").remove("div");}, 1000);
+    }
+    slideModalOut();
+    setTimeout(function(){
+        $("#modal-overlay").animate(
+            { opacity: 0, }
+        )}, 
+        1200);
 }

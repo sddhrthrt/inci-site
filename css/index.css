@@ -191,12 +191,9 @@ body {
   background-size: 100%;
 }
 #modal {
-  width: 90%;
-  height: 90%;
   position: absolute;
-  top: 10%;
-  left: 5%;
-  display: None;
+  top: 0;
+  left: 0;
 }
 .reliance {
   position: relative;
