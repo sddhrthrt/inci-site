@@ -70,7 +70,7 @@
 })(jQuery);
 (function($) {
         modals = {
-            events: "modals/hautecoutre.html",
+            events: "modals/events.html",
             pronites: "modals/pronites.html",
             beach: "modals/beach.html",
             informalz: "modals/informalz.html",
