@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Modern+Antiqua|Allura);
+@import url(http://fonts.googleapis.com/css?family=Modern+Antiqua);
 /*---------------------------------------------------
     LESS Elements 0.9
   ---------------------------------------------------
@@ -38,10 +38,8 @@
   padding: 0;
 }
 #modal-frame {
-  /*min-width: @modalwidth;*/
-
-  /*min-height: @modalheight;*/
-
+  min-width: 80%;
+  min-height: 80%;
   width: 80%;
   height: 80%;
   background-color: rgba(183, 242, 0, 0);
@@ -65,7 +63,9 @@
 #left-modal {
   z-index: 1001;
   width: 35%;
+  min-width: 35%;
   height: 70%;
+  min-height: 70%;
   position: absolute;
   margin-left: -5%;
   margin-top: 7.5%;
@@ -85,16 +85,10 @@
   -moz-background-clip: padding-box;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  /*background-image: @leftbg;*/
-
+  background-image: url('../images/modal-left-1.jpg');
   background-size: cover;
   padding: 0;
   box-shadow: inset 0 0 32px 8px rgba(0, 0, 0, 0.3);
-  -webkit-transition: background-image 0.2s ease-in-out;
-  -moz-transition: background-image 0.2s ease-in-out;
-  -ms-transition: background-image 0.2s ease-in-out;
-  -o-transition: background-image 0.2s ease-in-out;
-  transition: background-image 0.2s ease-in-out;
 }
 h3.modaltitle {
   font-family: Bellerose, sans-serif;
@@ -169,14 +163,14 @@ h3.modaltitle {
 
   /*background-position: center center;*/
 
-  background-image: -webkit-radial-gradient(circle 1200px at -100px -100px, #0776a0, #3aa6d0);
-  background-image: radial-gradient(circle 1200px at -100px -100px, #0776a0, #3aa6d0);
+  background-image: -webkit-radial-gradient(circle 1200px at -100px -100px, #ef002a, #ff2800);
+  background-image: radial-gradient(circle 1200px at -100px -100px, #ef002a, #ff2800);
 }
 #right-modal div.content {
   position: absolute;
   top: 75px;
   color: rgba(0, 0, 0, 0.8);
-  padding: 8px 32px 8px 32px;
+  padding: 0 32px 0 32px;
   font-size: 18px;
   font-family: 'Modern Antiqua', serif;
   overflow: auto;
@@ -213,10 +207,9 @@ h3.modaltitle {
   padding-top: 28.5px;
   cursor: pointer;
   cursor: hand;
-  padding-bottom: 4px;
 }
 .modaltopmenu li.active {
-  border-bottom: medium solid #3aa6d0;
+  border-bottom: medium solid #ff2800;
 }
 .modalbottommenu {
   position: absolute;
@@ -231,26 +224,4 @@ h3.modaltitle {
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
-  font-family: "Allura", serif;
-  font-size: 32px;
-  color: rgba(255, 255, 255, 0.5);
-  text-align: center;
-}
-.modalbottommenu .quote {
-  position: absolute;
-  bottom: 8px;
-  left: 0;
-  width: 100%;
-}
-.modalbottomquote {
-  position: absolute;
-  bottom: 25px;
-  left: 0;
-  width: 140px;
-  height: 105px;
-  opacity: .4;
-  background-image: url("../images/quotes.png");
-  background-repeat: no-repeat;
-  background-size: 140px auto;
-  background-position: 0% -10%;
 }
