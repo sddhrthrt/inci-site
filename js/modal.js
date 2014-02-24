@@ -24,6 +24,7 @@ function showModal(){
         }
         adjustList(".menuitems");
         adjustList(".modaltopmenu ul");
+        console.log("height: "+$(".modaltopmenu").clientHeight);
         var lis = $(".menuitems").find("li");
         var len = lis.length;
         $(lis).each(function(){
