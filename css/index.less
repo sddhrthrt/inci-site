@@ -1,5 +1,5 @@
 @import "elements.less";
-@font-small: '../fonts/Bellerose.ttf';
+@font-small: 'Bellerose';
 @topbar-font: 'Titillium Web';
 @images: "../images";
 .clearfix() {
@@ -9,11 +9,13 @@
 }
 html {
     margin: 0;
+    padding: 0;
     height: 100%;
     width: 100%;
 }
 body {
     margin: 0;
+    padding: 0;
     position: absolute;
     top: 0; bottom: 0; left: 0; right: 0;
     background: black;
@@ -181,19 +183,10 @@ body {
 {
     .stretchedbg(@redglow);
 }
-#modal
-{
-    width: 90%;
-    height: 90%;
-    position: absolute;
-    top: 10%;
-    left: 5%;
-    display: None;
-}
 #topbarholder{
     width: 100%;
     position: absolute;
-    z-index: 1000;
+    z-index: 100;
     top: 0;
 }
 

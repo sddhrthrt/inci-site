@@ -1,16 +1,226 @@
 @import "elements.less";
-.clearfix() {
+@import "variables.less";
+@import url(http://fonts.googleapis.com/css?family=Modern+Antiqua|Allura);
+
+.clearfix{
   zoom: 1;
   &:before { content: ''; display: block; }
   &:after { content: ''; display: table; clear: both; }
 }
-.modal-overlay{
+
+@leftbg: url('../images/modal-left-1.jpg');
+@rightbg: url('../images/modal-bg.jpg');
+/*@font-face {*/
+    /*font-family: "HandShop";*/
+    /*src: url('../fonts/HandShop.ttf');*/
+/*}*/
+@font-face {
+    font-family: "Parisish";
+    src: url('../fonts/Parisish.ttf');
+}
+#modal-overlay{
+    // For animation
+    //visibility: hidden;
     min-width: 100%;
     min-height: 100%;
-    z-index: 9999999999;
-    background-color: rgba(0, 0, 0, 0.4);
-    position: absoulte;
+    z-index: 998;
+    position: fixed;
     top: 0;
     left: 0;
+    padding: 0;
+    opacity: 0;
+}
+#modal-darkbg {
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+}
+#modal-frame {
+    // For animation
     visibility: hidden;
+    width: @modalwidth;
+    height: @modalheight;
+    z-index: 1000;
+    background-color: fade(@background, 0%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -@modalwidth/2 + (@modalwidth * @shiftmodal / 100);
+    margin-top:  -@modalheight/4;
+    .clearfix;
+    padding: 0;
+}
+#left-modal {
+    // For animation
+    visibility: hidden;
+    z-index: 1001;
+    width: @leftwidth;
+    height: @leftheight;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 100% - @rightwidth - @leftwidth;
+    margin-top: (100%-@leftheight)/4;
+    background-color: @color1;
+    .border-radius(0, 0, @leftround, @leftround);
+    /*background-image: @leftbg;*/
+    background-size: cover;
+    padding: 0;
+    box-shadow: inset 0 0 32px 8px fade(black, 30%);
+    -webkit-transition: background-image 0.2s ease-in-out;
+    -moz-transition: background-image 0.2s ease-in-out;
+    -ms-transition: background-image 0.2s ease-in-out;
+    -o-transition: background-image 0.2s ease-in-out;
+    transition: background-image 0.2s ease-in-out;   
+}    
+@titlesize: 70px;
+h3.modaltitle {
+    font-family: Bellerose, sans-serif;
+    font-weight: 800;
+    letter-spacing: -4px;
+    word-spacing: -12px;
+    color: fade(white, 90%);
+    font-size: @titlesize;
+    line-height: @titlesize*1.2;
+    position: relative;
+    top: -(@titlesize*.16);
+    margin: 0;
+}
+.modaltitleholder {
+    width: 100%;
+    background: fade(black, 40%);
+    text-align: center;
+    position: absolute;
+    bottom: 50%;
+    margin-bottom: -@titlesize/2
+}
+@lisize: 18px;
+.modalmenu {
+    position: absolute;
+    top: 50% + 4%;
+    margin-top: @titlesize/2;
+    background: fade(black, 30%);
+    text-transform: uppercase;
+    width: 100%;
+    padding: 8px 0 8px 0;
+    ul {
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+    }
+    li {
+        font-family: Bellerose, sans-serif;
+        font-weight: 400;
+        font-size: @lisize;
+        letter-spacing: 2px;
+        color: fade(white, 90%);
+        line-height: @lisize;
+        float: left;
+        text-align: center;
+    }
+}
+
+#right-modal {
+    z-index: 1002;
+    width: @rightwidth;
+    /*min-width: @rightwidth;*/
+    height: @rightheight; 
+    /*min-height: @rightheight;*/
+    /*background-color: @color1; */
+    position: absolute;
+    right: 0;
+    top: 0;
+    .rounded(@rightround);
+    box-shadow: 0 0 5px 2px fade(black, 80%);
+    /*background-image: -webkit-radial-gradient(circle 1200px at -400px -200px, fade(white, 2%) 98%, rgba(255, 255, 255, 0) 100%);*/
+    /*background-image: radial-gradient(circle 1200px at -200px -700px, fade(white, 2%) 99%, rgba(255, 255, 255, 0) 100%);*/
+    /*box-shadow: 0 0 5px 2px fade(black, 60%), inset 0 0 6px fade(white, 15%);*/
+    /*background-image: -webkit-linear-gradient( rgba(255, 255, 255, 0.2) ), @rightbg;*/
+    /*background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), @rightbg;*/
+    /*background-size: cover;*/
+    /*background-position: center center;*/
+    background-image: -webkit-radial-gradient(circle 1200px at -100px -100px, @color4, @color42);
+    background-image: radial-gradient(circle 1200px at -100px -100px, @color4, @color42);
+}
+@rightmodalborder: 32px;
+@modaltopmenuheight: 75px;
+@modalbottommenuheight: 75px;
+#right-modal div.content {
+    position: absolute;
+    top: @modaltopmenuheight;
+    color: fade(black, 80%);
+    padding: 8px 32px 8px 32px;
+    font-size: 18px;
+    font-family: 'Modern Antiqua', serif;
+    overflow: auto;
+}
+.modaltopmenu {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: @modaltopmenuheight;
+    /*min-width: 100%;*/
+    /*min-height: @modaltopmenuheight;*/
+    background: fade(black, 30%);
+    .drop-shadow(0, 0, 8px, 0.8); 
+    ul {
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+        text-transform: uppercase;
+    }
+    li {
+        font-family: Bellerose, sans-serif;
+        font-weight: 600;
+        font-size: @lisize;
+        letter-spacing: 2px;
+        color: fade(white, 70%);
+        float: left;
+        text-align: center;
+        height: 100%;
+        padding-top: (@modaltopmenuheight - @lisize)/2;
+        cursor: pointer;
+        cursor: hand;
+        padding-bottom: 4px;
+        &.active {
+            border-bottom: medium solid @color42;
+        }
+    }
+}
+.modalbottommenu {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: @modalbottommenuheight;
+    /*min-width: 100%;*/
+    /*min-height: @modalbottommenuheight;*/
+    background: fade(black, 30%);
+    .drop-shadow(0, 0, 8px, 0.8); 
+    font-family: "Allura", serif;
+    font-size: 32px;
+    color: fade(white, 50%);
+    text-align: center;
+    .quote {
+        position: absolute;
+        bottom: 8px;
+        left: 0;
+        width: 100%;
+    }
+}
+.modalbottomquote {
+    position: absolute;
+    bottom: @modalbottommenuheight/3;
+    left: 0;
+    width: 140px;
+    height: 105px;
+    opacity: .4;
+    background-image: url("../images/quotes.png");
+    background-repeat: no-repeat;
+    background-size: 140px auto;
+    background-position: 0% -10%;
 }

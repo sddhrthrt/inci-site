@@ -5,7 +5,9 @@
     <!--<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>-->
     <script src="js/jquery.js"></script>
     <link href="css/index.css" rel="stylesheet" type="text/css"/>
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
+    <link href="css/modals.css" rel="stylesheet" type="text/css"/>
+    <link href="css/animations.css" rel="stylesheet" type="text/css">
+    <!--<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>-->
     <script type="text/javascript" src="js/jquery.easing.js"></script>
     <script src="js/dockform.js"></script>
     <script type="text/javascript" src="js/bpopup.js"></script>
@@ -123,7 +125,15 @@
 <div id="modal">
 </div>
 </body>
-<script src="js/inci.js"> </script>
 <script src="js/index.js"> </script>
+<script src="js/modal.js"></script>
+<script src="js/inci.js"> </script>
+<script type="text/javascript">
+        var images = [ 'url(images/modal-left-1.jpg)',
+                    'url(images/beach1.jpg)' ];
+        slideImage(images);
+        setInterval(function(){slideImage(images)}, 3000);
+                    
+</script>
 </html>
     

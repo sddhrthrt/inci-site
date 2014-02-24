@@ -70,14 +70,14 @@
 })(jQuery);
 (function($) {
         modals = {
-            events: "events/hautecoutre.html",
-            pronites: "pronites/encore.html",
-            beach: "beach.html",
-            informalz: "informalz.html",
-            icare: "icare.html",
-            incispecial: "incispecial.html",
-            workshop: "workshop/cartoon.html",
-            sportsfest: "sportsfest/slamdunk.html",
+            events: "modals/hautecoutre.html",
+            pronites: "modals/pronites.html",
+            beach: "modals/beach.html",
+            informalz: "modals/informalz.html",
+            icare: "modals/icare.html",
+            incispecial: "modals/incispecial.html",
+            workshop: "modals/workshops.html",
+            sportsfest: "modals/sportsfest.html",
             aboutus: "aboutus.html",
             sponsors: "sponsors.html",
             accomodation: "accomodation.html",
@@ -89,16 +89,18 @@
             var targetid = e.currentTarget.id.split('-')[0];
             if(! targetid in modals) return;
             console.log("clicked on "+targetid+", opening "+modals[targetid] );
-            var target = $("#modal");
-            target.find("iframe").remove();
-            var i = $("<iframe></iframe>").css("width", "100%").css("height", "100%").attr("scrolling", "yes");
-            target.append(i);
-            $('#modal').bPopup({
-                easing: 'easeOutBack', //uses jQuery easing plugin
-                speed: 450,
-                transition: 'slideDown'
+            $("#modal").load(modals[targetid], function(){
+                showModal();
             });
-            var url = modals[targetid];
-            i.attr("src", url);
+            //target.find("iframe").remove();
+            //var i = $("<iframe></iframe>").css("width", "100%").css("height", "100%").attr("scrolling", "yes");
+            //target.append(i);
+            //$('#modal').bPopup({
+                //easing: 'easeOutBack', //uses jQuery easing plugin
+                //speed: 450,
+                //transition: 'slideDown'
+            //});
+            //var url = modals[targetid];
+            //i.attr("src", url);
         });
 })(jQuery);

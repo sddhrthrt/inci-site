@@ -6,11 +6,13 @@
   ---------------------------------------------------*/
 html {
   margin: 0;
+  padding: 0;
   height: 100%;
   width: 100%;
 }
 body {
   margin: 0;
+  padding: 0;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -188,18 +190,10 @@ body {
   background-image: url("../images/redglow.png");
   background-size: 100%;
 }
-#modal {
-  width: 90%;
-  height: 90%;
-  position: absolute;
-  top: 10%;
-  left: 5%;
-  display: None;
-}
 #topbarholder {
   width: 100%;
   position: absolute;
-  z-index: 1000;
+  z-index: 100;
   top: 0;
 }
 #topbar {
@@ -253,7 +247,7 @@ h2 {
   position: absolute;
   color: white;
   text-align: center;
-  font-family: '../fonts/Bellerose.ttf';
+  font-family: 'Bellerose';
   font-size: 80px;
   margin-left: 70px;
   margin-top: 100px;
