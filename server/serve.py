@@ -314,6 +314,31 @@ def logout():
         logout_user()
     return redirect(url_for('profile'))
 
+@app.route('/preregister/<eventname>')
+def preregister(eventname=None):
+    """
+    returns success / eventnotfound / login
+    """
+    logging.debug("registration for %s"%eventname)
+    if current_user.is_authenticated():
+        try:
+            eventname = int(eventname)
+        except: 
+            return jsonify({'response': 'invalid'})
+        event = Event.query.filter_by(id=eventname).first()
+        if event: 
+            registration = Registration(
+                    user_id = current_user.id, 
+                    event_id = event.id)
+            db.session.add(registration)
+            db.session.commit()
+            return jsonify({'response': 'success'})
+        else:
+            logging.error("event not found: %d"%eventname)
+            return jsonify({'response': 'eventnotfound'})
+    else:
+        return jsonify({'response': 'login'})
+
 if __name__=='__main__':
     app.debug = True
     manager.run()
