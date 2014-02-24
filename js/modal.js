@@ -34,9 +34,33 @@
         showContent(".content", lid);
     }
     makeModalMenu();
-    function showModal(){
-
+    function slideModalIn(){
+        $("#modal-frame").addClass("slideDown");
+        setTimeout(function(){$("#left-modal").addClass("leftSlideLeft");}, 1000);
     }
+    function slideModalOut(){
+        $("#left-modal").addClass("leftSlideRight");    
+        setTimeout(function(){$("#modal-frame").addClass("slideOutUp");}, 1000);
+    }
+    function showModal(){
+        $("#modal-overlay").animate({
+            opacity: 1,
+        }, 200, function(){
+            slideModalIn();
+        });
+    }
+    function hideModal(){
+        slideModalOut();
+        setTimeout(function(){
+            $("#modal-overlay").animate(
+                { opacity: 0, }
+            )}, 
+            1200);
+    }
+    setTimeout(showModal, 1000);
+    $("#modal-darkbg").click(function(){
+        hideModal();
+    });
 })(jQuery);
 function slideImage(images){
     (function($){
