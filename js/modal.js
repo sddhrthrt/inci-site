@@ -71,13 +71,13 @@ function showModal(){
 function hideModal(){
     function slideModalOut(){
         $("#left-modal").addClass("leftSlideRight");    
-        setTimeout(function(){$("#modal-frame").addClass("slideOutUp");}, 1000);
-        setTimeout(function(){$("#modal").remove("div");}, 1000);
+        setTimeout(function(){$("#modal-frame").addClass("slideOutUp");}, 800);
+        setTimeout(function(){
+            $("#modal-overlay").animate(
+                { opacity: 0, }
+            )}, 
+            1200);
+        setTimeout(function(){$("#modal").children("div").remove();}, 1000);
     }
     slideModalOut();
-    setTimeout(function(){
-        $("#modal-overlay").animate(
-            { opacity: 0, }
-        )}, 
-        1200);
 }
