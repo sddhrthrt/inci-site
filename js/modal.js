@@ -1,22 +1,26 @@
 (function($){
-    function adjustList(sel){
-        var lis = $(sel).find("li");
+    function adjustModal(){
+        function adjustList(sel){
+            var lis = $(sel).find("li");
+            var len = lis.length;
+            $(lis).each(function(){
+                $(this).attr("style", "width: "+100/len+"%");
+            });
+        }
+        adjustList(".menuitems");
+        adjustList(".modaltopmenu ul");
+        var lis = $(".menuitems").find("li");
         var len = lis.length;
         $(lis).each(function(){
             $(this).attr("style", "width: "+100/len+"%");
         });
+        var modalheight = $("#right-modal").height();
+        var topheight = $(".modaltopmenu").height();
+        var bottomheight = $(".modalbottommenu").height();
+        $("#right-modal div.content").height(modalheight-(topheight+bottomheight)-10-16);
     }
-    adjustList(".menuitems");
-    adjustList(".modaltopmenu ul");
-    var lis = $(".menuitems").find("li");
-    var len = lis.length;
-    $(lis).each(function(){
-        $(this).attr("style", "width: "+100/len+"%");
-    });
-    var modalheight = $("#right-modal").height();
-    var topheight = $(".modaltopmenu").height();
-    var bottomheight = $(".modalbottommenu").height();
-    $("#right-modal div.content").height(modalheight-(topheight+bottomheight)-10-16);
+	$(window).resize(adjustModal);
+    adjustModal();
     function showContent(contentbody, sectionid){
         $(contentbody).find("div.section").hide();
         $(contentbody).find("div.section#"+sectionid).show();
@@ -34,9 +38,33 @@
         showContent(".content", lid);
     }
     makeModalMenu();
-    function showModal(){
-
+    function slideModalIn(){
+        $("#modal-frame").addClass("slideDown");
+        setTimeout(function(){$("#left-modal").addClass("leftSlideLeft");}, 1000);
     }
+    function slideModalOut(){
+        $("#left-modal").addClass("leftSlideRight");    
+        setTimeout(function(){$("#modal-frame").addClass("slideOutUp");}, 1000);
+    }
+    function showModal(){
+        $("#modal-overlay").animate({
+            opacity: 1,
+        }, 200, function(){
+            slideModalIn();
+        });
+    }
+    function hideModal(){
+        slideModalOut();
+        setTimeout(function(){
+            $("#modal-overlay").animate(
+                { opacity: 0, }
+            )}, 
+            1200);
+    }
+    setTimeout(showModal, 1000);
+    $("#modal-darkbg").click(function(){
+        hideModal();
+    });
 })(jQuery);
 function slideImage(images){
     (function($){
