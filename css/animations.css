@@ -224,18 +224,6 @@ slide left modal from +@leftwidth to 0 on x axis
   0% {
     transform: translateX(35%);
   }
-  50% {
-    transform: translateX(-8%);
-  }
-  65% {
-    transform: translateX(4%);
-  }
-  80% {
-    transform: translateX(-4%);
-  }
-  95% {
-    transform: translateX(2%);
-  }
   100% {
     transform: translateX(0%);
   }
