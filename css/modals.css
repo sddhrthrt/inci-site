@@ -62,6 +62,13 @@
   display: table;
   clear: both;
 }
+#modal-frame a:link,
+#modal-frame a:hover,
+#modal-frame a:active,
+#modal-frame a.visited {
+  color: #032e3e;
+  text-shadow: 0 0 2px #18b8f5;
+}
 #left-modal {
   visibility: hidden;
   z-index: 1001;
@@ -184,7 +191,11 @@ h3.modaltitle {
   padding: 8px 32px 8px 32px;
   font-size: 18px;
   font-family: 'Modern Antiqua', serif;
+  line-height: 24px;
   overflow: auto;
+}
+#right-modal div.content b {
+  letter-spacing: -2px;
 }
 .modaltopmenu {
   position: absolute;

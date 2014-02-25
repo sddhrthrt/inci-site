@@ -78,10 +78,10 @@
             incispecial: "modals/incispecial.html",
             workshop: "modals/workshops.html",
             sportsfest: "modals/sportsfest.html",
-            aboutus: "aboutus.html",
-            sponsors: "sponsors.html",
-            accomodation: "accomodation.html",
-            contactus: "contactus.html",
+            aboutus: "modals/aboutus.html",
+            sponsors: "modals/sponsors.html",
+            accomodation: "modals/accomodation.html",
+            contactus: "modals/contactus.html",
             registration: "registration.html"
         }
         $('.clickme').bind('click', function(e) {
@@ -92,15 +92,5 @@
             $("#modal").load(modals[targetid], function(){
                 showModal();
             });
-            //target.find("iframe").remove();
-            //var i = $("<iframe></iframe>").css("width", "100%").css("height", "100%").attr("scrolling", "yes");
-            //target.append(i);
-            //$('#modal').bPopup({
-                //easing: 'easeOutBack', //uses jQuery easing plugin
-                //speed: 450,
-                //transition: 'slideDown'
-            //});
-            //var url = modals[targetid];
-            //i.attr("src", url);
         });
 })(jQuery);

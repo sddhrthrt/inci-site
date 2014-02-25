@@ -46,7 +46,7 @@ body {
 }
 #left,
 #right {
-  background: url('../images/output.gif');
+  /*background: url('../images/output.gif');*/
   opacity: 0.6;
 }
 #top,
@@ -54,7 +54,7 @@ body {
   background: black;
 }
 #back {
-  background-image: url('../images/inci_gif_wid-logo.gif');
+  /*background-image: url('../images/inci_gif_wid-logo.gif');*/
   background-size: 100%;
 }
 .front {
@@ -332,4 +332,6 @@ h2 {
   background-size: 80%;
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
+  cursor: hand;
 }

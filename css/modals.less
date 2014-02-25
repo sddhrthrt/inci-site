@@ -44,6 +44,10 @@
     margin-top:  -@modalheight/4;
     .clearfix;
     padding: 0;
+    a:link, a:hover, a:active, a.visited {
+        color: darken(@color4, 20%);
+        text-shadow: 0 0 2px lighten(@color4, 20%);
+    }
 }
 #left-modal {
     // For animation
@@ -147,7 +151,11 @@ h3.modaltitle {
     padding: 8px 32px 8px 32px;
     font-size: 18px;
     font-family: 'Modern Antiqua', serif;
+    line-height: 28px;
     overflow: auto;
+    b {
+        letter-spacing: -2px;
+    }
 }
 .modaltopmenu {
     position: absolute;
