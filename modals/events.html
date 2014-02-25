@@ -246,4 +246,47 @@ Can you rule the runway in this exhibition of creativity, taste &amp; personalit
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        (function($){
+            var images = {
+                    hautecouture: [
+                        'url(images/haute1.jpg)',
+                        'url(images/haute2.jpg)'
+                    ],
+                    bandish: [
+                        'url(images/bandish1.jpg)',
+                        'url(images/bandish2.jpg)'
+                    ],
+                    pulse: [
+                        'url(images/pulse1.jpg)',
+                        'url(images/pulse2.jpg)'
+                    ],
+                    promenade: [
+                        'url(images/promenade1.jpg)',
+                        'url(images/promenade2.jpg)'
+                    ],
+                    leadingnote: [//TODO
+                        'url(images/promenade1.jpg)',
+                        'url(images/promenade2.jpg)'
+                    ],
+                    unplugged: [//TODO
+                        'url(images/promenade1.jpg)',
+                        'url(images/promenade2.jpg)'
+                    ],
+                    dhvanik: [//TODO
+                        'url(images/promenade1.jpg)',
+                        'url(images/promenade2.jpg)'
+                    ],
+                    lit: [
+                        'url(images/lit1.jpg)',
+                        'url(images/lit2.jpg)'
+                    ],
+                    //TODO: GAMING? KANNADA EVENTS?
+            };
+            $(".menuitem").click(function(){
+                window.currentImages = images[$(this).attr("id")];
+            });
+            window.currentImages = images[keys(images)[0]];
+        })(jQuery);
+    </script>
 </div>

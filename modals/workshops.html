@@ -43,6 +43,7 @@
                     <div class="menuitem" id="dj">
                         <span class="menulabel">Beatworx DJ-ing</span>
                     </div>
+ 
             </div>
             <div class="modalbottommenu">
                 <span class="quote">Find your inner self in the serene sands of NITK...</span>
@@ -143,6 +144,34 @@ industry.</p>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        (function($){
+            var images = {
+                    qigong: [//TODO
+                        'url(images/taichei.jpg)'
+                    ],
+                    salsa: [//TODO
+                        'url(images/salsa.jpg)'
+                    ],
+                    defence: [//TODO
+                        'url(images/women.jpg)'
+                    ],
+                    audi: [//TODO
+                        'url(images/audi.jpg)'
+                    ],
+                    cartoon: [//TODO
+                        'url(images/movie.jpg)'
+                    ],
+                    dj: [//TODO
+                        'url(images/western.jpg)'
+                    ],
+            };
+            $(".menuitem").click(function(){
+                window.currentImages = images[$(this).attr("id")];
+            });
+            window.currentImages = images[Object.keys(images)[0]];
+        })(jQuery);
+    </script>
 </div>
 
     

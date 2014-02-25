@@ -219,6 +219,9 @@ slide left modal from +@leftwidth to 0 on x axis
   animation-timing-function: ease-in-out;
   -webkit-animation-timing-function: ease-in-out;
   visibility: visible !important;
+  transition-property: transform;
+  -webkit-transition-property: transform;
+  -moz-transition-property: transform;
 }
 @keyframes leftSlideLeft {
   0% {

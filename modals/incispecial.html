@@ -92,6 +92,8 @@
                 competition we have <b>Shobhita Dhulipala, Miss India Earth 2013.</b> Come and witness
                 the latest in fashion and in style, be tutored in vogue and cheer for your
                 favourite.
+                </p><p>
+                <b>Registrations:</b><a href="/events/missdiva.html"> Here. </a> (Login before registering.)
                 </p>                     
                 </div>
                 <div class="section" id="warofdjs">
@@ -121,4 +123,50 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        (function($){
+            var images = {
+                    missdiva: [//TODO
+                        'url(mages/1.jpg)',
+                        'url(mages/2.jpg)',
+                        'url(mages/3.jpg)',
+                        'url(mages/4.jpg)',
+                    ],
+                    hhi: [//TODO
+                        'url(mages/1.jpg)',
+                        'url(mages/2.jpg)',
+                        'url(mages/3.jpg)',
+                        'url(mages/4.jpg)',
+                    ],
+                    hogathon: [//TODO
+                        'url(images/1.jpg)',
+                        'url(images/2.jpg)',
+                        'url(images/3.jpg)',
+                        'url(images/4.jpg)',
+                    ],
+                    stuntmania: [//TODO
+                        'url(images/1.jpg)',
+                        'url(images/2.jpg)',
+                        'url(images/3.jpg)',
+                        'url(images/4.jpg)',
+                    ],
+                    warofdjs: [//TODO
+                        'url(images/1.jpg)',
+                        'url(images/2.jpg)',
+                        'url(images/3.jpg)',
+                        'url(images/4.jpg)',
+                    ],
+                    watersports: [//TODO
+                        'url(images/1.jpg)',
+                        'url(images/2.jpg)',
+                        'url(images/3.jpg)',
+                        'url(images/4.jpg)',
+                    ],
+            };
+            $(".menuitem").click(function(){
+                window.currentImages = images[$(this).attr("id")];
+            });
+            window.currentImages = images[Object.keys(images)[0]];
+        })(jQuery);
+    </script>
 </div>

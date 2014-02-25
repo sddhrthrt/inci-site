@@ -38,26 +38,37 @@
             <!--<div class="content">-->
             <div class="content">
                 <div class="section" id="sand">
-              <p>Join us this Incident, as we bring to you the fifth edition of Sandemonium: a collection of fun-filled games held at the premise of NITK's own beach beside the Arabian Sea. Splash 'em<br/>
+                    <p>Join us this Incident, as we bring to you the fifth edition of Sandemonium: a collection of fun-filled games held at the premise of NITK's own beach beside the Arabian Sea. <br/>
+                    <h4>Splash 'em</h4>
 
 Splash your friends with water balloons while they race to complete tasks. Teams of 5</p>
                
                 </div>
                 <div class="section" id="water">
-                       
-                         
-
-
 
                 </div>
-            
-               
-               
-                
                 
             </div>
             <div class="modalbottomquote">
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        (function($){
+            var images = {
+                sand: [ 
+                            'url(images/beach1.jpg)',
+                            'url(images/beach2.jpg)',
+                        ],
+                water: [
+                            'url(images/water1.jpg)',
+                            'url(images/watersports2.jpg)',
+                ],
+            };
+            $(".menuitem").click(function(){
+                window.currentImages = images[$(this).attr("id")];
+            });
+            window.currentImages = images[Object.keys(images)[0]];
+        })(jQuery);
+    </script>
 </div>

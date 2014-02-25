@@ -29,7 +29,7 @@
                         <span class="menulabel">Slam Dunk</span>
                     </div>
                     <div class="menuitem" id="spikefest">
-                        <span class="menulabel">SPike Fest</span>
+                        <span class="menulabel">Spike Fest</span>
                     </div>
             </div>
             <div class="modalbottommenu">
@@ -42,20 +42,42 @@
                
                 </div>
                 <div class="section" id="spikefest">
-                       
-                     <p></p>    
-
-
-
+                    <p>SPIKE FEST Spike fest is an inter-college volleyball fest. It is conducted during the Incident-the cultural fest of National Institute of Technology Karnataka, Surathkal (NITK). It is conducted by NITK Surathkal within the campus of the college at the volleyball courts. It is conducted for both boys and girls at college level. Engineering colleges and medical colleges are likely to participate in this fest. 
+                    The game is played between two teams of 12 players each.</p>
+                    The rules of the game are as follows: <br/>
+                    <ol>
+                        <li> main team should consist of six players and the remaining six players are substitutes. </li>
+                        <li>The net height for boys 2.43 meters and girls is 2.24 meters above the ground. </li>
+                        <li>The dimension of the court is 18metres by 9metres.</li>
+                        <li>Rotation is compulsory.</li>
+                        <li>The basic rules of the game should be incorporated by each and every player. </li>
+                        <li>The players should not be involved in any discrepancy or any form of cheating, if held so then the entire team will be disqualified from the tournament.</li>
+                        <li>The matches will be conducted in league fashion.</li>
+                    </ol>
                 </div>
-            
-               
-               
-                
-                
             </div>
             <div class="modalbottomquote">
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        (function($){
+            var images = {
+                    slamdunk: [
+                        'url(images/slamdunk1.jpg)',
+                        'url(images/slamdunk2.jpg)'
+                    ],
+                    spikefest: [
+                        "url(images/spike1.jpg)",
+                        "url(images/spike2.jpg)",
+                        "url(images/spike3.jpg)",
+                        "url(images/spike4.jpg)"
+                    ],
+            };
+            $(".menuitem").click(function(){
+                window.currentImages = images[$(this).attr("id")];
+            });
+            window.currentImages = images[Object.keys(images)[0]];
+        })(jQuery);
+    </script>
 </div>

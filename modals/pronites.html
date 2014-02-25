@@ -44,7 +44,7 @@
                     <p>
                        Take a moment. Close your eyes and imagine a ginormous crowd, thronging around the stage, the place jam-packed, thousands of voices shouting, almost fanatical, just one name. The atmosphere is electric and the music sublime, and hordes of maniacal fans enjoying like they have never done. This is Encore. Over the last couple of years, Encore has seen breath-taking and scintillating performances by the likes of Sunidhi Chauhan, KK, Javed Ali, Kunal Ganjawala, Indian Ocean, Raghu Dixit Project and many more. And this year we want more. We present the duo who created memorable numbers for movies such as Rab Ne Bana Di Jodi, Chak De! India, Fashion, Heroine, Ladies vs. Ricky Bahl and Band Baaja Baaraat among many others. We present to you SALIM - SULAIMAN!! This March 9, experience something brilliant!
                     </p>
-                    <a href="http://in.bookmyshow.com/theaters/National-Institute-Of-Technology-Karnataka/NITK"><img src="images/bmslogo.png" /><--Grab your tickets!</a>
+                    <a href="http://in.bookmyshow.com/theaters/National-Institute-Of-Technology-Karnataka/NITK"><img src="images/bmslogo.png" />&lt;&ldash;Grab your tickets!</a>
                 </div>
                 <div class="section" id="westernnite">
                         <p>Feel the air shiver and let your mind loose. Come to the western night to enjoy the pure distilled essence of music, the melody of the instruments and the complexity of creation. This stage has witnessed astounding music from the likes of Led Zepplica, Breathe the Floyd, Jailbreak, Eccentric Pendulum and MoherJane. This year we bring two other great bands that put their music before anything else. 
@@ -52,7 +52,7 @@ The F16s play alternative dance music borne out of frustration with a barren and
 Every show of The Family Cheese is unique as the mad jamming and improvisational performances can go anywhere and everywhere; and all are welcome to join in the trip. The Family Cheese set out to give the people a fresh exciting experience in the Indian music scene and it shall never be the same again!</p>
                          
 
-                    <a href="http://in.bookmyshow.com/theaters/National-Institute-Of-Technology-Karnataka/NITK"><img src="images/bmslogo.png" style:"display: inline-block; vertical-align: center"/><--Grab your tickets!</a>
+                    <a href="http://in.bookmyshow.com/theaters/National-Institute-Of-Technology-Karnataka/NITK"><img src="images/bmslogo.png" style:"display: inline-block; vertical-align: center"/>&lt;&ldash;Grab your tickets!</a>
 
 
                 </div>
@@ -67,6 +67,26 @@ Every show of The Family Cheese is unique as the mad jamming and improvisational
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        (function($){
+            var images = {
+                    encore: [//TODO
+                        'url(images/encore.jpg)',
+                    ],
+                    westernnite: [
+                        'url(images/westernnite.jpg)',
+                    ],
+                    crossfade: [
+                        'url(images/crossfade1.jpg)',
+                        'url(images/crossfade2.jpg)',
+                    ],
+            };
+            $(".menuitem").click(function(){
+                window.currentImages = images[$(this).attr("id")];
+            });
+            window.currentImages = images[Object.keys(images)[0]];
+        })(jQuery);
+    </script>
 </div>
 
     

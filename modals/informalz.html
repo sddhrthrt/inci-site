@@ -65,4 +65,22 @@ Duration: 1.5 hrs<br/>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        (function($){
+            var images = {
+                    finearts: [
+                        'url(images/finearts1.jpg)',
+                        'url(images/finearts2.jpg)'
+                    ],
+                    paintball: [
+                        'url(images/paintball1.jpg)',
+                        'url(images/paintball2.jpg)'
+                    ],
+            };
+            $(".menuitem").click(function(){
+                window.currentImages = images[$(this).attr("id")];
+            });
+            window.currentImages = images[Object.keys(images)[0]];
+        })(jQuery);
+    </script>
 </div>

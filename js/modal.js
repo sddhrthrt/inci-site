@@ -1,18 +1,25 @@
-(function($){
-})(jQuery);
-function slideImage(images){
-    (function($){
-        var i = parseInt($("#left-modal").attr("seq"));
-        if (isNaN(i)){
-            $("#left-modal").attr("seq", 0); 
-            i = 0;
-        } else {
-            i = (i + 1) % images.length;
-            $("#left-modal").attr("seq", i);
-        }
-        $("#left-modal").css("background-image", images[i]);
-    })(jQuery);
+window.currentImages = [];
+
+function slideImage(){
+    if(window.currentImages){
+        (function($){
+            var i = parseInt($("#left-modal").attr("seq"));
+            if (isNaN(i)){
+                $("#left-modal").attr("seq", 0); 
+                i = 0;
+            } else {
+                i = (i + 1) % window.currentImages.length;
+                $("#left-modal").attr("seq", i);
+            }
+            if (window.currentImages.length){
+                $("#left-modal").css("background-image", currentImages[i]);
+            }
+        })(jQuery);
+    }
+    //try later
+    setTimeout(function(){slideImage();}, 5000);
 }
+slideImage();
 function showModal(){
     function adjustModal(){
         function adjustList(sel){
