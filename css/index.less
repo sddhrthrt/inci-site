@@ -264,12 +264,17 @@ h2
     text-decoration: none;
     background-color: rgb(18, 18, 18);
     position: relative;
-    .thinborder;
     top: 0;
     right: 0;
     padding: 8px;
     .rounded(5px);
-    padding-bottom: 38px;
+    .thinborder;
+    table {
+        margin: 0 auto;
+    }
+    label  {
+        font-weight: 200;
+    }
     input[type=text], input[type=password] {
         float: right;
         background: @textbox-color; 
@@ -315,4 +320,9 @@ h2
     cursor: hand;
 }
 .hoardings {
+}
+ul.errors > li {
+    color: red; 
+    text-align: right;
+    font-size: 12px;
 }

@@ -1,12 +1,17 @@
 {% import 'macros.jinja' as macros %}
 <div class="profile registerbox">
     <form name="register" method="post" action="{{submit_url}}" id="registerform">
+        <table>
+        {{ macros.with_errors(form.name) | safe }}
         {{ macros.with_errors(form.username) | safe }} 
-        {{ macros.with_errors(form.email) | safe }}
-        {{ macros.with_errors(form.fb_username) | safe }}
         {{ macros.with_errors(form.password) |safe }}
         {{ macros.with_errors(form.confirm) | safe }}
-        <input type="submit" value="register"/>
+        {{ macros.with_errors(form.email) | safe }}
+        {{ macros.with_errors(form.college) | safe }}
+        {{ macros.with_errors(form.phone) | safe }}
+        {{ macros.with_errors(form.fb_username) | safe }}
+        <tr><td></td><td><input type="submit" value="Submit" name="register" /></td></tr>
+        </table>
     </form>
     <a class="boxclose" onClick="closebox();"></a>
 </div>

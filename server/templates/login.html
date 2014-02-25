@@ -1,9 +1,11 @@
 {% import 'macros.jinja' as macros %}
 <div class="profile loginbox">
     <form name="login" method="post" action="{{submit_url}}" id="loginform">
-        {{ macros.with_errors(form.username) | safe }} 
-        {{ macros.with_errors(form.password) |safe }}
-        <input type="submit" value="login"/>
+        <table>
+            {{ macros.with_errors(form.username) | safe }} 
+            {{ macros.with_errors(form.password) |safe }}
+            <tr><td></td><td><input type="submit" value="Submit" name="login" /></td></tr>
+        </table>
     </form>
     <a class="boxclose" onClick='closebox();'></a>
 </div>

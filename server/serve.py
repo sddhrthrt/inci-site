@@ -3,11 +3,13 @@ from flask import request, url_for, redirect, jsonify
 from flask import render_template
 from wtforms import Form, BooleanField, StringField, validators, PasswordField
 from wtforms import FileField, FormField, DateField, HiddenField, IntegerField
+from wtforms.validators import ValidationError
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, current_user, login_user, logout_user, login_required
 from flask.ext.script import Manager
 from flask.ext.migrate import Migrate, MigrateCommand
 import os
+import re
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = '/var/tmp/inci-site'
@@ -151,20 +153,38 @@ def load_user(userid):
     return None
 
 class RegistrationForm(Form):
-    username = StringField("username", [
+    name = StringField("Full Name", [
+        validators.Length(min=4, max=64),
+        validators.Required()
+        ])
+        
+    username = StringField("Username", [
         validators.Length(min=4, max=25), 
-        validators.Required()
         ])
-    email = StringField("email", [
+    email = StringField("Email", [
         validators.Length(min=6, max=64),
-        validators.Required()
+        validators.Required(),
+        validators.Email()
         ])
-    fb_username = StringField("facebook username", [validators.Length(max=64)])
-    password =  PasswordField('password', [
+    def validate_email(form, field):
+        email = field.data
+        user = User.query.filter_by(email=email).first()
+        if user:
+            raise ValidationError("Email ID used already")
+    password =  PasswordField('Password', [
         validators.Required(),
         validators.EqualTo('confirm', message="passwords must match")
         ])
-    confirm = PasswordField('repeat password', [validators.Required()])
+    confirm = PasswordField('Repeat Password', [validators.Required()])
+    fb_username = StringField("Facebook Username", [validators.Length(max=64)])
+    def validate_fb_username(form, field):
+        fbu = field.data
+        user = User.query.filter_by(fb_username=fbu).first()
+        if user:
+            raise ValidationError("Facebook ID used already")
+    phone = StringField("Phone Number", [validators.Length(max=64), validators.Required()])
+    college = StringField("College/University", [validators.Length(max=64), validators.Required()])
+
 
 class LoginForm(Form):
     username = StringField("username", [
@@ -174,6 +194,13 @@ class LoginForm(Form):
     password =  PasswordField('password', [
         validators.Required(),
         ])
+ 
+def formatUsername(user):
+    nameslug = user.name
+    nameslug = re.sub("[\W]*", "", nameslug)
+    nameslug = nameslug.upper()[:3]
+    nameslug = "INCI14%s%s"%(nameslug, int(user.id))
+    return nameslug
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -182,10 +209,17 @@ def register():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
         logging.debug('reg %s, %s'%(form.username.data, form.email.data))
-        user = User(username=form.username.data,
+        user = User( 
                     email = form.email.data,
                     password = form.password.data,
-                    fb_username = form.fb_username.data)
+                    fb_username = form.fb_username.data,
+                    phone = form.phone.data,
+                    college = form.college.data,
+                    name = form.name.data,
+                    )
+        db.session.add(user)
+        db.session.commit()
+        user.username = formatUsername(user)  
         db.session.add(user)
         db.session.commit()
         return jsonify(url=url_for('login'))
