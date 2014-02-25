@@ -12,17 +12,17 @@ import os
 import re
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/var/tmp/inci-site'
+UPLOAD_FOLDER = '/home1/enginee8/public_html/inci-site-uploads'
 ALLOWED_EXTENSIONS = set(['jpg', 'png'])
 
 
 import logging
-logging.basicConfig(filename="/var/tmp/inci-site/log.log", level = logging.DEBUG)
+logging.basicConfig(filename="/home1/enginee8/public_html/inci-site-logs/log.log", level = logging.DEBUG)
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-app.config['SQLALCHEMY_DATABASE_URI'] =     'mysql://root:root@localhost/enginee8_inci_site'
+app.config['SQLALCHEMY_DATABASE_URI'] =     'mysql://enginee8_inci:mysql-inci-user@localhost/enginee8_inci_site'
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 
@@ -158,9 +158,6 @@ class RegistrationForm(Form):
         validators.Required()
         ])
         
-    username = StringField("Username", [
-        validators.Length(min=4, max=25), 
-        ])
     email = StringField("Email", [
         validators.Length(min=6, max=64),
         validators.Required(),
@@ -208,7 +205,6 @@ def register():
         return jsonify(url=url_for('logout'))
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        logging.debug('reg %s, %s'%(form.username.data, form.email.data))
         user = User( 
                     email = form.email.data,
                     password = form.password.data,
