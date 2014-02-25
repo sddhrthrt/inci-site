@@ -22,9 +22,16 @@ function showModal(){
                 $(this).attr("style", "width: "+100/len+"%");
             });
         }
+        function adjustListDiv(sel){
+            var lis = $(sel).find(".menuitem");
+            var len = lis.length;
+            $(lis).each(function(){
+                $(this).attr("style", "width: "+((100/len)-1)+"%");
+            });
+            //if( len < 4 ) { $(".menuitem").css("style", "font-size: 18px");};
+        }
         adjustList(".menuitems");
-        adjustList(".modaltopmenu ul");
-        console.log("height: "+$(".modaltopmenu").clientHeight);
+        adjustListDiv(".modaltopmenu");
         var lis = $(".menuitems").find("li");
         var len = lis.length;
         $(lis).each(function(){
@@ -43,14 +50,14 @@ function showModal(){
     }
     function makeModalMenu(){
         menu = $(".modaltopmenu");
-        menu.find("li").click(function(){
+        menu.find(".menuitem").click(function(){
             console.log(this);
             self = $(this);
             self.siblings().removeClass("active");
             self.addClass("active");
             showContent(".content", $(this).attr("id"));
         });
-        lid = $(menu.find("li")[0]).addClass("active").attr("id");
+        lid = $(menu.find(".menuitem")[0]).addClass("active").attr("id");
         showContent(".content", lid);
     }
     makeModalMenu();

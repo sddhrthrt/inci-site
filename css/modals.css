@@ -19,14 +19,6 @@
   display: table;
   clear: both;
 }
-/*@font-face {*/
-/*font-family: "HandShop";*/
-/*src: url('../fonts/HandShop.ttf');*/
-/*}*/
-@font-face {
-  font-family: "Parisish";
-  src: url('../fonts/Parisish.ttf');
-}
 #modal-overlay {
   min-width: 100%;
   min-height: 100%;
@@ -144,10 +136,10 @@ h3.modaltitle {
 .modalmenu li {
   font-family: Bellerose, sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 2px;
   color: rgba(255, 255, 255, 0.9);
-  line-height: 18px;
+  line-height: 16px;
   float: left;
   text-align: center;
 }
@@ -207,29 +199,43 @@ h3.modaltitle {
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
-}
-.modaltopmenu ul {
-  list-style: none;
-  margin: 0 auto;
-  padding: 0;
   text-transform: uppercase;
+  padding: 0;
+  zoom: 1;
 }
-.modaltopmenu li {
+.modaltopmenu .menuitem {
+  display: inline-block;
   font-family: Bellerose, sans-serif;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 2px;
   color: rgba(255, 255, 255, 0.7);
-  float: left;
+  line-height: 16px;
   text-align: center;
-  height: 100%;
-  padding-top: 28.5px;
   cursor: pointer;
   cursor: hand;
-  padding-bottom: 4px;
+  height: 75px;
+  position: relative;
+  top: 0;
+  padding: 0;
 }
-.modaltopmenu li.active {
+.modaltopmenu .menuitem.active {
   border-bottom: medium solid #3aa6d0;
+}
+.modaltopmenu .menuitem .menulabel {
+  width: 100%;
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+}
+.modaltopmenu:before {
+  content: '';
+  display: block;
+}
+.modaltopmenu:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 .modalbottommenu {
   position: absolute;

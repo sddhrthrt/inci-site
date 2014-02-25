@@ -1,23 +1,13 @@
 @import "elements.less";
 @import "variables.less";
 @import url(http://fonts.googleapis.com/css?family=Modern+Antiqua|Allura);
-
 .clearfix{
   zoom: 1;
   &:before { content: ''; display: block; }
   &:after { content: ''; display: table; clear: both; }
 }
-
 @leftbg: url('../images/modal-left-1.jpg');
 @rightbg: url('../images/modal-bg.jpg');
-/*@font-face {*/
-    /*font-family: "HandShop";*/
-    /*src: url('../fonts/HandShop.ttf');*/
-/*}*/
-@font-face {
-    font-family: "Parisish";
-    src: url('../fonts/Parisish.ttf');
-}
 #modal-overlay{
     // For animation
     //visibility: hidden;
@@ -99,7 +89,7 @@ h3.modaltitle {
     bottom: 50%;
     margin-bottom: -@titlesize/2
 }
-@lisize: 18px;
+@lisize: 16px;
 .modalmenu {
     position: absolute;
     top: 50% + 4%;
@@ -168,29 +158,34 @@ h3.modaltitle {
     /*min-height: @modaltopmenuheight;*/
     background: fade(black, 30%);
     .drop-shadow(0, 0, 8px, 0.8); 
-    ul {
-        list-style: none;
-        margin: 0 auto;
-        padding: 0;
-        text-transform: uppercase;
-    }
-    li {
+    text-transform: uppercase;
+    padding: 0;
+    .menuitem {
+        display: inline-block;
         font-family: Bellerose, sans-serif;
         font-weight: 600;
         font-size: @lisize;
         letter-spacing: 2px;
         color: fade(white, 70%);
-        float: left;
+        line-height: @lisize;
         text-align: center;
-        height: 100%;
-        padding-top: (@modaltopmenuheight - @lisize)/2;
         cursor: pointer;
         cursor: hand;
-        padding-bottom: 4px;
+        height: @modaltopmenuheight;
+        position: relative;
+        top: 0;
+        padding: 0;
         &.active {
             border-bottom: medium solid @color42;
         }
+        .menulabel {
+            width: 100%;
+            position: absolute;
+            bottom: 16px;
+            left: 0;
+        }
     }
+    .clearfix;
 }
 .modalbottommenu {
     position: absolute;
