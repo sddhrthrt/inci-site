@@ -191,11 +191,50 @@ h3.modaltitle {
   padding: 8px 32px 8px 32px;
   font-size: 18px;
   font-family: 'Modern Antiqua', serif;
-  line-height: 24px;
+  line-height: 28px;
   overflow: auto;
 }
 #right-modal div.content b {
   letter-spacing: -2px;
+}
+#right-modal div.content .preregister {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 14px;
+  width: 300px;
+}
+#right-modal div.content .preregister .preregister-button {
+  float: right;
+  clear: both;
+  width: 80px;
+  color: white;
+  height: 24px;
+  padding: 4px;
+  text-align: center;
+  background: #044b65;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+#right-modal div.content .preregister .preregister-button:hover {
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  cursor: hand;
+}
+#right-modal div.content .preregister .preregister-button.inactive {
+  cursor: auto;
+  background: #0776a0;
+  color: rgba(255, 255, 255, 0.8);
+}
+#right-modal div.content .preregister .preregister-button.inactive:hover {
+  cursor: auto;
+  box-shadow: none;
+}
+#right-modal div.content .preregister .preregister-reply {
+  text-align: right;
+  float: right;
+  clear: both;
 }
 .modaltopmenu {
   position: absolute;

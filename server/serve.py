@@ -317,7 +317,7 @@ def logout():
 @app.route('/preregister/<eventname>')
 def preregister(eventname=None):
     """
-    returns success / eventnotfound / login
+    returns success / eventnotfound / login / alreadydone / invalid
     """
     logging.debug("registration for %s"%eventname)
     if current_user.is_authenticated():
@@ -327,6 +327,11 @@ def preregister(eventname=None):
             return jsonify({'response': 'invalid'})
         event = Event.query.filter_by(id=eventname).first()
         if event: 
+            already = Registration.query.filter_by(
+                    user_id = current_user.id,
+                    event_id = event.id).first()
+            if already:
+                return jsonify({'response': 'alreadydone'})
             registration = Registration(
                     user_id = current_user.id, 
                     event_id = event.id)
@@ -338,6 +343,54 @@ def preregister(eventname=None):
             return jsonify({'response': 'eventnotfound'})
     else:
         return jsonify({'response': 'login'})
+
+@app.route('/ispreregister/<eventname>')
+def ispreregister(eventname=None):
+    """
+    returns eventnotfound / login / alreadydone / invalid / notregistered
+    """
+    logging.debug("registration for %s"%eventname)
+    if current_user.is_authenticated():
+        if eventname == "all":
+            events = Event.query.all()
+            regevents = [ e.event_id for e in Registration.query.filter_by(user_id = current_user.id).all() ]
+            reply = {}
+            for event in events:
+                reply[event.id] = event.id in regevents
+            return jsonify({'response': 'success', 
+                            'registrations': reply})
+        try:
+            eventname = int(eventname)
+        except: 
+            return jsonify({'response': 'invalid'})
+        event = Event.query.filter_by(id=eventname).first()
+        if event: 
+            already = Registration.query.filter_by(
+                    user_id = current_user.id,
+                    event_id = event.id).first()
+            if already:
+                return jsonify({'response': 'alreadydone'})
+            else:
+                return jsonify({'response': 'notregistered'})
+        else:
+            logging.error("event not found: %d"%eventname)
+            return jsonify({'response': 'eventnotfound'})
+    else:
+        return jsonify({'response': 'login'})
+
+@app.route('/idforevent/<eventname>')
+def idforevent(eventname = None):
+    if eventname == "all":
+        events = Event.query.all()
+        reply = {}
+        for e in events:
+            reply[e.name] = e.id
+        return jsonify({'response': 'success', 'eventids': reply})
+    event = Event.query.filter_by(name=eventname).first()
+    if event:
+        return jsonify({'eventid': event.id, 'response': 'success'})
+    else:
+        return jsonify({'response': 'eventnotfound'})
 
 if __name__=='__main__':
     app.debug = True

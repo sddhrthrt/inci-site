@@ -82,6 +82,84 @@ function showModal(){
     }, 200, function(){
         slideModalIn();
     });
+    function preregisterbutton(){
+        console.log("clicked register");
+        button = $(this);
+        eventid = button.attr("id")[0];
+        $.ajax({
+            type: "GET",
+            url: "/server/preregister/"+eventid,
+        }).done(function(response){
+            console.log(response['response']);
+            switch(response['response']){
+                case "login":
+                    responsetext = "Please login before registering for this event.";
+                    disble = true;
+                    break;
+                case "success":
+                    responsetext = "Successfully registered for this event. ";
+                    disable = true;
+                    break;
+                case "alreadydone":
+                    responsetext = "You have already registered for this event. ";
+                    disable = true;
+                    break;
+                case "invalid":
+                case "eventnotfound":
+                default:
+                    responsetext = "Failed, sorry. If you think it's a mistake, mail us.";
+                    disable = true;
+                    break;
+            }
+            $(".preregister-reply#"+eventid+"reply").html(responsetext);
+            if (disable){
+                button.addClass("inactive");
+            }
+
+        });
+    }
+    $.ajax({
+        type: "GET",
+        url: "/server/idforevent/all"
+    }).done(function(response){
+        if (response['response'] == 'success'){
+            window.idforevents = response['eventids'];
+            $.ajax({
+                type: "GET",
+                url: "/server/ispreregister/all"
+            }).done(function(response){
+                if (response['response'] == 'success'){
+                    window.registrations = response['registrations'];
+                    $(".section").each(function(){
+                        var section = $(this);
+                        var sid = $(this).attr('id');
+                        eid = window.idforevents[sid];
+                        var inactive = false, reply = "";
+                        if (window.registrations[eid]==true){
+                            console.log("registered for "+eid)
+                            inactive = true;
+                            reply = "You have already registered for this event.";
+                        }
+                        var preregister = $("<div></div>")
+                                         .addClass("preregister")
+                                         .append($("<div></div>")
+                                                 .addClass("preregister-button")
+                                                 .addClass(inactive?"inactive":"")
+                                                 .attr("id", ""+eid+"event")
+                                                 .text("Register")
+                                                 .bind('click', preregisterbutton))
+                                         .append($("<div></div>")
+                                                 .addClass("preregister-reply")
+                                                 .attr("id", ""+eid+"reply")
+                                                 .text(reply));
+                        section.append(preregister);
+                    });
+                }
+            });
+        }
+    });
+
+                
 }
 function hideModal(){
     function slideModalOut(){
@@ -96,3 +174,5 @@ function hideModal(){
     }
     slideModalOut();
 }
+(function($){
+})(jQuery);

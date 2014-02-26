@@ -156,6 +156,43 @@ h3.modaltitle {
     b {
         letter-spacing: -2px;
     }
+    .preregister {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        font-size: 14px;
+        width: 300px;
+        .preregister-button {
+            float: right;
+            clear: both;
+            width: 80px;
+            color: white;
+            height: 24px;
+            padding: 4px;
+            text-align: center;
+            background: darken(@color4, 12%);
+            .rounded(4px);
+            &:hover {
+                box-shadow: 1px 1px 1px 1px fade(black, 20%);
+                cursor: pointer;
+                cursor: hand;
+            }
+            &.inactive {
+                cursor: auto;
+                background: @color4;
+                color: fade(white, 80%);
+                &:hover {
+                    cursor: auto;
+                    box-shadow: none;
+                }
+            }
+        }
+        .preregister-reply {
+            text-align: right;
+            float: right;
+            clear: both;
+        }
+    }
 }
 .modaltopmenu {
     position: absolute;
