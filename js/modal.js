@@ -85,7 +85,7 @@ function showModal(){
     function preregisterbutton(){
         console.log("clicked register");
         button = $(this);
-        eventid = button.attr("id")[0];
+        eventid = button.attr("id").slice(0, -5);
         $.ajax({
             type: "GET",
             url: "/server/preregister/"+eventid,
@@ -128,6 +128,7 @@ function showModal(){
                 type: "GET",
                 url: "/server/ispreregister/all"
             }).done(function(response){
+                   console.log("loggedin?: ", response['response']=='success');
                 if (response['response'] == 'success'){
                     window.registrations = response['registrations'];
                 } else {
@@ -137,8 +138,10 @@ function showModal(){
                     var section = $(this);
                     var sid = $(this).attr('id');
                     eid = window.idforevents[sid];
+                    console.log("event: ", sid, "id: ", eid);
+                    if (!eid) { return; } //no registration for this event
                     var inactive = false, reply = "";
-                    if (window.notloggedin = true){
+                    if (window.notloggedin == true){
                         inactive = true;
                         reply = "Log in to register.";
                     } else if (window.registrations[eid]==true){
