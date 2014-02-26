@@ -347,5 +347,40 @@ ul.errors > li {
     text-align: right;
     font-size: 12px;
 }
-
+@iconsize: 64px;
+@iconsep: 8px;
+#media-icons {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -( 3*@iconsize + 2*@iconsep ) / 2;
+    .icon {
+        width: @iconsize;
+        height: @iconsize;
+        margin-top: @iconsep;
+        &:hover {
+            width: @iconsize + 8px;
+            height: @iconsize + 8px;
+            transition: all 1s ease-in-out;
+            -ms-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -webkit-transition: all 1s ease-in-out;
+        }
+    }
+    #fb {
+        background-image: url("../images/facebok-icon.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #twitter {
+        background-image: url("../images/twitter-icon.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #youtube {
+        background-image: url("../images/youtube-icon.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
 
