@@ -378,3 +378,37 @@ ul.errors > li {
   text-align: right;
   font-size: 12px;
 }
+#media-icons {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -104px;
+}
+#media-icons .icon {
+  width: 64px;
+  height: 64px;
+  margin-top: 8px;
+}
+#media-icons .icon:hover {
+  width: 72px;
+  height: 72px;
+  transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -webkit-transition: all 1s ease-in-out;
+}
+#media-icons #fb {
+  background-image: url("../images/facebok-icon.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#media-icons #twitter {
+  background-image: url("../images/twitter-icon.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#media-icons #youtube {
+  background-image: url("../images/youtube-icon.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
