@@ -277,7 +277,7 @@ Can you rule the runway in this exhibition of creativity, taste &amp; personalit
             $(".menuitem").click(function(){
                 window.currentImages = images[$(this).attr("id")];
             });
-            window.currentImages = images[keys(images)[0]];
+            window.currentImages = images[Object.keys(images)[0]];
         })(jQuery);
     </script>
 </div>
