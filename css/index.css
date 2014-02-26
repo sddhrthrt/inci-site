@@ -216,7 +216,7 @@ body {
   display: table;
   clear: both;
 }
-#topbar ul {
+#topbar > ul {
   list-style: none;
 }
 .reg {
@@ -228,7 +228,7 @@ body {
   color: white;
   float: right;
 }
-#topbar ul li {
+#topbar > ul > li {
   color: white;
   float: right;
   /*margin-right: 2%;*/
@@ -238,24 +238,15 @@ body {
   margin-top: -32px;
   padding-bottom: 16px;
 }
-#topbar ul li:hover {
-  color: #E5942B;
+#topbar > ul > li:hover {
+  color: #e5942b;
 }
-#topbar ul li a {
+#topbar > ul > li a {
   text-decoration: none;
   color: white;
 }
-#topbar ul li a:hover {
-  color: #E5942B;
-}
-h2 {
-  position: absolute;
-  color: white;
-  text-align: center;
-  font-family: 'Bellerose';
-  font-size: 80px;
-  margin-left: 70px;
-  margin-top: 100px;
+#topbar > ul > li a:hover {
+  color: #e5942b;
 }
 .profile {
   font-family: 'Titillium Web';
@@ -265,14 +256,22 @@ h2 {
   -moz-transition: all 0.2s ease-out;
   -o-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
+  cursor: auto;
+  color: white;
+}
+.profile a:hover {
+  color: #e5942b;
+  cursor: pointer;
+  cursor: hand;
 }
 .thinborder {
-  border: 1px solid #AEAEAE;
+  border: 1px solid rgba(166, 122, 0, 0.8);
 }
 .loginbox,
-.registerbox {
+.registerbox,
+.profilebox {
   text-decoration: none;
-  background-color: #121212;
+  background-color: rgba(255, 218, 115, 0.8);
   position: relative;
   top: 0;
   right: 0;
@@ -280,47 +279,78 @@ h2 {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  border: 1px solid #AEAEAE;
+  border: 1px solid rgba(166, 122, 0, 0.8);
+  color: #a64300;
+}
+.loginbox > a:link:visited:active,
+.registerbox > a:link:visited:active,
+.profilebox > a:link:visited:active {
+  color: #a64300;
+}
+.loginbox a:hover,
+.registerbox a:hover,
+.profilebox a:hover {
+  color: #a67a00;
+  cursor: pointer;
+  cursor: hand;
+}
+.loginbox ul.errors li,
+.registerbox ul.errors li,
+.profilebox ul.errors li {
+  cursor: auto;
+  color: #a60800;
+}
+.loginbox ul.errors li:hover,
+.registerbox ul.errors li:hover,
+.profilebox ul.errors li:hover {
+  cursor: auto;
+  color: #a60800;
 }
 .loginbox table,
-.registerbox table {
+.registerbox table,
+.profilebox table {
   margin: 0 auto;
 }
 .loginbox label,
-.registerbox label {
+.registerbox label,
+.profilebox label {
   font-weight: 200;
 }
 .loginbox input[type=text],
 .registerbox input[type=text],
+.profilebox input[type=text],
 .loginbox input[type=password],
-.registerbox input[type=password] {
+.registerbox input[type=password],
+.profilebox input[type=password] {
   float: right;
-  background: #3c3c3c;
+  background: #a64300;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   border: 0;
   padding: 3px;
-  color: #c8c8c8;
+  color: #ffffff;
 }
 .loginbox input[type=submit],
-.registerbox input[type=submit] {
+.registerbox input[type=submit],
+.profilebox input[type=submit] {
   margin-top: 8px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   float: right;
-  background: #3c3c3c;
-  border: 1px solid #AEAEAE;
-  color: #c8c8c8;
+  background: #a64300;
+  border: 1px solid rgba(166, 122, 0, 0.8);
+  color: #ffffff;
 }
 .loginbox a.boxclose,
-.registerbox a.boxclose {
+.registerbox a.boxclose,
+.profilebox a.boxclose {
   cursor: pointer;
-  color: #fff;
-  border: 1px solid #AEAEAE;
+  color: #a64300;
+  border: 1px solid rgba(166, 122, 0, 0.8);
   border-radius: 30px;
-  background: #121212;
+  background: #a64300;
   font-size: 16px;
   font-weight: 100;
   position: absolute;
@@ -329,7 +359,8 @@ h2 {
   padding: 0px 8px 0px 8px;
 }
 .loginbox .boxclose:before,
-.registerbox .boxclose:before {
+.registerbox .boxclose:before,
+.profilebox .boxclose:before {
   content: "X";
 }
 .hoarding {

@@ -13,13 +13,17 @@ import re
 from werkzeug.utils import secure_filename
 import logging
 
+UPLOAD_FOLDER = '/var/tmp/inci-site/'
 ALLOWED_EXTENSIONS = set(['jpg', 'png'])
 
+
+import logging
+logging.basicConfig(filename="/var/tmp/inci-site/log.log", level = logging.DEBUG)
+
 app = Flask(__name__)
-app.config.from_envvar('INCI_SITE_SETTINGS')
 
-logging.basicConfig(filename=app.config['LOG_FILE_NAME'], level = logging.DEBUG)
 
+app.config['SQLALCHEMY_DATABASE_URI'] =     'mysql://root:root@localhost/enginee8_inci_site'
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 
@@ -238,12 +242,21 @@ def login():
             logging.debug("user not found: "+form.username.data)
     return render_template('login.html', form=form, submit_url = url_for('login'))
 
+@app.route('/profiledata')
+def profiledata():
+    if current_user.is_authenticated():
+        return render_template('profiledata.html', user=current_user, username=current_user.username, logout = url_for('logout'))
+    else:
+        return redirect(url_for('profile'))
+
 @app.route('/profile')
 def profile():
     if current_user.is_authenticated():
-        return render_template('profile.html', user=current_user, logout=url_for('logout'))
+        logging.debug("profiledata: "+url_for('profiledata'))
+        return render_template('profile.html', user=current_user, logout=url_for('logout'), profiledata=url_for('profiledata'))
     else:
         return render_template('profile.html', user=None, login= url_for('login'), register = url_for('register'))
+
 
 def allowed_file(filename):
     return '.' in filename and \

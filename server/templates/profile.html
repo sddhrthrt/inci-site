@@ -1,7 +1,7 @@
 <div class="profile">
     {% if user %}
-    Welcome, {{user.username}}! | <a href="{{logout}}">(Log out)</a>
+    {{user.username}} — <a href="{{profiledata}}"> Profile </a> 
     {% else %}
-    <a href="{{login}}">Log in</a> | <a href="{{register}}">Register</a>
+    <a href="{{login}}">Log in</a> — <a href="{{register}}">Register</a>
     {% endif %}
 </div>
