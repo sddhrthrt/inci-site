@@ -88,7 +88,7 @@ function showModal(){
         eventid = button.attr("id").slice(0, -5);
         $.ajax({
             type: "GET",
-            url: "/server/preregister/"+eventid,
+            url: "/inci-site/server/preregister/"+eventid,
         }).done(function(response){
             console.log(response['response']);
             switch(response['response']){
@@ -120,13 +120,13 @@ function showModal(){
     }
     $.ajax({
         type: "GET",
-        url: "/server/idforevent/all"
+        url: "/inci-site/server/idforevent/all"
     }).done(function(response){
         if (response['response'] == 'success'){
             window.idforevents = response['eventids'];
             $.ajax({
                 type: "GET",
-                url: "/server/ispreregister/all"
+                url: "/inci-site/server/ispreregister/all"
             }).done(function(response){
                    console.log("loggedin?: ", response['response']=='success');
                 if (response['response'] == 'success'){

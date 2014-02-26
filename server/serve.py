@@ -13,17 +13,17 @@ import re
 from werkzeug.utils import secure_filename
 import logging
 
-UPLOAD_FOLDER = '/home1/enginee8/public_html/inci-site-uploads/'
+UPLOAD_FOLDER = '/var/tmp/inci-site/'
 ALLOWED_EXTENSIONS = set(['jpg', 'png'])
 
 
 import logging
-logging.basicConfig(filename="/home1/enginee8/public_html/inci-site-logs/log.log", level = logging.DEBUG)
+logging.basicConfig(filename="/var/tmp/inci-site/log.log", level = logging.DEBUG)
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-app.config['SQLALCHEMY_DATABASE_URI'] =     'mysql://enginee8_inci:mysql-inci-user@localhost/enginee8_inci_site'
+app.config['SQLALCHEMY_DATABASE_URI'] =     'mysql://root:root@localhost/enginee8_inci_site'
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 
