@@ -12,6 +12,7 @@ import os
 import re
 from werkzeug.utils import secure_filename
 import logging
+from random import randint
 
 UPLOAD_FOLDER = '/var/tmp/inci-site/'
 ALLOWED_EXTENSIONS = set(['jpg', 'png'])
@@ -391,6 +392,10 @@ def idforevent(eventname = None):
         return jsonify({'eventid': event.id, 'response': 'success'})
     else:
         return jsonify({'response': 'eventnotfound'})
+
+@app.route('/randompic')
+def randompic():
+    return redirect('/inci-site/images/loading%d.jpg'%(randint(1,3)))
 
 if __name__=='__main__':
     app.debug = True

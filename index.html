@@ -5,11 +5,14 @@
     <!--<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>-->
   </head>
   <body>
-      <div id="loading" style="width: 100%; height: 100%;  z-index: 10000;  position: absolute; left: 0; top: 0; background-color: rgba(0,0,0, .9)">
-          <div id="loadingphoto" style="position: absolute; top: 50%; left: 50%; width: 800px; height: 400px; margin-left: -400px; margin-top: -200px;  background-size: cover; background-position: center;  background-repeat: no-repeat; border: 4px solid white;"></div>
-          <script type="text/javascript">
-              document.getElementById("loadingphoto").style.backgroundImage("url(images/1.jpg)");
-          </script>
+      <div id="loading" style="width: 100%; height: 100%;  z-index: 10000;  position: absolute; left: 0; top: 0; background-color: #0C1414">
+          <div id="loadinginci" style = "position: absolute; top: 50%; left: 50%; width: 400px; height: 40px; margin-left: -200px; margin-top: -260px; text-align: center; color: white; ">
+              <h2>Incident '14 Goes Retro</h2>
+          </div>
+          <div id="loadingphoto" style="position: absolute; top: 50%; left: 50%; width: 800px; height: 400px; margin-left: -400px; margin-top: -200px;  background-size: cover; background-position: center;  background-repeat: no-repeat; border: 4px solid white; background-image: url(/inci-site/server/randompic)"></div>
+          <div id="loadingtext" style = "position: absolute; top: 50%; left: 50%; width: 400px; height: 40px; margin-left: -200px; margin-top: 220px; text-align: center; color: white;">
+              wait for it... it'll take a minute (or two)
+          </div>
       </div>
     <div id="room-container">
           <div id="topbarholder">
@@ -150,6 +153,11 @@
 
   ga('create', 'UA-36548793-3', 'incident.co.in');
   ga('send', 'pageview');
+</script>
+<script>
+    window.onload = function(){
+        document.getElementById("loading").remove();
+    }
 </script>
 </html>
     
