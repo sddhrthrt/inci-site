@@ -9,7 +9,7 @@
           <div id="loadinginci" style = "position: absolute; top: 50%; left: 50%; width: 400px; height: 40px; margin-left: -200px; margin-top: -260px; text-align: center; color: white; ">
               <h2>Incident '14 Goes Retro</h2>
           </div>
-          <div id="loadingphoto" style="position: absolute; top: 50%; left: 50%; width: 800px; height: 400px; margin-left: -400px; margin-top: -200px;  background-size: cover; background-position: center;  background-repeat: no-repeat; border: 4px solid white; background-image: url(/inci-site/server/randompic)"></div>
+          <div id="loadingphoto" style="position: absolute; top: 50%; left: 50%; width: 800px; height: 400px; margin-left: -400px; margin-top: -200px;  background-size: cover; background-position: center;  background-repeat: no-repeat; border: 4px solid white; background-image: url(/server/randompic)"></div>
           <div id="loadingtext" style = "position: absolute; top: 50%; left: 50%; width: 400px; height: 40px; margin-left: -200px; margin-top: 220px; text-align: center; color: white;">
               wait for it... it'll take a minute (or two)
           </div>
@@ -155,9 +155,12 @@
   ga('send', 'pageview');
 </script>
 <script>
-    window.onload = function(){
+    function removeloading(){
         document.getElementById("loading").remove();
     }
+    window.onload = removeloading;
+    setTimeout(removeloading, 30000);
 </script>
 </html>
-    
+   
+
