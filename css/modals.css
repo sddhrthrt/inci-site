@@ -198,11 +198,9 @@ h3.modaltitle {
   letter-spacing: -2px;
 }
 #right-modal div.content .preregister {
-  position: absolute;
-  top: 8px;
-  right: 8px;
   font-size: 14px;
-  width: 300px;
+  width: 100%;
+  display: block;
 }
 #right-modal div.content .preregister .preregister-button {
   float: right;
