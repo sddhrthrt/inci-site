@@ -20,6 +20,7 @@ import hashlib
 
 app = Flask(__name__)
 app.config.from_object('config')
+
 logging.basicConfig(filename=app.config['LOG_FILE'], level = logging.DEBUG)
 mail = Mail(app)
 
@@ -247,7 +248,7 @@ def register():
 @app.route('/login', methods=["POST", "GET"])
 def login():
     if current_user.is_authenticated():
-        return jsonify(url=url_for('index'))
+        return jsonify(url=url_for('profile'))
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
         logging.debug("got %s, %s"%(form.username.data, form.password.data))
