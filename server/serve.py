@@ -39,6 +39,7 @@ class User(db.Model):
     name = db.Column(db.String(64))
     college = db.Column(db.String(64))
     registrations = db.relationship('Registration', backref='user', lazy='dynamic')
+    confirmations = db.relationship('Corfirmation', backref='user', lazy='dynamic')
     
     def is_authenticated(self):
         return True
@@ -54,6 +55,12 @@ class User(db.Model):
 
     def __repr__(self):
         return "<User#%r: %r>"%(self.id, self.username)
+
+class Confirmation(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.relationship('Confirmation', backref='confirmation', lazy='dynamic')
+    hash_code = cb.Column(db.String(256))
+    time = db.Column(db.DateTime())
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key  =True)
