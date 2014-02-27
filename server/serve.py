@@ -13,18 +13,11 @@ import re
 from werkzeug.utils import secure_filename
 import logging
 from random import randint
-
-UPLOAD_FOLDER = '/home1/enginee8/public_html/inci-site-uploads/'
-ALLOWED_EXTENSIONS = set(['jpg', 'png'])
-
-
 import logging
-logging.basicConfig(filename="/home1/enginee8/public_html/inci-site-logs/log.log", level = logging.DEBUG)
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+logging.basicConfig(filename=app.config['LOG_FILE'], level = logging.DEBUG)
 
-app.config['SQLALCHEMY_DATABASE_URI'] =     'mysql://enginee8_inci:mysql-inci-user@localhost/enginee8_inci_site'
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 
@@ -263,7 +256,7 @@ def profile():
 
 def allowed_file(filename):
     return '.' in filename and \
-            filename.split('.', 1)[1] in ALLOWED_EXTENSIONS
+            filename.split('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
 
 def save_form(form, filenames):
     keys = form.__dict__.keys()
