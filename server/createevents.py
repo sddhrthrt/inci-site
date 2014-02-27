@@ -28,20 +28,21 @@ from serve import Event
         #"sand",
         #"water",
        #]
-events = [
-        "litgeneral",
-        "litbiztech",
-        "litindia",
-        "litlitent",
-        "litsports",
-        "litlonewolf",
-        "promenadesolo",
-        "promenadedueteastern",
-        "promenadeduetwestern"
-        ]
-eventstoremove = [
-        "promenade",
-        ]
+#events = [
+        #"litgeneral",
+        #"litbiztech",
+        #"litindia",
+        #"litlitent",
+        #"litsports",
+        #"litlonewolf",
+        #"promenadesolo",
+        #"promenadedueteastern",
+        #"promenadeduetwestern"
+        #]
+#eventstoremove = [
+        #"promenade",
+        #]
+events = ["promenadegroupdance",]
 for event in events:
     e = Event(name=event)
     db.session.add(e)
