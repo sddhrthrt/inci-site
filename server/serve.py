@@ -14,6 +14,9 @@ from werkzeug.utils import secure_filename
 import logging
 from random import randint
 import logging
+from flask_mail import Mail, Message
+from datetime import datetime
+import hashlib
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -59,7 +62,7 @@ class User(db.Model):
 class Confirmation(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.relationship('Confirmation', backref='confirmation', lazy='dynamic')
-    hash_code = cb.Column(db.String(256))
+    hash_digest = cb.Column(db.String(256))
     time = db.Column(db.DateTime())
 
 class Event(db.Model):
@@ -194,6 +197,19 @@ class LoginForm(Form):
     password =  PasswordField('password', [
         validators.Required(),
         ])
+
+class ResetPasswordRequestForm(Form):
+    username = StringField("username/email", [
+        validators.Length(min=4, max=64),
+        validators.Required()
+        ])
+
+class ResetPasswordForm(Form):
+    password =  PasswordField('Password', [
+        validators.Required(),
+        validators.EqualTo('confirm', message="passwords must match")
+        ])
+    confirm = PasswordField('Repeat Password', [validators.Required()])
  
 def formatUsername(user):
     nameslug = user.name
@@ -244,12 +260,12 @@ def login():
                 logging.debug("username and password dont match: %s - %s (expected %s)"%(form.username.data,form.password.data, user.password))
         else: 
             logging.debug("user not found: "+form.username.data)
-    return render_template('login.html', form=form, submit_url = url_for('login'))
+    return render_template('login.html', form=form, submit_url = url_for('login'), resetpasswordrequest_url = url_for('resetpasswordrequest'))
 
 @app.route('/profiledata')
 def profiledata():
     if current_user.is_authenticated():
-        return render_template('profiledata.html', user=current_user, username=current_user.username, logout = url_for('logout'))
+        return render_template('profiledata.html', user=current_user, username=current_user.username, logout = url_for('logout'), resetpassword_url=url_for('resetpassword'))
     else:
         return redirect(url_for('profile'))
 
@@ -400,8 +416,61 @@ def idforevent(eventname = None):
 def randompic():
     return redirect('/images/loading%d.jpg'%(randint(1,3)))
 
+def sendResetPasswordEmail(user, hash_digest):
+    pass
+
+@app.route('/resetpasswordrequest', methods=["POST", "GET"])
+def resetpasswordrequest():
+    form = ResetPasswordRequestForm(request.form)
+    if request.method == 'POST' and form.validate():
+        userbyusername = User.query.filter_by(username = form.username.data).first()
+        userbyemail = User.query.filter_by(email = form.username.data).first()
+        user = userbyusername or userbyemail
+        if user:
+            e = datetime.now()
+            hash_digest = hashlib.md5(user.email+unicode(e))
+            confirmation = Confirmation(user_id = user.id, 
+                                        hash_digest = hash_digest,
+                                        time = e)
+            db.session.add(confirmation)
+            db.session.commit()
+            sendResetPasswordEmail(user, hash_digest)
+            logging.debug("resetting: hash="+hash_digest)
+            return redirect(url_for('login'))
+        else:
+            logging.debug("resetting: user not found")
+            return render_template('resetpasswordrequest.html', form=False, submit_url=url_for('resetpasswordrequest'))
+    return render_template('resetpasswordrequest.html', form=True, submit_url=url_for('resetpasswordrequest'))
+
+@app.route('/resetpasswordreply/<hash_digest>')
+def resetpasswordreply(hash_digest=None):
+    confirmation = Confirmation.query.filter_by(hash_digest=hash_digest)
+    if confirmation:
+        user = confirmation.user
+        db.session.remove(confirmation)
+        db.session.commit()
+        login_user(user)
+        logging.debug("logging in by hash: "+user)
+        return redirect(url_for('resetpassword'))
+    return "Bad Request"
+
+@app.route('/resetpassword', methods=["POST", "GET"])
+def resetpassword():
+    if current_user.is_authenticated():
+        form = ResetPasswordForm(request.form)
+        if request.method=="POST" and form.validate():
+            user = current_user
+            user.password = form.password.data
+            db.session.add(user)
+            db.commit()
+            logging.debug("changed password: "+user)
+            return redirect(url_for('login'))
+        logging.debug("changing password: User not found")
+        return render_template('resetpassword.html', submit_url=url_for('resetpassword'))
+    return render_template('resetpassword.html', notloggedin=True)
+
 if __name__=='__main__':
     app.debug = True
     manager.run()
-
+    
 

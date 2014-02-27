@@ -4,7 +4,10 @@
         <table>
             {{ macros.with_errors(form.username) | safe }} 
             {{ macros.with_errors(form.password) |safe }}
-            <tr><td></td><td><input type="submit" value="Submit" name="login" /></td></tr>
+            <tr>
+                <td><a href="{{resetpasswordrequest_url}}">(Lost password?)</a></td>
+                <td><input type="submit" value="Submit" name="login" /></td>
+            </tr>
         </table>
     </form>
     <a class="boxclose" onClick='closebox();'></a>
