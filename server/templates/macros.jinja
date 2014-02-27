@@ -2,13 +2,13 @@
     {% if field.errors %}
         {% set css_class = 'has_error ' + kwargs.pop('class', '') %}
     <tr class="form_field">
-        <td>{{ field.label }}:</td><td> {{ field(class=css_class, **kwargs) }}</td>
+        <td>{{ field.label }}{% if field.flags.required %}*{% endif %}:</td><td> {{ field(class=css_class, **kwargs) }}</td>
     </tr class="form_field error"><tr>
         <td colspan="2"><ul class="errors">{% for error in field.errors %}<li>{{ error|e }}</li>{% endfor %}</ul></td>
     </tr>
     {% else %}
     <tr>
-        <td>{{ field.label }}:</td><td> {{ field(**kwargs) }}</td>
+        <td>{{ field.label }}{% if field.flags.required %}*{% endif %}:</td><td> {{ field(**kwargs) }}</td>
     </tr>
     {% endif %}
 {% endmacro %}

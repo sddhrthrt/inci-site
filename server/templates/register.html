@@ -3,9 +3,9 @@
     <form name="register" method="post" action="{{submit_url}}" id="registerform">
         <table>
         {{ macros.with_errors(form.name) | safe }}
+        {{ macros.with_errors(form.email) | safe }}
         {{ macros.with_errors(form.password) |safe }}
         {{ macros.with_errors(form.confirm) | safe }}
-        {{ macros.with_errors(form.email) | safe }}
         {{ macros.with_errors(form.college) | safe }}
         {{ macros.with_errors(form.phone) | safe }}
         {{ macros.with_errors(form.fb_username) | safe }}

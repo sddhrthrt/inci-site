@@ -186,8 +186,8 @@ class RegistrationForm(Form):
 
 
 class LoginForm(Form):
-    username = StringField("username", [
-        validators.Length(min=4, max=25), 
+    username = StringField("username/email", [
+        validators.Length(min=4, max=64), 
         validators.Required()
         ])
     password =  PasswordField('password', [
@@ -230,7 +230,9 @@ def login():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
         logging.debug("got %s, %s"%(form.username.data, form.password.data))
-        user = User.query.filter_by(username = form.username.data).first()
+        userbyname = User.query.filter_by(username = form.username.data).first()
+        userbyemail = User.query.filter_by(email = form.username.data).first()
+        user = userbyname or userbyemail
         if user:
             if user.password == form.password.data:
                 logging.debug("logging in "+form.username.data)
