@@ -188,7 +188,7 @@ h3.modaltitle {
   position: absolute;
   top: 75px;
   color: rgba(0, 0, 0, 0.8);
-  padding: 8px 32px 8px 32px;
+  padding: 50px 32px 8px 32px;
   font-size: 18px;
   font-family: 'Modern Antiqua', serif;
   line-height: 28px;
@@ -200,7 +200,9 @@ h3.modaltitle {
 #right-modal div.content .preregister {
   font-size: 14px;
   width: 100%;
-  display: block;
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 #right-modal div.content .preregister .preregister-button {
   float: right;
