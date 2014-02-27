@@ -161,7 +161,7 @@ function showModal(){
                                              .addClass("preregister-reply")
                                              .attr("id", ""+eid+"reply")
                                              .text(reply));
-                    section.append(preregister);
+                    section.prepend(preregister);
                 });
                 $(".subsection").each(function(){
                     var section = $(this);
