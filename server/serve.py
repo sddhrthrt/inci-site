@@ -21,9 +21,10 @@ import hashlib
 app = Flask(__name__)
 app.config.from_object('config')
 logging.basicConfig(filename=app.config['LOG_FILE'], level = logging.DEBUG)
+mail = Mail(app)
 
 db = SQLAlchemy(app)
-migrate = Migrate(app,db)
+migrate = Migrate(app, db)
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
@@ -42,7 +43,7 @@ class User(db.Model):
     name = db.Column(db.String(64))
     college = db.Column(db.String(64))
     registrations = db.relationship('Registration', backref='user', lazy='dynamic')
-    confirmations = db.relationship('Corfirmation', backref='user', lazy='dynamic')
+    confirmations = db.relationship('Confirmation', backref='user', lazy='dynamic')
     
     def is_authenticated(self):
         return True
@@ -61,9 +62,12 @@ class User(db.Model):
 
 class Confirmation(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.relationship('Confirmation', backref='confirmation', lazy='dynamic')
-    hash_digest = cb.Column(db.String(256))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    hash_digest = db.Column(db.String(256))
     time = db.Column(db.DateTime())
+
+    def __repr__(self):
+        return "<confirmation#%r: %r>"%(self.id, self.user_id)
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key  =True)
@@ -417,7 +421,12 @@ def randompic():
     return redirect('/images/loading%d.jpg'%(randint(1,3)))
 
 def sendResetPasswordEmail(user, hash_digest):
-    pass
+    msg = Message("INCIDENT '14: Password Reset mailer",
+            sender="siddhartha@incident.co.in",
+            recipients=[user.email])
+    msg.html = msg.body = render_template('resetpasswordmail.html', name=user.name, 
+            hash_digest = hash_digest)
+    mail.send(msg) 
 
 @app.route('/resetpasswordrequest', methods=["POST", "GET"])
 def resetpasswordrequest():
@@ -428,7 +437,7 @@ def resetpasswordrequest():
         user = userbyusername or userbyemail
         if user:
             e = datetime.now()
-            hash_digest = hashlib.md5(user.email+unicode(e))
+            hash_digest = hashlib.md5(user.email+unicode(e)).hexdigest()
             confirmation = Confirmation(user_id = user.id, 
                                         hash_digest = hash_digest,
                                         time = e)
@@ -439,19 +448,21 @@ def resetpasswordrequest():
             return redirect(url_for('login'))
         else:
             logging.debug("resetting: user not found")
-            return render_template('resetpasswordrequest.html', form=False, submit_url=url_for('resetpasswordrequest'))
-    return render_template('resetpasswordrequest.html', form=True, submit_url=url_for('resetpasswordrequest'))
+            return render_template('resetpasswordrequest.html', form=None, submit_url=url_for('resetpasswordrequest'))
+    return render_template('resetpasswordrequest.html', form=form, submit_url=url_for('resetpasswordrequest'))
 
 @app.route('/resetpasswordreply/<hash_digest>')
 def resetpasswordreply(hash_digest=None):
-    confirmation = Confirmation.query.filter_by(hash_digest=hash_digest)
+    confirmation = Confirmation.query.filter_by(hash_digest=hash_digest).first()
     if confirmation:
+        logging.debug("confirmation present")
         user = confirmation.user
-        db.session.remove(confirmation)
+        logging.debug("logging in by hash: "+user.username)
+        db.session.delete(confirmation)
         db.session.commit()
         login_user(user)
-        logging.debug("logging in by hash: "+user)
         return redirect(url_for('resetpassword'))
+    logging.debug("no confirmation with hash"+hash_digest)
     return "Bad Request"
 
 @app.route('/resetpassword', methods=["POST", "GET"])
@@ -462,12 +473,12 @@ def resetpassword():
             user = current_user
             user.password = form.password.data
             db.session.add(user)
-            db.commit()
-            logging.debug("changed password: "+user)
-            return redirect(url_for('login'))
+            db.session.commit()
+            logging.debug("changed password: "+user.username)
+            return redirect(url_for('profile'))
         logging.debug("changing password: User not found")
-        return render_template('resetpassword.html', submit_url=url_for('resetpassword'))
-    return render_template('resetpassword.html', notloggedin=True)
+        return render_template('resetpassword.html', submit_url=url_for('resetpassword'), form=form)
+    return render_template('resetpassword.html', notloggedin=True, form=form)
 
 if __name__=='__main__':
     app.debug = True
