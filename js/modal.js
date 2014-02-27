@@ -163,6 +163,35 @@ function showModal(){
                                              .text(reply));
                     section.append(preregister);
                 });
+                $(".subsection").each(function(){
+                    var section = $(this);
+                    var sid = $(this).attr('id');
+                    eid = window.idforevents[sid];
+                    console.log("event: ", sid, "id: ", eid);
+                    if (!eid) { return; } //no registration for this event
+                    var inactive = false, reply = "";
+                    if (window.notloggedin == true){
+                        inactive = true;
+                        reply = "Log in to register.";
+                    } else if (window.registrations[eid]==true){
+                        console.log("registered for "+eid)
+                        inactive = true;
+                        reply = "You have already registered for this event.";
+                    } 
+                    var preregister = $("<div></div>")
+                                     .addClass("preregister")
+                                     .append($("<div></div>")
+                                             .addClass("preregister-button")
+                                             .addClass(inactive?"inactive":"")
+                                             .attr("id", ""+eid+"event")
+                                             .text("Register")
+                                             .bind('click', preregisterbutton))
+                                     .append($("<div></div>")
+                                             .addClass("preregister-reply")
+                                             .attr("id", ""+eid+"reply")
+                                             .text(reply));
+                    section.append(preregister);
+                });
             });
         }
     });
