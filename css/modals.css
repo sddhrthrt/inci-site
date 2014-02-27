@@ -194,12 +194,17 @@ h3.modaltitle {
   line-height: 28px;
   overflow: auto;
 }
+#right-modal div.content h1,
+#right-modal div.content h2,
+#right-modal div.content h3,
+#right-modal div.content h4 {
+  clear: both;
+}
 #right-modal div.content b {
   letter-spacing: -2px;
 }
 #right-modal div.content .preregister {
   font-size: 14px;
-  width: 100%;
   position: absolute;
   top: 8px;
   right: 8px;
@@ -322,4 +327,70 @@ h3.modaltitle {
   background-repeat: no-repeat;
   background-size: 140px auto;
   background-position: 0% -10%;
+}
+body {
+  overflow: hidden;
+}
+.sponsorspage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500000;
+  text-align: center;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+.sponsorspage .sponsorsholder {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+.sponsorspage .sponsorsholder .incititle {
+  font-family: "Allura";
+  text-align: center;
+  margin: 0 auto;
+  color: white;
+  width: 40%;
+  height: 10%;
+  font-size: 40px;
+}
+.sponsorspage .sponsorsholder .sponsorname {
+  font-family: 'Titillium Web';
+  color: white;
+  text-size: 90px;
+  padding-top: 12px;
+}
+.sponsorspage .sponsorsholder .titlesponsor {
+  width: 960px;
+  height: 240px;
+  margin: 0 auto;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.sponsorspage .sponsorsholder .sponsor {
+  width: 960px;
+  height: 180px;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.sponsorspage .sponsorsholder .closesponsors {
+  cursor: hand;
+  cursor: pointer;
+  font-weight: 200;
+  position: absolute;
+  top: 16px;
+  right: 32px;
+  margin: auto;
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  color: white;
+  text-shadow: white 0px 0px  8px ;
 }

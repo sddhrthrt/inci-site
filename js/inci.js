@@ -79,7 +79,6 @@
             workshop: "modals/workshops.html",
             sportsfest: "modals/sportsfest.html",
             aboutus: "modals/aboutus.html",
-            sponsors: "modals/sponsors.html",
             accomodation: "modals/accomodation.html",
             contactus: "modals/contactus.html",
             registration: "registration.html"
@@ -92,5 +91,13 @@
             $("#modal").load(modals[targetid], function(){
                 showModal();
             });
+        });
+        $('.hoarding#sponsors').click(function(){
+            $("#modal").load("modals/sponsors.html", function(){
+                $(".closesponsors").click(function(){
+                    $("#modal").find("div.sponsorspage").remove();
+                });
+            });
+            return false;
         });
 })(jQuery);
