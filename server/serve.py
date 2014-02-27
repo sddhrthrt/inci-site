@@ -397,7 +397,7 @@ def idforevent(eventname = None):
 
 @app.route('/randompic')
 def randompic():
-    return redirect('/inci-site/images/loading%d.jpg'%(randint(1,3)))
+    return redirect('/images/loading%d.jpg'%(randint(1,3)))
 
 if __name__=='__main__':
     app.debug = True
