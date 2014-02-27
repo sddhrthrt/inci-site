@@ -1,9 +1,9 @@
-dock('#registrationholder', {url:'/inci-site/server/profile'});
-dock('#formholder', {url:'/inci-site/server/diva'});
+dock('#registrationholder', {url:'/server/profile'});
+dock('#formholder', {url:'/server/diva'});
 function closebox(){
     (function($){
         $('a.boxclose').click(function(){
-            dock('#registrationholder', {url: '/inci-site/server/profile'});
+            dock('#registrationholder', {url: '/server/profile'});
         });
         return false;
     })(jQuery);

@@ -88,7 +88,7 @@ function showModal(){
         eventid = button.attr("id").slice(0, -5);
         $.ajax({
             type: "GET",
-            url: "/inci-site/server/preregister/"+eventid,
+            url: "/server/preregister/"+eventid,
         }).done(function(response){
             console.log(response['response']);
             switch(response['response']){
@@ -120,18 +120,13 @@ function showModal(){
     }
     $.ajax({
         type: "GET",
-<<<<<<< HEAD
-        url: "/inci-site/server/idforevent/all"
-=======
         url: "/server/idforevent/all"
->>>>>>> added vents, registration buttons
     }).done(function(response){
         if (response['response'] == 'success'){
             window.idforevents = response['eventids'];
             $.ajax({
                 type: "GET",
-<<<<<<< HEAD
-                url: "/inci-site/server/ispreregister/all"
+                url: "/server/ispreregister/all"
             }).done(function(response){
                    console.log("loggedin?: ", response['response']=='success');
                 if (response['response'] == 'success'){
@@ -168,42 +163,9 @@ function showModal(){
                                              .text(reply));
                     section.append(preregister);
                 });
-=======
-                url: "/server/ispreregister/all"
-            }).done(function(response){
-                if (response['response'] == 'success'){
-                    window.registrations = response['registrations'];
-                    $(".section").each(function(){
-                        var section = $(this);
-                        var sid = $(this).attr('id');
-                        eid = window.idforevents[sid];
-                        var inactive = false, reply = "";
-                        if (window.registrations[eid]==true){
-                            console.log("registered for "+eid)
-                            inactive = true;
-                            reply = "You have already registered for this event.";
-                        }
-                        var preregister = $("<div></div>")
-                                         .addClass("preregister")
-                                         .append($("<div></div>")
-                                                 .addClass("preregister-button")
-                                                 .addClass(inactive?"inactive":"")
-                                                 .attr("id", ""+eid+"event")
-                                                 .text("Register")
-                                                 .bind('click', preregisterbutton))
-                                         .append($("<div></div>")
-                                                 .addClass("preregister-reply")
-                                                 .attr("id", ""+eid+"reply")
-                                                 .text(reply));
-                        section.append(preregister);
-                    });
-                }
->>>>>>> added vents, registration buttons
             });
         }
     });
-
-                
 }
 function hideModal(){
     function slideModalOut(){
