@@ -16,6 +16,7 @@ from random import randint
 import logging
 
 app = Flask(__name__)
+app.config.from_object('config')
 logging.basicConfig(filename=app.config['LOG_FILE'], level = logging.DEBUG)
 
 db = SQLAlchemy(app)
