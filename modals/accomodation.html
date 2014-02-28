@@ -1,0 +1,75 @@
+<div id="modal-overlay">
+    <div id="modal-darkbg">
+    </div>
+    <div id="modal-frame">
+        <div id="left-modal">
+            <div class="modaltitleholder">
+                <h3 class="modaltitle">
+                    Accomodation
+                </h3>
+            </div>
+            <div class="modalmenu">
+                <ul class="menuitems">
+                </ul>
+            </div>
+        </div>
+        <div id="right-modal">
+            <div class="modaltopmenu">
+                    <div class="menuitem" id="accomodation">
+                        <span class="menulabel">Accomodation</span>
+                    </div>
+            </div>
+            <div class="modalbottommenu">
+                <span class="quote">Find your inner self in the serene sands of NITK...</span>
+            </div>
+            <!--<div class="content">-->
+            <div class="content">
+                <div class="section" id="accomodation">
+                    <table cellspacing="0" class="roles">
+                        <tr>
+                            <td>Name</td>
+                            <td>Role</td>
+                            <td>Phone</td>
+                        </tr>
+                        <tr>
+                            <td>Rahul Bajanthri</td>
+                            <td>Student Hospitality Coordinator</td>
+                            <td>9483474795</td>
+                        </tr>
+                        <tr>
+                            <td>D Ashok</td>
+                            <td>Student Hospitality Convener</td>
+                            <td>9035026238</td>
+                        </tr>
+                    </table>
+                    Further details will be uploaded soon. Watch this space.  
+                </div>
+            </div>
+            <div class="modalbottomquote">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function($){
+            var images = {
+                accomodation: [
+                            'url(images/1.jpg)',
+                            'url(images/2.jpg)',
+                ],
+            };
+            $(".menuitem").click(function(){
+                window.currentImages = images[$(this).attr("id")];
+            });
+            window.currentImages = images[Object.keys(images)[0]];
+        })(jQuery);
+    </script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36548793-3', 'incident.co.in');
+  ga('send', 'pageview');
+</script>
+</div>
