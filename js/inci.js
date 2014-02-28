@@ -77,7 +77,7 @@
             icare: "modals/icare.html",
             incispecial: "modals/incispecial.html",
             workshop: "modals/workshops.html",
-            sportsfest: "modals/sportsfest.html",
+            sports: "modals/sportsfest.html",
             aboutus: "modals/aboutus.html",
             accomodation: "modals/accomodation.html",
             contactus: "modals/contactus.html",
