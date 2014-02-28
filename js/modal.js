@@ -131,6 +131,7 @@ function showModal(){
                    console.log("loggedin?: ", response['response']=='success');
                 if (response['response'] == 'success'){
                     window.registrations = response['registrations'];
+                    window.notloggedin = false;
                 } else {
                     window.notloggedin = true;
                 }
