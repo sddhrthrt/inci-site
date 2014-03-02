@@ -1,0 +1,31 @@
+.row {
+  clear: both;
+}
+body {
+  padding: 0;
+}
+.top {
+  width: 100%;
+  height: 32px;
+  background-color: #dddddd;
+  margin: 0;
+  padding: 8px;
+}
+.narrow {
+  width: 204.8px;
+}
+.notnarrow {
+  width: 409.6px;
+}
+.bar {
+  float: left;
+  margin: 2px;
+  background-color: #dddddd;
+}
+.wide {
+  width: 614.4000000000001px;
+}
+.entry {
+  background-color: #bbbbbb;
+  margin: 2px;
+}

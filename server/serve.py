@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request, url_for, redirect, jsonify
+from flask import request, url_for, redirect, jsonify, abort
 from flask import render_template
 from wtforms import Form, BooleanField, StringField, validators, PasswordField
 from wtforms import FileField, FormField, DateField, HiddenField, IntegerField
@@ -61,7 +61,14 @@ class User(db.Model):
     def __repr__(self):
         return "<User#%r: %r>"%(self.id, self.username)
 
-class Roles(db.Model):
+    def is_admin(self):
+        role = Role.query.filter_by(user_id = self.id).first()
+        if role:
+            return role.role
+        else:
+            return "user"
+
+class Role(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     role = db.Column(db.String(25))
@@ -487,6 +494,46 @@ def resetpassword():
         logging.debug("changing password: User not found")
         return render_template('resetpassword.html', submit_url=url_for('resetpassword'), form=form)
     return render_template('resetpassword.html', notloggedin=True, form=form)
+
+@app.route('/admin')
+def admin():
+    if current_user.is_authenticated() and current_user.is_admin():
+        events = Event.query.all()
+        users = User.query.all()
+        return render_template("admin.html", currentuser = current_user, events = events, users = users)
+    abort(404)
+
+@app.route('/admin/getparticipants', methods=["POST"])
+def getParticipants():
+    if current_user.is_authenticated() and current_user.is_admin():
+        events = request.json['events']
+        if events:
+            checkedusers = set()
+            registrations = Registration.query.filter(Registration.event_id.in_(events)).all()
+            for r in registrations:
+                checkedusers.add(r.user_id)
+            return jsonify(checkedusers = list(checkedusers))
+        else:
+            return "no events";
+    abort(404)
+
+@app.route('/admin/sendemail', methods=["POST"])
+def sendEmail():
+    if current_user.is_authenticated() and current_user.is_admin():
+        recipients = request.json['to']
+        recipient_emails = [ u.email for u in User.query.filter(User.id.in_(recipients)).all() ]
+        body = request.json['body']
+        subject = request.json['subject']
+        msg = Message(subject,
+                sender="siddhartha@incident.co.in",
+                recipients=recipient_emails)
+        msg.html = msg.body = body
+        try:
+            mail.send(msg) 
+        except:
+            return "failure"
+        return "success"
+    abort(404)
 
 if __name__=='__main__':
     app.debug = True

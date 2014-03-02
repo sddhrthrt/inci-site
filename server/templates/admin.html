@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <!-- Meta Tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>Incident 2014</title>   
+    <script src="../js/jquery.js"></script>
+    <link href="../css/admin.css" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="top bar">
+        Incident 14: admin panel | 
+        <span class="user"> Logged in as {{currentuser.email}} </span>
+    </div>
+    <div class="row">
+        <div class="narrow bar events">
+            <div class="barhead">Events: (<label><input type=checkbox name=eventscheckall value=eventscheckall>Check all </label>)</div>
+            {% for event in events %}
+            <div class="entry"><label><input type="checkbox" name="{{event.id}}" value="{{event.name}}" />{{event.name}}</label> </div>
+            {% endfor %}
+        </div>
+        <div class="notnarrow bar participants"> 
+            <div class="barhead">Participants: (<label><input type=checkbox name=participantscheckall value=participantjjjscheckall>Check all </label>)</div>
+            {% for user in users %}
+            <div class="entry"><label><input type="checkbox" name="{{user.id}}" value="{{user.username}}" />{{user.username}}: {{user.email}}<br/>
+                name: {{user.name}} <br/>
+                phone: {{user.phone}} <br/>
+                college: {{user.college}} <br/></label>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="wide bar message">
+            <div class="barhead"> Send Email: </div>
+            <p>Send Email to all checked participants from webadmin@incident.co.in: </p>
+            <textarea name="subject" value="subject" rows="1" cols="80"></textarea>
+            <textarea name="body" value="body" rows="10" cols="80"> </textarea>
+            <br />
+            <input type="submit" value="submit" name="email" />
+            </div>
+    </div>
+</body>
+    <script src="../js/admin.js"></script>
+</html>

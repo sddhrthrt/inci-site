@@ -1,0 +1,37 @@
+@topbarheight: 32px;
+@width: 1024px;
+@narrow: @width/5;
+@color2: #ddd;
+@color3: #bbb;
+.row {
+    clear: both;
+}
+body {
+    padding: 0;
+    }
+.top {
+    width: 100%;
+    height: @topbarheight;
+    background-color: @color2;
+    margin: 0;
+    padding: 8px;
+}
+.narrow{
+    width:  @narrow;
+}
+.notnarrow{
+    width:  2*@narrow;
+}
+.bar { 
+    float: left;
+    margin: 2px;
+    background-color: @color2;
+    background-color: @color2;
+}
+.wide {
+    width: 3*@narrow;
+    }
+.entry {
+    background-color: @color3;
+    margin: 2px;
+    }
