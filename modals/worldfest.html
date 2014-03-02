@@ -1,0 +1,82 @@
+
+<div id="modal-overlay">
+    <div id="modal-darkbg">
+    </div>
+    <div id="modal-frame">
+        <div id="left-modal">
+            <div class="modaltitleholder">
+                <h3 class="modaltitle">
+                    World Fest
+                </h3>
+            </div>
+            <div class="modalmenu">
+                <ul class="menuitems">
+                </ul>
+            </div>
+        </div>
+        <div id="right-modal">
+            <div class="modaltopmenu">
+                    <div class="menuitem" id="turbans">
+                        <span class="menulabel">The Turbans</span>
+                    </div>
+                    <div class="menuitem" id="lisa">
+                        <span class="menulabel">Lisa Angel and Miguel</span>
+                    </div>
+                    <div class="menuitem" id="banana">
+                        <span class="menulabel">Banana Show</span>
+                    </div>
+                    <div class="menuitem" id="zaltzman">
+                        <span class="menulabel">Roy Zaltzman Show</span>
+                    </div>
+            </div>
+            <div class="modalbottommenu">
+                <span class="quote">Find your inner self in the serene sands of NITK...</span>
+            </div>
+            <!--<div class="content">-->
+                <div class="content">
+                    <div class="section" id="turbans">
+                        <p></p>
+                    </div>
+                    <div class="section" id="lisa">
+                        <p></p>
+                    </div>
+                    <div class="section" id="banana">
+                        <p></p>
+                    </div>
+                    <div class="section" id="zaltzman">
+                        <p></p>
+                    </div>
+                
+            </div>
+            <div class="modalbottomquote">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function($){
+         var images = {
+                turbans: [
+                ],
+                lisa : [
+                ], 
+                banana: [
+                ],
+                zaltzman: [
+                ]
+            };
+            $(".menuitem").click(function(){
+                window.currentImages = images[$(this).attr("id")];
+            });
+            window.currentImages = images[Object.keys(images)[0]];
+        })(jQuery);
+    </script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36548793-3', 'incident.co.in');
+  ga('send', 'pageview');
+</script>
+</div>
