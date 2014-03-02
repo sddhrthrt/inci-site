@@ -16,13 +16,19 @@
     </div>
     <div class="row">
         <div class="narrow bar events">
-            <div class="barhead">Events: (<label><input type=checkbox name=eventscheckall value=eventscheckall>Check all </label>)</div>
+            <div class="barhead">Events: 
+                (<label><input type=checkbox name=eventscheckall value=eventscheckall>Check all </label>)
+                (<label><input type=checkbox name=eventshideunchecked value=eventshideunchecked>Hide unchecked</label>)
+            </div>
             {% for event in events %}
             <div class="entry"><label><input type="checkbox" name="{{event.id}}" value="{{event.name}}" />{{event.name}}</label> </div>
             {% endfor %}
         </div>
         <div class="notnarrow bar participants"> 
-            <div class="barhead">Participants: (<label><input type=checkbox name=participantscheckall value=participantjjjscheckall>Check all </label>)</div>
+            <div class="barhead">Participants: 
+                (<label><input type=checkbox name=participantscheckall value=participantjjjscheckall>Check all </label>)
+                (<label><input type=checkbox name=participantshideunchecked value=participantshideunchecked>Hide unchecked</label>)
+            </div>
             {% for user in users %}
             <div class="entry"><label><input type="checkbox" name="{{user.id}}" value="{{user.username}}" />{{user.username}}: {{user.email}}<br/>
                 name: {{user.name}} <br/>

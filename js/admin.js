@@ -1,12 +1,30 @@
 function setAll (selector, value) {
     $(selector).each(function(){ this.checked = value });
 }
+function hideUnchecked(selector, value) {
+    if (value) {
+        $(selector).each(function(){
+            if ( ! $(this).find("input")[0].checked ){
+                $(this).hide();
+            }
+        });
+    } else {
+        $(selector).each(function() {
+            $(this).show();
+        });
+    }
+}
 $("input[name=eventscheckall]").change(function(){
     setAll(".events input[type='checkbox']", this.checked);
 });
 $("input[name=participantscheckall]").change(function(){
-    console.log(this.checked);
     setAll(".participants input[type='checkbox']", this.checked);
+});
+$("input[name=eventshideunchecked]").change(function(){
+    hideUnchecked(".events label", this.checked);
+});
+$("input[name=participantshideunchecked]").change(function(){
+    hideUnchecked(".participants label", this.checked);
 });
 $(".events input[type='checkbox']").change(function(){
     var checkedEvents = [];
@@ -43,4 +61,5 @@ $("input[name='email'][type='submit']").click(function(){
     });
     return false;
 });
+
 
