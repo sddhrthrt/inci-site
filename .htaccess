@@ -1,5 +1,7 @@
 Options +ExecCGI
 AddHandler fcgid-script .fcgi
+ErrorDocument 404 /inci-site/404.html
+ErrorDocument 500 /inci-site/500.html
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ $1 [QSA,L]

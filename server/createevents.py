@@ -42,14 +42,23 @@ from serve import Event
 #eventstoremove = [
         #"promenade",
         #]
-events = ["promenadegroupdance",]
+events  = [
+#"mural",
+#"muria",
+#"softtoy",
+"facartoon",
+"tattoo",
+"retro",
+"bodyart",
+]
 for event in events:
     e = Event(name=event)
     db.session.add(e)
     db.session.commit()
 
-for event in eventstoremove:
-    e = Event.query.filter_by(name=event)
-    if e:
-        db.session.delete(e)
-        db.session.commit()
+if eventstoremove:
+    for event in eventstoremove:
+        e = Event.query.filter_by(name=event)
+        if e:
+            db.session.delete(e)
+            db.session.commit()
