@@ -187,11 +187,22 @@ h3.modaltitle {
   position: absolute;
   top: 75px;
   color: rgba(0, 0, 0, 0.8);
-  padding: 50px 32px 8px 32px;
+  padding: 8px 32px 8px 32px;
   font-size: 18px;
   font-family: 'Modern Antiqua', serif;
   line-height: 28px;
   overflow: auto;
+}
+#right-modal div.content .inline-logo {
+  vertical-align: middle;
+  display: inline-block;
+  width: 120px;
+  height: 70px;
+}
+#right-modal div.content .inline-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
 }
 #right-modal div.content h1,
 #right-modal div.content h2,
@@ -201,6 +212,7 @@ h3.modaltitle {
 }
 #right-modal div.content b {
   letter-spacing: -2px;
+  text-shadow: 0 0 2px #18b8f5;
 }
 #right-modal div.content .preregister {
   font-size: 14px;
@@ -373,6 +385,7 @@ body {
   margin: 0 auto;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
 }
 .sponsorspage .sponsorsholder .closesponsors {
   cursor: hand;
