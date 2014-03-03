@@ -354,10 +354,15 @@ ul.errors > li {
     left: 0;
     top: 50%;
     margin-top: -( 3*@iconsize + 2*@iconsep ) / 2;
+    a {
+        color: white;
+        text-decoration: none;
+    }
     .icon {
         width: @iconsize;
         height: @iconsize;
         margin-top: @iconsep;
+        text-align: left;
         &:hover {
             width: @iconsize + 8px;
             height: @iconsize + 8px;
@@ -365,6 +370,23 @@ ul.errors > li {
             -ms-transition: all 1s ease-in-out;
             -moz-transition: all 1s ease-in-out;
             -webkit-transition: all 1s ease-in-out;
+        }
+        &:hover .label {
+            opacity: 1;
+            left: @iconsize + 8px;
+            top: @iconsize/2 - 14px + 8px;
+            transition: all 1s ease-in-out;
+            -ms-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -webkit-transition: all 1s ease-in-out;
+        }
+        .label {
+            opacity: 0;
+            position: relative;
+            top: @iconsize/2 - 10px;
+            left: @iconsize;
+            color: white;
+            font-family: Titillium Web, sans;
         }
     }
     #fb {
@@ -379,6 +401,59 @@ ul.errors > li {
     }
     #youtube {
         background-image: url("../images/youtube-icon.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+#media-icons-right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -( 2*@iconsize + 1*@iconsep ) / 2 + (@iconsize / 2 );
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    .icon {
+        width: @iconsize;
+        height: @iconsize;
+        margin-top: @iconsep;
+        text-align: right;
+        &:hover {
+            width: @iconsize + 8px;
+            height: @iconsize + 8px;
+            transition: all 1s ease-in-out;
+            -ms-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -webkit-transition: all 1s ease-in-out;
+        }
+        .label {
+            white-space: nowrap;
+            margin-left: -30px;
+            opacity: 0;
+            position: relative;
+            top: @iconsize/2 - 10px;
+            right: @iconsize;
+            color: white;
+            font-family: Titillium Web, sans;
+        }
+        &:hover .label {
+            opacity: 1;
+            right: @iconsize + 8px;
+            top: @iconsize/2 - 14px + 8px;
+            transition: all 1s ease-in-out;
+            -ms-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -webkit-transition: all 1s ease-in-out;
+        }
+    }
+    #schedule {
+        background-image: url("../images/schedule.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #bms {
+        background-image: url("../images/bms-icon.png");
         background-repeat: no-repeat;
         background-size: cover;
     }

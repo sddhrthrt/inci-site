@@ -384,10 +384,15 @@ ul.errors > li {
   top: 50%;
   margin-top: -104px;
 }
+#media-icons a {
+  color: white;
+  text-decoration: none;
+}
 #media-icons .icon {
   width: 64px;
   height: 64px;
   margin-top: 8px;
+  text-align: left;
 }
 #media-icons .icon:hover {
   width: 72px;
@@ -396,6 +401,23 @@ ul.errors > li {
   -ms-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   -webkit-transition: all 1s ease-in-out;
+}
+#media-icons .icon:hover .label {
+  opacity: 1;
+  left: 72px;
+  top: 26px;
+  transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -webkit-transition: all 1s ease-in-out;
+}
+#media-icons .icon .label {
+  opacity: 0;
+  position: relative;
+  top: 22px;
+  left: 64px;
+  color: white;
+  font-family: Titillium Web, sans;
 }
 #media-icons #fb {
   background-image: url("../images/facebok-icon.png");
@@ -409,6 +431,59 @@ ul.errors > li {
 }
 #media-icons #youtube {
   background-image: url("../images/youtube-icon.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#media-icons-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -36px;
+}
+#media-icons-right a {
+  color: white;
+  text-decoration: none;
+}
+#media-icons-right .icon {
+  width: 64px;
+  height: 64px;
+  margin-top: 8px;
+  text-align: right;
+}
+#media-icons-right .icon:hover {
+  width: 72px;
+  height: 72px;
+  transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -webkit-transition: all 1s ease-in-out;
+}
+#media-icons-right .icon .label {
+  white-space: nowrap;
+  margin-left: -30px;
+  opacity: 0;
+  position: relative;
+  top: 22px;
+  right: 64px;
+  color: white;
+  font-family: Titillium Web, sans;
+}
+#media-icons-right .icon:hover .label {
+  opacity: 1;
+  right: 72px;
+  top: 26px;
+  transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -webkit-transition: all 1s ease-in-out;
+}
+#media-icons-right #schedule {
+  background-image: url("../images/schedule.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#media-icons-right #bms {
+  background-image: url("../images/bms-icon.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
