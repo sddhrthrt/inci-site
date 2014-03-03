@@ -72,7 +72,7 @@
         modals = {
             events: "modals/events.html",
             pronites: "modals/pronites.html",
-            beach: "modals/beach.html",
+            worldfest: "modals/worldfest.html",
             informalz: "modals/informalz.html",
             icare: "modals/icare.html",
             incispecial: "modals/incispecial.html",

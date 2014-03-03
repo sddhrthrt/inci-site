@@ -47,7 +47,7 @@ function showModal(){
         var modalheight = $("#right-modal").height();
         var topheight = $(".modaltopmenu").height();
         var bottomheight = $(".modalbottommenu").height();
-        $("#right-modal div.content").height(modalheight-(topheight+bottomheight)-8);
+        $("#right-modal div.content").height(modalheight-(topheight+bottomheight)-16);
     }
 	$(window).resize(adjustModal);
     adjustModal();
