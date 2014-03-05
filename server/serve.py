@@ -199,14 +199,32 @@ class RegistrationForm(Form):
         ])
     confirm = PasswordField('Repeat Password', [validators.Required()])
     fb_username = StringField("Facebook Username", [validators.Length(max=64)])
-    def validate_fb_username(form, field):
-        fbu = field.data
-        user = User.query.filter_by(fb_username=fbu).first()
-        if user:
-            raise ValidationError("Facebook ID used already")
     phone = StringField("Phone Number", [validators.Length(max=64), validators.Required()])
     college = StringField("College/University", [validators.Length(max=64), validators.Required()])
 
+class AddParticipantForm(Form):
+    name = StringField("Full Name", [
+        validators.Length(min=4, max=64),
+        validators.Required()
+        ])
+
+    email = StringField("Email", [
+        validators.Length(min=6, max=64),
+        validators.Required(),
+        validators.Email()
+        ])
+    def validate_email(form, field):
+        email = field.data
+        user = User.query.filter_by(email=email).first()
+        if user:
+            raise ValidationError("Email ID used already")
+    password =  PasswordField('Password', [
+        validators.EqualTo('confirm', message="passwords must match")
+        ])
+    confirm = PasswordField('Repeat Password')
+    fb_username = StringField("Facebook Username", [validators.Length(max=64)])
+    phone = StringField("Phone Number", [validators.Length(max=64), validators.Required()])
+    college = StringField("College/University", [validators.Length(max=64), validators.Required()])
 
 class LoginForm(Form):
     username = StringField("username/email", [
@@ -626,13 +644,13 @@ def sendEmail():
     abort(404)
 
 
-@app.route('/register', methods=['POST', 'GET'])
-def register():
+@app.route('/addparticipant', methods=['POST', 'GET'])
+def addparticipant():
     form = AddParticipantForm(request.form)
     if request.method == 'POST' and form.validate():
         user = User(
                     email = form.email.data,
-                    password = hashlib.md5(form.email.data+form.name.data).hexdigest(),
+                    password = form.password.data or hashlib.md5(form.email.data+form.name.data).hexdigest(),
                     fb_username = form.fb_username.data,
                     phone = form.phone.data,
                     college = form.college.data,
@@ -643,8 +661,8 @@ def register():
         user.username = formatUsername(user)
         db.session.add(user)
         db.session.commit()
-        return jsonify(url=url_for('login'))
-    return render_template('register.html', form=form, submit_url = url_for('register'))
+        return jsonify(url=url_for('addparticipant'))
+    return render_template('register.html', form=form, submit_url = url_for('addparticipant'))
 
 if __name__=='__main__':
     app.debug = True
