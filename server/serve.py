@@ -45,7 +45,7 @@ class User(db.Model):
     college = db.Column(db.String(64))
     registrations = db.relationship('Registration', backref='user', lazy='dynamic')
     confirmations = db.relationship('Confirmation', backref='user', lazy='dynamic')
-    
+
     def is_authenticated(self):
         return True
 
@@ -182,7 +182,7 @@ class RegistrationForm(Form):
         validators.Length(min=4, max=64),
         validators.Required()
         ])
-        
+
     email = StringField("Email", [
         validators.Length(min=6, max=64),
         validators.Required(),
@@ -210,7 +210,7 @@ class RegistrationForm(Form):
 
 class LoginForm(Form):
     username = StringField("username/email", [
-        validators.Length(min=4, max=64), 
+        validators.Length(min=4, max=64),
         validators.Required()
         ])
     password =  PasswordField('password', [
@@ -229,7 +229,7 @@ class ResetPasswordForm(Form):
         validators.EqualTo('confirm', message="passwords must match")
         ])
     confirm = PasswordField('Repeat Password', [validators.Required()])
- 
+
 def formatUsername(user):
     nameslug = user.name
     nameslug = re.sub("[\W]*", "", nameslug)
@@ -243,7 +243,7 @@ def register():
         return jsonify(url=url_for('logout'))
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = User( 
+        user = User(
                     email = form.email.data,
                     password = form.password.data,
                     fb_username = form.fb_username.data,
@@ -253,7 +253,7 @@ def register():
                     )
         db.session.add(user)
         db.session.commit()
-        user.username = formatUsername(user)  
+        user.username = formatUsername(user)
         db.session.add(user)
         db.session.commit()
         return jsonify(url=url_for('login'))
@@ -275,9 +275,9 @@ def login():
                 login_user(user)
                 logging.debug("redirecting to " + url_for('index'))
                 return jsonify(url=url_for('profile'))
-            else: 
+            else:
                 logging.debug("username and password dont match: %s - %s (expected %s)"%(form.username.data,form.password.data, user.password))
-        else: 
+        else:
             logging.debug("user not found: "+form.username.data)
     return render_template('login.html', form=form, submit_url = url_for('login'), resetpasswordrequest_url = url_for('resetpasswordrequest'))
 
@@ -362,17 +362,17 @@ def preregister(eventname=None):
     if current_user.is_authenticated():
         try:
             eventname = int(eventname)
-        except: 
+        except:
             return jsonify({'response': 'invalid'})
         event = Event.query.filter_by(id=eventname).first()
-        if event: 
+        if event:
             already = Registration.query.filter_by(
                     user_id = current_user.id,
                     event_id = event.id).first()
             if already:
                 return jsonify({'response': 'alreadydone'})
             registration = Registration(
-                    user_id = current_user.id, 
+                    user_id = current_user.id,
                     event_id = event.id)
             db.session.add(registration)
             db.session.commit()
@@ -382,6 +382,42 @@ def preregister(eventname=None):
             return jsonify({'response': 'eventnotfound'})
     else:
         return jsonify({'response': 'login'})
+
+@app.route('/adminpreregister', methods=["POST"])
+def unpreregister():
+    """
+    returns successfullyadded / successfullyremoved / eventnotfound / login / alreadyadded / alreadyremoved / invalid
+    """
+    if current_user.is_authenticated() and current_user.is_admin():
+        eventid = request.json['eventid']
+        userid = request.json['userid']
+        state = request.json['state']
+        event = Event.query.filter_by(id=eventid).first()
+        if event:
+            already = Registration.query.filter_by(
+                    user_id = userid,
+                    event_id = event.id).first()
+            if already:
+                if not state:
+                    db.session.delete(already)
+                    db.session.commit()
+                    return jsonify({'response': 'successfullyremoved'})
+                return jsonify({'response': 'alreadyremoved'})
+            else:
+                if state:
+                    registration = Registration(
+                            user_id = current_user.id,
+                            event_id = event.id)
+                    db.session.add(registration)
+                    db.session.commit()
+                    return jsonify({'response': 'successfullyadded'})
+                return jsonify({'response': 'alreadyadded'})
+        else:
+            logging.error("event not found: %d"%eventname)
+            return jsonify({'response': 'eventnotfound'})
+    else:
+        return jsonify({'response': 'login'})
+
 
 @app.route('/ispreregister/<eventname>')
 def ispreregister(eventname=None):
@@ -396,14 +432,14 @@ def ispreregister(eventname=None):
             reply = {}
             for event in events:
                 reply[event.id] = event.id in regevents
-            return jsonify({'response': 'success', 
+            return jsonify({'response': 'success',
                             'registrations': reply})
         try:
             eventname = int(eventname)
-        except: 
+        except:
             return jsonify({'response': 'invalid'})
         event = Event.query.filter_by(id=eventname).first()
-        if event: 
+        if event:
             already = Registration.query.filter_by(
                     user_id = current_user.id,
                     event_id = event.id).first()
@@ -439,9 +475,9 @@ def sendResetPasswordEmail(user, hash_digest):
     msg = Message("INCIDENT '14: Password Reset mailer",
             sender="siddhartha@incident.co.in",
             recipients=[user.email])
-    msg.html = msg.body = render_template('resetpasswordmail.html', name=user.name, 
+    msg.html = msg.body = render_template('resetpasswordmail.html', name=user.name,
             hash_digest = hash_digest)
-    mail.send(msg) 
+    mail.send(msg)
 
 @app.route('/resetpasswordrequest', methods=["POST", "GET"])
 def resetpasswordrequest():
@@ -453,7 +489,7 @@ def resetpasswordrequest():
         if user:
             e = datetime.now()
             hash_digest = hashlib.md5(user.email+unicode(e)).hexdigest()
-            confirmation = Confirmation(user_id = user.id, 
+            confirmation = Confirmation(user_id = user.id,
                                         hash_digest = hash_digest,
                                         time = e)
             db.session.add(confirmation)
@@ -495,12 +531,66 @@ def resetpassword():
         return render_template('resetpassword.html', submit_url=url_for('resetpassword'), form=form)
     return render_template('resetpassword.html', notloggedin=True, form=form)
 
-@app.route('/admin')
+@app.route('/admin/home')
 def admin():
+    if current_user.is_authenticated() and current_user.is_admin():
+        return render_template("admin.html", current_user = current_user)
+    abort(404)
+
+def objectAsDict(obj, keys):
+    return dict((k, v) for k, v in obj.__dict__.iteritems() \
+            if k in keys )
+
+@app.route('/json/users', methods=["POST"])
+def usersJson():
+    if current_user.is_authenticated() and current_user.is_admin():
+        users = User.query.all()
+        keys = ['id', 'username', 'email', 'phone']
+        userdicts = [ objectAsDict(u, keys) for u in users ]
+        return jsonify({'users': userdicts})
+    abort(404)
+
+@app.route('/json/user/<uid>', methods=["POST"])
+def usersJsonFromId(uid=None):
+    if current_user.is_authenticated() and current_user.is_admin():
+        if uid:
+            keys = ['id', 'username', 'email', 'fb_username',
+                    'phone', 'name', 'college' ]
+            user = User.query.filter_by(id=uid).first()
+            userdict = objectAsDict(user, keys)
+            userdict.update(registrations = [ r.event_id for r in \
+                    user.registrations.all() ])
+            return jsonify(userdict)
+    abort(404)
+
+@app.route('/json/events', methods=["POST"])
+def eventsJson():
+    if current_user.is_authenticated() and current_user.is_admin():
+        events = Event.query.all()
+        keys = [ 'id', 'name', 'details' ]
+        eventdicts = [ objectAsDict(e, keys) for e in events ]
+        return jsonify({'events': eventdicts})
+    abort(404)
+
+@app.route('/json/event/<eid>', methods=["POST"])
+def eventsJsonFromId(eid=None):
+    if current_user.is_authenticated() and current_user.is_admin():
+        if eid:
+            keys = ['name', 'details']
+            event = Event.query.filter_by(id=eid).first()
+            eventdict = objectAsDict(event, keys)
+            eventdict.update(registrations = [ r.user_id for r in \
+                    event.registrations.all() ])
+            return jsonify(eventdict)
+    abort(404)
+
+
+@app.route('/admin/mail')
+def adminmail():
     if current_user.is_authenticated() and current_user.is_admin():
         events = Event.query.all()
         users = User.query.all()
-        return render_template("admin.html", currentuser = current_user, events = events, users = users)
+        return render_template("adminmail.html", currentuser = current_user, events = events, users = users)
     abort(404)
 
 @app.route('/admin/getparticipants', methods=["POST"])
@@ -529,14 +619,35 @@ def sendEmail():
                 recipients=recipient_emails)
         msg.html = msg.body = body
         try:
-            mail.send(msg) 
+            mail.send(msg)
         except:
             return "failure"
         return "success"
     abort(404)
 
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    form = AddParticipantForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User(
+                    email = form.email.data,
+                    password = hashlib.md5(form.email.data+form.name.data).hexdigest(),
+                    fb_username = form.fb_username.data,
+                    phone = form.phone.data,
+                    college = form.college.data,
+                    name = form.name.data,
+                    )
+        db.session.add(user)
+        db.session.commit()
+        user.username = formatUsername(user)
+        db.session.add(user)
+        db.session.commit()
+        return jsonify(url=url_for('login'))
+    return render_template('register.html', form=form, submit_url = url_for('register'))
+
 if __name__=='__main__':
     app.debug = True
     manager.run()
-    
+
 
