@@ -3,4 +3,4 @@
 *.pyc
 .*~
 migrations/
-
+inci-site-uploads/

@@ -1,8 +1,10 @@
 @topbarheight: 32px;
-@width: 1024px;
-@narrow: @width/5;
+@unit: 960px;
+@narrow: @unit/5;
+@short:  @unit/8;
 @color2: #ddd;
 @color3: #bbb;
+@color4: #aaa;
 .row {
     clear: both;
 }
@@ -27,6 +29,18 @@ body {
     margin: 2px;
     background-color: @color2;
     background-color: @color2;
+    padding: 4px;
+}
+.bar .bar {
+    width: 96%;
+    float: left;
+    margin: 2px;
+    background-color: @color3;
+    padding: 4px;
+    .entry {
+        background-color: @color4;
+        margin: 2px;
+        }
 }
 .wide {
     width: 3*@narrow;
@@ -34,4 +48,61 @@ body {
 .entry {
     background-color: @color3;
     margin: 2px;
+    clear: both;
     }
+input[name="search"]{
+    width: 90%;
+}
+.mediumheight {
+    height: 2*@short;
+}
+.containy {
+    overflow-y: hidden;
+}
+.containx {
+    overflow-x: hidden;
+}
+.contain {
+    .containy;
+    .containx;
+}
+.barhead {
+    background-color: @color4;
+}
+.key {
+    display: block;
+    float: left;
+    width: 48%;
+    text-align: right;
+    padding-right: 4px;
+    border-right: 1px solid @color3;
+}
+.keywithcb {
+    display: block;
+    float: left;
+    width: 44%;
+    text-align: right;
+    padding-right: 4px;
+    border-right: 1px solid @color3;
+    input[type="checkbox"] {
+        float: right;
+    }
+}
+.value {
+    display: block;
+    float: left;
+    width: 48%;
+    padding-left: 4px;
+    border-left: 1px solid @color3;
+}
+.true {
+    color: #0F0;
+    background-color: @color4;
+}
+.false {
+    color: #F00;
+}
+.registerbutton {
+    display: block;
+    float: right;
+}

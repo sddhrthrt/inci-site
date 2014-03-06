@@ -1,4 +1,4 @@
-#!/home1/enginee8/inci-venv/bin/python
+#!/home/sddhrthrt/inci-site-venv/bin/python
 
 from flup.server.fcgi import WSGIServer
 from serve import app as application
